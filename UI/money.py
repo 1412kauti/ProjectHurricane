@@ -62,6 +62,7 @@ class Thank_You(QtWidgets.QWidget):
         self.o7 = Verification_Screen()
         self.o7.show()
         self.close()
+    
 class Driver_Paypal(QtWidgets.QWidget):
     def __init__(self):
         super(Driver_Paypal,self).__init__()
