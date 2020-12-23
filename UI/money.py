@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import QtWidgets
-
+from test2 import dataz
 from StartScreen import Ui_Form1
 from Login_Screen import Ui_Form2
 from Registration_Screen import Ui_Form3
@@ -14,12 +14,28 @@ from Congratulations import Ui_Form10
 from forgotChoices import Ui_Form11
 from changePassword import Ui_Form12
 from UserScreen import Ui_Form13
+from BackEnd import BackEnd
+from random import randint
+import numpy as np
+import sqlite3
+conn = sqlite3.connect("assessment2.db")
+c = conn.cursor()
+        
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
         super(UserMainScreen,self).__init__()
         self.ui13 = Ui_Form13()
         self.ui13.setupUi(self)
-    def 
+    def pastJourney(self):
+        prices = [5, 12, 45]
+        names = []
+        for i, _ in enumerate(prices):
+            names.append("price"+str(i+1))
+        dict = {}
+        for name, price in zip(names, prices):
+            dict[name] = price
+        for item in dict:
+            print(item, "=", dict[item])
 class changePassword(QtWidgets.QWidget):
     def __init__(self):
         super(changePassword,self).__init__()
@@ -62,14 +78,16 @@ class Verification_Screen(QtWidgets.QWidget):
 class Thank_You(QtWidgets.QWidget):
     def __init__(self):
         super(Thank_You,self).__init__()
+        a = randint(0,1000)
         self.ui8 = Ui_Form8()
         self.ui8.setupUi(self)
         self.ui8.Verify_Now.clicked.connect(self.open_Verification_Screen)
+        self.ui8.Security_Code.setText("%d"%a)
+        # self.ui8.Security_Code.setText(self.Security_generator)
     def open_Verification_Screen(self):
         self.o7 = Verification_Screen()
         self.o7.show()
-        self.close()
-    
+        self.close()  
 class Driver_Paypal(QtWidgets.QWidget):
     def __init__(self):
         super(Driver_Paypal,self).__init__()
@@ -117,6 +135,28 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.setupUi(self)
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
+    def take_driver_inputs(self):
+        driver_first_name = self.ui3.Driver_First_Name_Text.text()
+        driver_last_name = self.ui3.Driver_Last_Name_Text.text()
+        driver_email = self.ui3.Driver_Email_Text.text()
+        driver_password = self.ui3.Driver_Password_Text.text()
+        driver_contact_number = self.ui3.Driver_Phone_Number_Text.text()
+        driver_license = self.ui3.Driver_License_Number.text()
+        driver_car_license = self.ui3.Driver_Car_Number.text()
+        driver_car_make = self.ui3.Driver_Car_Make_Text.text()
+        driver_car_color = self.ui3.Driver_Car_Color.text()
+        driver_payment = self.ui3.comboBox_2.currentText()
+        self.d2=dataz()
+        self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
+    def take_user_inputs(self):
+        user_first_name = self.ui3.User_First_Name_Text.text()
+        user_last_name = self.ui3.User_Last_Name_Text.text()
+        user_email = self.ui3.User_Email_Text.text()
+        user_contact_number = self.ui3.User_Contact_Number_Text.text()
+        user_password = self.ui3.User_Password_Text.text()
+        user_payment = self.ui3.comboBox.currentText()
+        self.d1=dataz()
+        self.d1.Insert_Into_customers(user_first_name,user_last_name,user_email,user_contact_number,user_password,user_payment)
     def open_User_Card(self):
         self.o2 = User_Card()
         self.o2.show()
@@ -134,15 +174,23 @@ class RegisterScreen(QtWidgets.QWidget):
         self.o5.show()
         self.close()
     def User_Payment(self):
-        if self.ui3.comboBox.currentText()=="Card":
-            self.ui3.User_Submit_Button.clicked.connect(self.open_User_Card)
-        elif self.ui3.comboBox.currentText()=="PayPal":
-            self.ui3.User_Submit_Button.clicked.connect(self.open_User_Paypal)
+        self.take_user_inputs()
+        if self.ui3.User_Password_Text.text() == self.ui3.User_Confirm_Password_Text.text():
+            if self.ui3.comboBox.currentText()=="Card":
+                self.ui3.User_Submit_Button.clicked.connect(self.open_User_Card)
+            elif self.ui3.comboBox.currentText()=="PayPal":
+                self.ui3.User_Submit_Button.clicked.connect(self.open_User_Paypal)
+        else:
+            self.ui3.User_Invalid_Password.setText("Passwords Mismatch, try again")
     def Driver_Payment(self):
-        if self.ui3.comboBox_2.currentText()=="Card":
-            self.ui3.Driver_Submit_Button.clicked.connect(self.open_Driver_Card)
-        elif self.ui3.comboBox_2.currentText()=="PayPal":
-            self.ui3.Driver_Submit_Button.clicked.connect(self.open_Driver_Paypal)
+        self.take_driver_inputs()
+        if self.ui3.Driver_Password_Text.text() == self.ui3.Driver_Confirm_Password_Text.text():
+            if self.ui3.comboBox_2.currentText()=="Card":
+                self.ui3.Driver_Submit_Button.clicked.connect(self.open_Driver_Card)
+            elif self.ui3.comboBox_2.currentText()=="PayPal":
+                self.ui3.Driver_Submit_Button.clicked.connect(self.open_Driver_Paypal)
+        else:
+            self.ui3.Driver_Invalid_Password.setText("Passwords Mismatch, try again")
 class LoginScreen(QtWidgets.QWidget):
     def __init__(self):
         super(LoginScreen,self).__init__()

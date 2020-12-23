@@ -57,19 +57,18 @@ class dataz():
 
     @staticmethod
     def Delete_Duplicates_Customers():
-<<<<<<< HEAD
+
         c.execute("""DELETE FROM customers 
         WHERE rowid NOT IN (SELECT min(rowid) 
         FROM customers GROUP BY first_name,email)""")
         conn.commit()
 
     @staticmethod
-    def check_for_dupilcates_customers()
-    c.execute("""SELECT""")
-=======
+    def check_for_dupilcates_customers():
+        c.execute("""SELECT""")
         c.execute("DELETE FROM customers WHERE rowid NOT IN (SELECT min(rowid) FROM customers GROUP BY first_name,email")
         conn.commit() 
->>>>>>> 1b5364edb1f12a0faeb4570a31173f7b4cf3e6cc
+
 
     @staticmethod
     def Update_First_Name_customers():
