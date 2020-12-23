@@ -56,18 +56,31 @@ class dataz():
 
     @staticmethod
     def Delete_Duplicates_Customers():
-
-        c.execute("""DELETE FROM customers 
+        c.execute("""DELETE FROM customers
         WHERE rowid NOT IN (SELECT min(rowid) 
-        FROM customers GROUP BY first_name,email)""")
+        FROM customers GROUP BY first_name,last_name,email,password,phone_number,payment_method)""")
         conn.commit()
 
     @staticmethod
-    def check_for_dupilcates_customers():
-        c.execute("""SELECT""")
-        c.execute("DELETE FROM customers WHERE rowid NOT IN (SELECT min(rowid) FROM customers GROUP BY first_name,email")
-        conn.commit() 
+    def Delete_Duplicates_Drivers():
+        c.execute("""DELETE FROM drivers
+        WHERE rowid NOT IN (SELECT min(rowid) 
+        FROM drivers GROUP BY first_name,last_name,email,phone_number,password,car_make,car_colour,car_license_plate_number,driver_license,license_expiry,bank_account)""")
+        conn.commit()
 
+    @staticmethod
+    def Delete_Duplicates_Admins():
+        c.execute("""DELETE FROM admins
+        WHERE rowid NOT IN (SELECT min(rowid) 
+        FROM admins GROUP BY first_name,last_name,email,phone_number,password)""")
+        conn.commit()
+
+    @staticmethod
+    def Delete_Duplicates_journey():
+        c.execute("""DELETE FROM customers 
+        WHERE rowid NOT IN (SELECT min(rowid) 
+        FROM customers GROUP BY date_created,customer_ID,driver_name,status,driver_ID,start_point,end_point,price,customer_number)""")
+        conn.commit()
 
     @staticmethod
     def Update_First_Name_customers():
@@ -296,7 +309,7 @@ class dataz():
 
     @staticmethod
     def Delete_Row_journey():
-        c.execute("DELETE FROM journey where rowid = 2")
+        c.execute("DELETE FROM journey where rowid = 1")
         conn.commit()
 
     @staticmethod
