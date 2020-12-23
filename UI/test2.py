@@ -1,5 +1,5 @@
 import sqlite3
-conn = sqlite3.connect("/home/hao/Documents/Assessment2/assessment2.db")
+conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
 class dataz():
     @staticmethod
@@ -9,12 +9,11 @@ class dataz():
 
     @staticmethod
     def Rename_Table():
-        c.execute("ALTER TABLE trip RENAME TO journey")
-        conn.commit()
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
-
+        c.execute("ALTER TABLE trip RENAME TO journey")        
+        conn.commit()
     @staticmethod
     def Drop_Table():
         c.execute("DROP TABLE table_name")
