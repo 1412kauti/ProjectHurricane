@@ -13,6 +13,13 @@ from Verification_Screen import Ui_Form9
 from Congratulations import Ui_Form10
 from forgotChoices import Ui_Form11
 from changePassword import Ui_Form12
+from UserScreen import Ui_Form13
+class UserMainScreen(QtWidgets.QWidget):
+    def __init__(self):
+        super(UserMainScreen,self).__init__()
+        self.ui13 = Ui_Form13()
+        self.ui13.setupUi(self)
+    def 
 class changePassword(QtWidgets.QWidget):
     def __init__(self):
         super(changePassword,self).__init__()
