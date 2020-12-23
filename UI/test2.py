@@ -1,5 +1,5 @@
 import sqlite3
-conn = sqlite3.connect("assessment2.db")
+conn = sqlite3.connect("/home/hao/Documents/Assessment2/assessment2.db")
 c = conn.cursor()
 class dataz():
     @staticmethod
@@ -57,8 +57,19 @@ class dataz():
 
     @staticmethod
     def Delete_Duplicates_Customers():
+<<<<<<< HEAD
+        c.execute("""DELETE FROM customers 
+        WHERE rowid NOT IN (SELECT min(rowid) 
+        FROM customers GROUP BY first_name,email)""")
+        conn.commit()
+
+    @staticmethod
+    def check_for_dupilcates_customers()
+    c.execute("""SELECT""")
+=======
         c.execute("DELETE FROM customers WHERE rowid NOT IN (SELECT min(rowid) FROM customers GROUP BY first_name,email")
         conn.commit() 
+>>>>>>> 1b5364edb1f12a0faeb4570a31173f7b4cf3e6cc
 
     @staticmethod
     def Update_First_Name_customers():
@@ -85,14 +96,15 @@ class dataz():
     def Update_phone_number_customers():
         c.execute("""UPDATE customers
         SET phone_number = '07412566921'
-        WHERE user_ID = 1""")
+        WHERE user
+        _ID = 1""")
         conn.commit()
 
     @staticmethod
     def Update_password_customers():
         c.execute("""UPDATE customers
         SET password = '07412566921'
-        WHERE user_ID = 1""")
+        WHERE user_ID = 2""")
         conn.commit()
 
     @staticmethod
@@ -113,13 +125,6 @@ class dataz():
     def Update_last_name_drivers():
         c.execute("""UPDATE drivers
         SET last_name = 'someone'
-        WHERE driver_ID = 1""")
-        conn.commit()
-
-    @staticmethod
-    def Update_email_drivers():
-        c.execute("""UPDATE drivers
-        SET email = 'someone'
         WHERE driver_ID = 1""")
         conn.commit()
 
@@ -213,23 +218,6 @@ class dataz():
         SET last_name = 'someone'
         WHERE order_ID = 1""")
         conn.commit()
-
-
-    @staticmethod
-    # def Update_date_created_journey():
-    #     c.execute("""UPDATE journey
-    #     SET date_created = 'somedate'
-    #     WHERE order_ID = 1""")
-    #     conn.commit()
-
-
-    # @staticmethod
-    # def Update_date_created_journey():
-    #     c.execute("""UPDATE journey
-    #     SET last_name = 'someone'
-    #     WHERE order_ID = 1""")
-    #     conn.commit()
-
     
     @staticmethod
     def Update_customer_ID_journey():
@@ -302,29 +290,35 @@ class dataz():
     def Delete_Row_drivers():
         c.execute("DELETE FROM drivers where rowid = 1")
         conn.commit()
+
     @staticmethod
     def Delete_Row_admins():
         c.execute("DELETE FROM admins where rowid = 1")
         conn.commit()
+
     @staticmethod
     def Delete_Row_journey():
         c.execute("DELETE FROM journey where rowid = 2")
         conn.commit()
+
     @staticmethod
     def Read_From_Customers():
         c.execute("SELECT*FROM customers")
         print(c.fetchall())
         conn.commit()
+
     @staticmethod
     def Read_From_Drivers():
         c.execute("SELECT*FROM drivers")
         print(c.fetchall())
         conn.commit()
+
     @staticmethod
     def Read_From_Admins():
         c.execute("SELECT*FROM admins")
         print(c.fetchall())
         conn.commit()
+
     @staticmethod
     def Read_From_Journey():
         c.execute("SELECT*FROM journey")
