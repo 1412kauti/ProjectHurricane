@@ -47,7 +47,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -57,9 +57,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>0</y>
+       <y>50</y>
        <width>481</width>
-       <height>401</height>
+       <height>371</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
@@ -74,6 +74,9 @@
       </property>
       <property name="topMargin">
        <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>15</number>
       </property>
       <item row="0" column="0">
        <widget class="QLabel" name="label">
@@ -196,6 +199,22 @@
       </item>
      </layout>
     </widget>
+    <widget class="QLabel" name="User_Invalid_Password">
+     <property name="geometry">
+      <rect>
+       <x>14</x>
+       <y>20</y>
+       <width>471</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -205,12 +224,15 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>0</y>
+       <y>50</y>
        <width>481</width>
-       <height>401</height>
+       <height>371</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
+      <property name="horizontalSpacing">
+       <number>0</number>
+      </property>
       <property name="verticalSpacing">
        <number>14</number>
       </property>
@@ -219,6 +241,9 @@
       </property>
       <property name="topMargin">
        <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>15</number>
       </property>
       <item row="0" column="0">
        <widget class="QLabel" name="label_8">
@@ -313,7 +338,7 @@
        </widget>
       </item>
       <item row="8" column="1">
-       <widget class="QLineEdit" name="lineEdit_15"/>
+       <widget class="QLineEdit" name="Driver_Car_Number"/>
       </item>
       <item row="9" column="0">
        <widget class="QLabel" name="label_17">
@@ -323,7 +348,7 @@
        </widget>
       </item>
       <item row="9" column="1">
-       <widget class="QLineEdit" name="lineEdit_16"/>
+       <widget class="QLineEdit" name="Driver_Car_Make_Text"/>
       </item>
       <item row="10" column="0">
        <widget class="QLabel" name="label_18">
@@ -333,7 +358,7 @@
        </widget>
       </item>
       <item row="10" column="1">
-       <widget class="QLineEdit" name="lineEdit_17"/>
+       <widget class="QLineEdit" name="Driver_Car_Color"/>
       </item>
       <item row="11" column="0">
        <widget class="QLabel" name="label_19">
@@ -397,6 +422,22 @@
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QLabel" name="Driver_Invalid_Password">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>481</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
     </widget>
    </widget>
   </widget>
