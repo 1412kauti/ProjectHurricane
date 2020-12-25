@@ -26,16 +26,6 @@ class UserMainScreen(QtWidgets.QWidget):
         super(UserMainScreen,self).__init__()
         self.ui13 = Ui_Form13()
         self.ui13.setupUi(self)
-    def pastJourney(self):
-        prices = [5, 12, 45]
-        names = []
-        for i, _ in enumerate(prices):
-            names.append("price"+str(i+1))
-        dict = {}
-        for name, price in zip(names, prices):
-            dict[name] = price
-        for item in dict:
-            print(item, "=", dict[item])
 class changePassword(QtWidgets.QWidget):
     def __init__(self):
         super(changePassword,self).__init__()
@@ -98,6 +88,8 @@ class Driver_Paypal(QtWidgets.QWidget):
         self.o6 = Thank_You()
         self.o6.show()
         self.close()
+    def take_Driver_Paypal_Inputs(self):
+        driver_paypal_payme = self.ui7.Driver_Paypal_payme.text()
 class Driver_Card(QtWidgets.QWidget):
     def __init__(self):
         super(Driver_Card,self).__init__()
@@ -108,6 +100,12 @@ class Driver_Card(QtWidgets.QWidget):
         self.o6 = Thank_You()
         self.o6.show()
         self.close()
+    def take_Driver_Card_Inputs(self):
+        driver_card_name = self.ui6.Drive_Card_Name.text()
+        driver_card_account_number = self.ui6.Driver_card_account_number.text()
+        driver_sort_code1 = self.ui6.Driver_Card_SortCode1.text()
+        driver_sort_code2 = self.ui6.Driver_Card_SortCode2.text()
+        driver_sort_code3 = self.ui6.Driver_Card_SortCode3.text() 
 class User_Paypal(QtWidgets.QWidget):
     def __init__(self):
         super(User_Paypal,self).__init__()
@@ -118,6 +116,9 @@ class User_Paypal(QtWidgets.QWidget):
         self.o6 = Thank_You()
         self.o6.show()
         self.close()
+    def take_User_Paypal_Inputs(self):
+        user_paypal_email =  self.ui5.User_Paypal_Email.text()
+        user_paypal_password = self.ui5.User_Paypal_Password.text()
 class User_Card(QtWidgets.QWidget):
     def __init__(self):
         super(User_Card,self).__init__()
@@ -128,6 +129,10 @@ class User_Card(QtWidgets.QWidget):
         self.o6 = Thank_You()
         self.o6.show()
         self.close()
+    def take_User_Card_Inputs(self):
+        user_card_name = self.ui4.User_Card_Name.text()
+        user_card_number = self.ui4.User_Card_Number.text()
+        user_card_cvv = self.ui4.User_Card_CVV.text()
 class RegisterScreen(QtWidgets.QWidget):
     def __init__(self):
         super(RegisterScreen,self).__init__()
@@ -198,10 +203,14 @@ class LoginScreen(QtWidgets.QWidget):
         self.ui2.setupUi(self)
         self.ui2.user_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
+        self.ui2.user_Submit.clicked.connect(self.openLogin)
     def forgetPass(self):
         self.o11 = forgotChoices()
         self.o11.show()
-
+    def openLogin(self):
+        self.o12 = UserMainScreen()
+        self.o12.show()
+        self.close()
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
         super(StartScreen,self).__init__()

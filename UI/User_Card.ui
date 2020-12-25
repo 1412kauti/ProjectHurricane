@@ -39,8 +39,8 @@
     <rect>
      <x>10</x>
      <y>170</y>
-     <width>471</width>
-     <height>171</height>
+     <width>481</width>
+     <height>230</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout_2">
@@ -50,6 +50,9 @@
     <property name="verticalSpacing">
      <number>50</number>
     </property>
+    <property name="topMargin">
+     <number>30</number>
+    </property>
     <item row="0" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
@@ -58,7 +61,7 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEdit"/>
+     <widget class="QLineEdit" name="User_Card_Name"/>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_4">
@@ -68,7 +71,7 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_2"/>
+     <widget class="QLineEdit" name="User_Card_Number"/>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_3">
@@ -78,16 +81,16 @@
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit_3"/>
+     <widget class="QLineEdit" name="User_Card_CVV"/>
     </item>
    </layout>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>9</x>
+     <x>119</x>
      <y>19</y>
-     <width>471</width>
+     <width>271</width>
      <height>141</height>
     </rect>
    </property>
@@ -98,7 +101,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>PIX/dummy.png</pixmap>
+       <pixmap>../../TaxiBooking/UI/PIX/cardz.png</pixmap>
       </property>
      </widget>
     </item>

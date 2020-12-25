@@ -86,7 +86,7 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEdit"/>
+     <widget class="QLineEdit" name="Drive_Card_Name"/>
     </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_4">
@@ -96,7 +96,7 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_2"/>
+     <widget class="QLineEdit" name="Driver_card_account_number"/>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_5">
@@ -106,17 +106,27 @@
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit_4"/>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLineEdit" name="Driver_Card_SortCode1"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="Driver_Card_SortCode2"/>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="Driver_Card_SortCode3"/>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>10</y>
-     <width>261</width>
-     <height>161</height>
+     <x>110</x>
+     <y>40</y>
+     <width>271</width>
+     <height>141</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -126,7 +136,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>PIX/cards.png</pixmap>
+       <pixmap>PIX/cardz.png</pixmap>
       </property>
      </widget>
     </item>
