@@ -1,5 +1,5 @@
 import sqlite3
-conn = sqlite3.connect("assessment2.db")
+conn = sqlite3.connect("/home/hao/Documents/TaxiBookingSystemPythonAss2/UI/assessment2.db")
 c = conn.cursor()
 class dataz():
     @staticmethod
@@ -30,13 +30,11 @@ class dataz():
     
     @staticmethod    
     def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q):
-        # license_expiry = self..text()
-        # bank_account = self..text()
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO drivers
-        (first_name, last_name, email, phone_number, password, car_make, car_colour, car_license_plate_number, license_expiry, driver_license, bank_account)
+        (first_name, last_name, email, phone_number, password, car_make, car_colour, car_license_plate_number, license_expiry, driver_license)
         VALUES (?,?,?,?,?,?,?,?,?,?)""", (z,y,x,w,v,u,t,s,r,q))
         conn.commit()
 
@@ -44,15 +42,32 @@ class dataz():
     def Insert_Into_admins():
         c.execute("""INSERT INTO admins
         (first_name, last_name, email, phone_number, password)
-        VALUES ('haos', 'zhong', 'hao123', 07412566921, 'password');""")
+        VALUES ('haos', 'zhong', 'hao123', 07412566921, 'password')""")
         conn.commit()
 
     @staticmethod
     def Insert_Into_journey():
         c.execute("""INSERT INTO journey
         (order_ID, date_created, customer_ID, driver_name, status, driver_ID, start_point, end_point, price, customer_number)
-        VALUES(23, 'someday', 1, 'driver', 'finished', 5, 'somewhere', 'somewhere_else', 42, 23);""")
+        VALUES(23, 'someday', 1, 'driver', 'finished', 5, 'somewhere', 'somewhere_else', 42, 23)""")
         conn.commit()
+
+    @staticmethod
+    def Insert_into_customer_payments(z,y,x,w,v):
+        import sqlite3
+        conn = sqlite3.connect("assessment2.db")
+        c.execute('''PRAGMA journal_mode = WAL''')
+        c.execute("""INSERT INTO customer_payment
+        (name,card_number,cvv,email,password)
+        VALUES (?,?,?,?,?)""", (z,y,x,w,v))
+        conn.commit()
+
+    @staticmethod
+    def Insert_into_driver_payments(z,y,x,w,v,u):
+        c.execute("""INSERT INTO driver_payment
+        (name,account_number,sort_code_1,sort_code_2,sort_code_3,payme_link)
+        VALUES (?,?,?,?,?,?)""", (z,y,x,w,v,u))
+        conn.commit()    
 
     @staticmethod
     def Delete_Duplicates_Customers():
@@ -76,17 +91,21 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Delete_Duplicates_journey():
-        c.execute("""DELETE FROM customers 
-        WHERE rowid NOT IN (SELECT min(rowid) 
-        FROM customers GROUP BY date_created,customer_ID,driver_name,status,driver_ID,start_point,end_point,price,customer_number)""")
+    def Check_Duplicates_customers():
+        c.execute("""SELECT first_name,last_name,email,phone_number,password,payment_method, COUNT(*)
+        FROM customers
+        GROUP BY first_name,last_name,email,phone_number,password,payment_method
+        HAVING COUNT(*) > 1""")
+        print(c.fetchall())
         conn.commit()
 
     @staticmethod
-    def Update_First_Name_customers():
-        c.execute("""UPDATE customers
-        SET first_name = 'someone'
-        WHERE user_ID = 1""")
+    def Check_Duplicates_drivers():
+        c.execute("""SELECT first_name,last_name,email,phone_number,password,car_make,car_colour,car_license_plate_number,driver_license,license_expiry COUNT(*)
+        FROM drivers
+        GROUP BY first_name,last_name,email,phone_number,password,car_make,car_colour,car_license_plate_number,driver_license
+        HAVING COUNT(*) > 1""")
+        print(c.fetchall())
         conn.commit()
 
     @staticmethod
@@ -107,15 +126,14 @@ class dataz():
     def Update_phone_number_customers():
         c.execute("""UPDATE customers
         SET phone_number = '07412566921'
-        WHERE user
-        _ID = 1""")
+        WHERE user_ID = 1""")
         conn.commit()
 
     @staticmethod
     def Update_password_customers():
         c.execute("""UPDATE customers
         SET password = '07412566921'
-        WHERE user_ID = 2""")
+        WHERE user_ID = 1""")
         conn.commit()
 
     @staticmethod
@@ -337,4 +355,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.Delete_Duplicates_Customers()
+v.Check_Duplicates_customers()
