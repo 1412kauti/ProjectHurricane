@@ -20,6 +20,7 @@ import numpy as np
 import sqlite3
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
+print("connected2")
         
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
@@ -88,8 +89,14 @@ class Driver_Paypal(QtWidgets.QWidget):
         self.o6 = Thank_You()
         self.o6.show()
         self.close()
+        self.take_Driver_Paypal_Inputs()
     def take_Driver_Paypal_Inputs(self):
         driver_paypal_payme = self.ui7.Driver_Paypal_payme.text()
+        driver_card_name = 0
+        driver_card_account_number = 0
+        driver_sort_code = 0
+        self.d5 = dataz()
+        self.d5.Insert_into_driver_payments(driver_card_name,driver_card_account_number,driver_sort_code,driver_paypal_payme) 
 class Driver_Card(QtWidgets.QWidget):
     def __init__(self):
         super(Driver_Card,self).__init__()
@@ -100,12 +107,17 @@ class Driver_Card(QtWidgets.QWidget):
         self.o6 = Thank_You()
         self.o6.show()
         self.close()
+        self.take_Driver_Card_Inputs()
     def take_Driver_Card_Inputs(self):
         driver_card_name = self.ui6.Drive_Card_Name.text()
         driver_card_account_number = self.ui6.Driver_card_account_number.text()
         driver_sort_code1 = self.ui6.Driver_Card_SortCode1.text()
         driver_sort_code2 = self.ui6.Driver_Card_SortCode2.text()
-        driver_sort_code3 = self.ui6.Driver_Card_SortCode3.text() 
+        driver_sort_code3 = self.ui6.Driver_Card_SortCode3.text()
+        driver_sort_code = str(driver_sort_code1) + "-" + str(driver_sort_code2) + "-" + str(driver_sort_code3)
+        driver_paypal_payme = 0
+        self.d4 = dataz()
+        self.d4.Insert_into_driver_payments(driver_card_name,driver_card_account_number,driver_sort_code,driver_paypal_payme) 
 class User_Paypal(QtWidgets.QWidget):
     def __init__(self):
         super(User_Paypal,self).__init__()
@@ -116,9 +128,15 @@ class User_Paypal(QtWidgets.QWidget):
         self.o6 = Thank_You()
         self.o6.show()
         self.close()
+        self.take_User_Paypal_Inputs()
     def take_User_Paypal_Inputs(self):
         user_paypal_email =  self.ui5.User_Paypal_Email.text()
         user_paypal_password = self.ui5.User_Paypal_Password.text()
+        user_card_name = 0
+        user_card_number = 0
+        user_card_cvv = 0
+        self.d3 = dataz()
+        self.d3.Insert_into_customer_payments(user_card_name,user_card_number,user_card_cvv,user_paypal_email,user_paypal_password)
 class User_Card(QtWidgets.QWidget):
     def __init__(self):
         super(User_Card,self).__init__()
@@ -129,10 +147,15 @@ class User_Card(QtWidgets.QWidget):
         self.o6 = Thank_You()
         self.o6.show()
         self.close()
+        self.take_User_Card_Inputs()
     def take_User_Card_Inputs(self):
         user_card_name = self.ui4.User_Card_Name.text()
         user_card_number = self.ui4.User_Card_Number.text()
         user_card_cvv = self.ui4.User_Card_CVV.text()
+        user_paypal_email = 0
+        user_paypal_password = 0
+        self.d2=dataz()
+        self.d2.Insert_into_customer_payments(user_card_name,user_card_number,user_card_cvv,user_paypal_email,user_paypal_password)
 class RegisterScreen(QtWidgets.QWidget):
     def __init__(self):
         super(RegisterScreen,self).__init__()

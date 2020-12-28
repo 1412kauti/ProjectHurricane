@@ -1,6 +1,8 @@
 import sqlite3
-conn = sqlite3.connect("/home/hao/Documents/TaxiBookingSystemPythonAss2/UI/assessment2.db")
+conn = sqlite3.connect("assessment2.db")
+#conn = sqlite3.connect("/home/hao/Documents/TaxiBookingSystemPythonAss2/UI/assessment2.db")
 c = conn.cursor()
+print("connected")
 class dataz():
     @staticmethod
     def Create_Table():
