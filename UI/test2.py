@@ -321,28 +321,28 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Update_name_customer_payment():
+    def Update_card_customer_payment():
         c.execute("""UPDATE customer_payment
         SET card_number = 'someone'
         WHERE order_ID = 1""")
         conn.commit()
 
     @staticmethod
-    def Update_name_customer_payment():
+    def Update_cvv_customer_payment():
         c.execute("""UPDATE customer_payment
         SET cvv = 'someone'
         WHERE order_ID = 1""")
         conn.commit()
 
     @staticmethod
-    def Update_name_customer_payment():
+    def Update_email_customer_payment():
         c.execute("""UPDATE customer_payment
         SET email = 'someone'
         WHERE order_ID = 1""")
         conn.commit()
 
     @staticmethod
-    def Update_name_customer_payment():
+    def Update_password_customer_payment():
         c.execute("""UPDATE customer_payment
         SET password = 'someone'
         WHERE order_ID = 1""")
@@ -356,21 +356,21 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Update_name_driver_payments():
+    def Update_account_number_driver_payments():
         c.execute("""UPDATE driver_payments
         SET account_number = 'someone'
         WHERE order_ID = 1""")
         conn.commit()
 
     @staticmethod
-    def Update_name_driver_payments():
+    def Update_sort_code_driver_payments():
         c.execute("""UPDATE driver_payments
         SET sort_code = 'someone'
         WHERE order_ID = 1""")
         conn.commit()
 
     @staticmethod
-    def Update_name_driver_payments():
+    def Update_payme_link_driver_payments():
         c.execute("""UPDATE driver_payments
         SET payme_link = 'someone'
         WHERE order_ID = 1""")
