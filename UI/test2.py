@@ -1,8 +1,6 @@
 import sqlite3
 conn = sqlite3.connect("assessment2.db")
-#conn = sqlite3.connect("/home/hao/Documents/TaxiBookingSystemPythonAss2/UI/assessment2.db")
 c = conn.cursor()
-print("connected")
 class dataz():
     @staticmethod
     def Create_Table():
@@ -34,40 +32,42 @@ class dataz():
     def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
+        c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO drivers
-        (first_name, last_name, email, phone_number, password, car_make, car_colour, car_license_plate_number, license_expiry, driver_license)
-        VALUES (?,?,?,?,?,?,?,?,?,?)""", (z,y,x,w,v,u,t,s,r,q))
+        (first_name, last_name, email, phone_number, password, car_make, car_colour, car_license_plate_number, license_expiry, driver_license) VALUES (?,?,?,?,?,?,?,?,?,?)""", (z,y,x,w,v,u,t,s,r,q))
         conn.commit()
 
     @staticmethod
     def Insert_Into_admins():
         c.execute("""INSERT INTO admins
-        (first_name, last_name, email, phone_number, password)
-        VALUES ('haos', 'zhong', 'hao123', 07412566921, 'password')""")
+        (first_name, last_name, email, phone_number, password) VALUES ('haos', 'zhong', 'hao123', 07412566921, 'password')""")
         conn.commit()
 
     @staticmethod
     def Insert_Into_journey():
         c.execute("""INSERT INTO journey
-        (order_ID, date_created, customer_ID, driver_name, status, driver_ID, start_point, end_point, price, customer_number)
-        VALUES(23, 'someday', 1, 'driver', 'finished', 5, 'somewhere', 'somewhere_else', 42, 23)""")
+        (order_ID, date_created, customer_ID, driver_name, status, driver_ID, start_point, end_point, price, customer_number) VALUES(23, 'someday', 1, 'driver', 'finished', 5, 'somewhere', 'somewhere_else', 42, 23)""")
         conn.commit()
 
     @staticmethod
     def Insert_into_customer_payments(z,y,x,w,v):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
+        c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO customer_payment
-        (name,card_number,cvv,email,password)
+        (name, card_number, cvv, email, password)
         VALUES (?,?,?,?,?)""", (z,y,x,w,v))
         conn.commit()
 
     @staticmethod
     def Insert_into_driver_payments(z,y,x,w,v,u):
-        c.execute("""INSERT INTO driver_payment
-        (name,account_number,sort_code_1,sort_code_2,sort_code_3,payme_link)
+        import sqlite3
+        conn = sqlite3.connect("assessment2.db")
+        c = conn.cursor()
+        c.execute("""INSERT INTO driver_payments
+        (name, account_number, sort_code, payme_link)
         VALUES (?,?,?,?,?,?)""", (z,y,x,w,v,u))
         conn.commit()    
 
@@ -357,4 +357,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.Check_Duplicates_customers()
+v.Insert_into_customer_payments(1,2,3,4,5)
