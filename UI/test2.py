@@ -1,5 +1,5 @@
 import sqlite3
-conn = sqlite3.connect("assessment2.db")
+conn = sqlite3.connect("/home/hao/Documents/TaxiBookingSystemPythonAss2/UI/assessment2.db")
 c = conn.cursor()
 class dataz():
     @staticmethod
@@ -309,6 +309,76 @@ class dataz():
     def Update_customer_number_journey():
         c.execute("""UPDATE journey
         SET customer_number = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+        
+    @staticmethod
+    def Update_name_customer_payment():
+        c.execute("""UPDATE customer_payment
+        SET name = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_customer_payment():
+        c.execute("""UPDATE customer_payment
+        SET card_number = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_customer_payment():
+        c.execute("""UPDATE customer_payment
+        SET cvv = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_customer_payment():
+        c.execute("""UPDATE customer_payment
+        SET email = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_customer_payment():
+        c.execute("""UPDATE customer_payment
+        SET password = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_driver_payments():
+        c.execute("""UPDATE driver_payments
+        SET name = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_driver_payments():
+        c.execute("""UPDATE driver_payments
+        SET account_number = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_driver_payments():
+        c.execute("""UPDATE driver_payments
+        SET sort_code = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_driver_payments():
+        c.execute("""UPDATE driver_payments
+        SET payme_link = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_driver_payments():
+        c.execute("""UPDATE driver_payments
+        SET name = 'someone'
         WHERE order_ID = 1""")
         conn.commit()
 
