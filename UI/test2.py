@@ -1,8 +1,6 @@
 import sqlite3
-conn = sqlite3.connect("assessment2.db")
-# conn = sqlite3.connect("/home/hao/Documents/TaxiBookingSystemPythonAss2/UI/assessment2.db")
+conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
 c = conn.cursor()
-print("hello")
 class dataz():
     @staticmethod
     def Create_Table():
@@ -12,7 +10,7 @@ class dataz():
     @staticmethod
     def Rename_Table():
         import sqlite3
-        conn = sqlite3.connect("assessment2.db")
+        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
         c = conn.cursor()
         c.execute("ALTER TABLE trip RENAME TO journey")        
         conn.commit()
@@ -24,7 +22,7 @@ class dataz():
     @staticmethod
     def Insert_Into_customers(z,y,x,w,v,u):
         import sqlite3
-        conn = sqlite3.connect("assessment2.db")
+        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("INSERT INTO customers (first_name,last_name,email,phone_number,password,payment_method) VALUES(?,?,?,?,?,?)",(z,y,x,w,v,u))
@@ -33,7 +31,7 @@ class dataz():
     @staticmethod    
     def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q):
         import sqlite3
-        conn = sqlite3.connect("assessment2.db")
+        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO drivers
@@ -55,7 +53,7 @@ class dataz():
     @staticmethod
     def Insert_into_customer_payments(z,y,x,w,v):
         import sqlite3
-        conn = sqlite3.connect("assessment2.db")
+        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO customer_payment
@@ -66,7 +64,7 @@ class dataz():
     @staticmethod
     def Insert_into_driver_payments(z,y,x,w,v,u):
         import sqlite3
-        conn = sqlite3.connect("assessment2.db")
+        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
         c = conn.cursor()
         c.execute("""INSERT INTO driver_payments
         (name, account_number, sort_code, payme_link)
@@ -293,12 +291,6 @@ class dataz():
 
     @staticmethod
     def Update_end_piont_journey():
-        c.execute("""UPDATE journey
-        SET end_piont = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit()
-
-
     @staticmethod
     def Update_price_journey():
         c.execute("""UPDATE journey
@@ -318,70 +310,70 @@ class dataz():
     def Update_name_customer_payment():
         c.execute("""UPDATE customer_payment
         SET name = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_card_customer_payment():
         c.execute("""UPDATE customer_payment
         SET card_number = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_cvv_customer_payment():
         c.execute("""UPDATE customer_payment
         SET cvv = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_email_customer_payment():
         c.execute("""UPDATE customer_payment
         SET email = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_password_customer_payment():
         c.execute("""UPDATE customer_payment
         SET password = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_name_driver_payments():
         c.execute("""UPDATE driver_payments
         SET name = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_account_number_driver_payments():
         c.execute("""UPDATE driver_payments
         SET account_number = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_sort_code_driver_payments():
         c.execute("""UPDATE driver_payments
         SET sort_code = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_payme_link_driver_payments():
         c.execute("""UPDATE driver_payments
         SET payme_link = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_name_driver_payments():
         c.execute("""UPDATE driver_payments
         SET name = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
@@ -402,6 +394,12 @@ class dataz():
     @staticmethod
     def Delete_Row_journey():
         c.execute("DELETE FROM journey where rowid = 1")
+        conn.commit()
+
+    @staticmethod
+    def Read_From_customer_payment():
+        c.execute("SELECT*FROM customer_payment")
+        print(c.fetchall())
         conn.commit()
 
     @staticmethod
@@ -429,4 +427,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.Insert_into_customer_payments(1,2,3,4,5)
+v.Read_From_customer_payment()
