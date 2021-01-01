@@ -38,7 +38,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
+     <y>230</y>
      <width>481</width>
      <height>230</height>
     </rect>
@@ -71,7 +71,11 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="User_Card_Number"/>
+     <widget class="QLineEdit" name="User_Card_Number">
+      <property name="maxLength">
+       <number>16</number>
+      </property>
+     </widget>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_3">
@@ -81,7 +85,11 @@
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QLineEdit" name="User_Card_CVV"/>
+     <widget class="QLineEdit" name="User_Card_CVV">
+      <property name="maxLength">
+       <number>3</number>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -101,7 +109,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../../TaxiBooking/UI/PIX/cardz.png</pixmap>
+       <pixmap>PIX/dummy.png</pixmap>
       </property>
      </widget>
     </item>
@@ -111,8 +119,8 @@
    <property name="geometry">
     <rect>
      <x>210</x>
-     <y>430</y>
-     <width>81</width>
+     <y>460</y>
+     <width>82</width>
      <height>31</height>
     </rect>
    </property>
@@ -131,6 +139,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="Error_Label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>170</y>
+     <width>471</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <resources/>
