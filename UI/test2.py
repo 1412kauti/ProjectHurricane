@@ -1,7 +1,6 @@
 import sqlite3
-conn = sqlite3.connect("/home/hao/Documents/TaxiBookingSystemPythonAss2/UI/assessment2.db")
+conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
 c = conn.cursor()
-print("hello")
 class dataz():
     @staticmethod
     def Create_Table():
@@ -317,70 +316,70 @@ class dataz():
     def Update_name_customer_payment():
         c.execute("""UPDATE customer_payment
         SET name = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_card_customer_payment():
         c.execute("""UPDATE customer_payment
         SET card_number = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_cvv_customer_payment():
         c.execute("""UPDATE customer_payment
         SET cvv = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_email_customer_payment():
         c.execute("""UPDATE customer_payment
         SET email = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_password_customer_payment():
         c.execute("""UPDATE customer_payment
         SET password = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_name_driver_payments():
         c.execute("""UPDATE driver_payments
         SET name = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_account_number_driver_payments():
         c.execute("""UPDATE driver_payments
         SET account_number = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_sort_code_driver_payments():
         c.execute("""UPDATE driver_payments
         SET sort_code = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_payme_link_driver_payments():
         c.execute("""UPDATE driver_payments
         SET payme_link = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
     def Update_name_driver_payments():
         c.execute("""UPDATE driver_payments
         SET name = 'someone'
-        WHERE order_ID = 1""")
+        WHERE rowid = 1""")
         conn.commit()
 
     @staticmethod
