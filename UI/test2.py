@@ -1,5 +1,10 @@
 import sqlite3
+<<<<<<< HEAD
 conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
+=======
+conn = sqlite3.connect("assessment2.db")
+# conn = sqlite3.connect("/home/hao/Documents/TaxiBookingSystemPythonAss2/UI/assessment2.db")
+>>>>>>> 48ec23d974868e15f8c83b9283a06524d85fd014
 c = conn.cursor()
 class dataz():
     @staticmethod

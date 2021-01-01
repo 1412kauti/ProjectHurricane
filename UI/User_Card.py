@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Form4(object):
+class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(500, 500)
@@ -24,7 +24,7 @@ class Ui_Form4(object):
         Form.setMaximumSize(QtCore.QSize(500, 500))
         Form.setStyleSheet("")
         self.formLayoutWidget_2 = QtWidgets.QWidget(Form)
-        self.formLayoutWidget_2.setGeometry(QtCore.QRect(10, 170, 481, 230))
+        self.formLayoutWidget_2.setGeometry(QtCore.QRect(10, 230, 481, 230))
         self.formLayoutWidget_2.setObjectName("formLayoutWidget_2")
         self.formLayout_2 = QtWidgets.QFormLayout(self.formLayoutWidget_2)
         self.formLayout_2.setContentsMargins(0, 30, 0, 0)
@@ -41,12 +41,14 @@ class Ui_Form4(object):
         self.label_4.setObjectName("label_4")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_4)
         self.User_Card_Number = QtWidgets.QLineEdit(self.formLayoutWidget_2)
+        self.User_Card_Number.setMaxLength(16)
         self.User_Card_Number.setObjectName("User_Card_Number")
         self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.User_Card_Number)
         self.label_3 = QtWidgets.QLabel(self.formLayoutWidget_2)
         self.label_3.setObjectName("label_3")
         self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.label_3)
         self.User_Card_CVV = QtWidgets.QLineEdit(self.formLayoutWidget_2)
+        self.User_Card_CVV.setMaxLength(3)
         self.User_Card_CVV.setObjectName("User_Card_CVV")
         self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.User_Card_CVV)
         self.verticalLayoutWidget_2 = QtWidgets.QWidget(Form)
@@ -57,11 +59,11 @@ class Ui_Form4(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.label = QtWidgets.QLabel(self.verticalLayoutWidget_2)
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../../TaxiBooking/UI/PIX/cardz.png"))
+        self.label.setPixmap(QtGui.QPixmap("PIX/dummy.png"))
         self.label.setObjectName("label")
         self.verticalLayout_2.addWidget(self.label)
         self.verticalLayoutWidget = QtWidgets.QWidget(Form)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(210, 430, 81, 31))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(210, 460, 82, 31))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -74,6 +76,10 @@ class Ui_Form4(object):
         self.Submit_Details1.setSizePolicy(sizePolicy)
         self.Submit_Details1.setObjectName("Submit_Details1")
         self.verticalLayout.addWidget(self.Submit_Details1)
+        self.Error_Label = QtWidgets.QLabel(Form)
+        self.Error_Label.setGeometry(QtCore.QRect(20, 170, 471, 51))
+        self.Error_Label.setText("")
+        self.Error_Label.setObjectName("Error_Label")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -91,7 +97,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = Ui_Form4()
+    ui = Ui_Form()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
