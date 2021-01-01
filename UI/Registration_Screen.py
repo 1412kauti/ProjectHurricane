@@ -30,7 +30,7 @@ class Ui_Form(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.formLayoutWidget = QtWidgets.QWidget(self.tab)
-        self.formLayoutWidget.setGeometry(QtCore.QRect(10, 50, 481, 371))
+        self.formLayoutWidget.setGeometry(QtCore.QRect(10, 50, 481, 426))
         self.formLayoutWidget.setObjectName("formLayoutWidget")
         self.formLayout = QtWidgets.QFormLayout(self.formLayoutWidget)
         self.formLayout.setContentsMargins(10, 10, 0, 15)
@@ -76,6 +76,7 @@ class Ui_Form(object):
         self.User_Confirm_Password_Text.setObjectName("User_Confirm_Password_Text")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.User_Confirm_Password_Text)
         self.User_Contact_Number_Text = QtWidgets.QLineEdit(self.formLayoutWidget)
+        self.User_Contact_Number_Text.setMaxLength(10)
         self.User_Contact_Number_Text.setObjectName("User_Contact_Number_Text")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.User_Contact_Number_Text)
         self.comboBox = QtWidgets.QComboBox(self.formLayoutWidget)
@@ -107,7 +108,7 @@ class Ui_Form(object):
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.formLayoutWidget_2 = QtWidgets.QWidget(self.tab_2)
-        self.formLayoutWidget_2.setGeometry(QtCore.QRect(10, 50, 481, 371))
+        self.formLayoutWidget_2.setGeometry(QtCore.QRect(10, 50, 481, 456))
         self.formLayoutWidget_2.setObjectName("formLayoutWidget_2")
         self.formLayout_2 = QtWidgets.QFormLayout(self.formLayoutWidget_2)
         self.formLayout_2.setContentsMargins(10, 10, 0, 15)
@@ -150,6 +151,7 @@ class Ui_Form(object):
         self.label_13.setObjectName("label_13")
         self.formLayout_2.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.label_13)
         self.Driver_Phone_Number_Text = QtWidgets.QLineEdit(self.formLayoutWidget_2)
+        self.Driver_Phone_Number_Text.setMaxLength(10)
         self.Driver_Phone_Number_Text.setObjectName("Driver_Phone_Number_Text")
         self.formLayout_2.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.Driver_Phone_Number_Text)
         self.label_14 = QtWidgets.QLabel(self.formLayoutWidget_2)
@@ -214,7 +216,7 @@ class Ui_Form(object):
         self.tabWidget.addTab(self.tab_2, "")
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
