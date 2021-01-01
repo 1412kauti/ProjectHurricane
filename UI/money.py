@@ -21,7 +21,7 @@ import sqlite3
 import re
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
-print("connecting")
+print("Check")
         
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
