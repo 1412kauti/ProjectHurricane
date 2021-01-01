@@ -257,14 +257,12 @@ class dataz():
         WHERE order_ID = 1""")
         conn.commit()
 
-
     @staticmethod
     def Update_driver_name_journey():
         c.execute("""UPDATE journey
         SET driver_name = 'someone'
         WHERE order_ID = 1""")
         conn.commit()
-
     
     @staticmethod
     def Update_status_journey():
@@ -280,7 +278,6 @@ class dataz():
         WHERE order_ID = 1""")
         conn.commit()
 
-
     @staticmethod
     def Update_start_piont_journey():
         c.execute("""UPDATE journey
@@ -288,9 +285,13 @@ class dataz():
         WHERE order_ID = 1""")
         conn.commit()
 
-
     @staticmethod
     def Update_end_piont_journey():
+        c.execute("""UPDATE journey
+        SET end_piont = 'someone'
+        WHERE order_ID = 1""")
+        conn.commit
+
     @staticmethod
     def Update_price_journey():
         c.execute("""UPDATE journey
