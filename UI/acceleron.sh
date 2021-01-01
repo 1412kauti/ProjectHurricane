@@ -1,0 +1,13 @@
+pyuic5 -x StartScreen.ui -o StartScreen.py
+pyuic5 -x Login_Screen.ui -o Login_Screen.py
+pyuic5 -x Registration_Screen.ui -o Registration_Screen.py
+pyuic5 -x User_Card.ui -o User_Card.py
+pyuic5 -x User_Paypal.ui -o User_Paypal.py
+pyuic5 -x Driver_Card.ui -o Driver_Card.py
+pyuic5 -x Driver_Paypal.ui -o Driver_Paypal.py
+pyuic5 -x Thank_You.ui -o Thank_You.py
+pyuic5 -x Verification_Screen.ui -o Verification_Screen.py
+pyuic5 -x Congratulations.ui -o Congratulations.py
+pyuic5 -x forgotChoices.ui -o forgotChoices.py
+pyuic5 -x changePassword.ui -o changePassword.py
+pyuic5 -x UserScreen.ui -o UserScreen.py

@@ -1,5 +1,5 @@
 import sqlite3
-conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
+conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
 class dataz():
     @staticmethod
@@ -10,7 +10,7 @@ class dataz():
     @staticmethod
     def Rename_Table():
         import sqlite3
-        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
+        conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute("ALTER TABLE trip RENAME TO journey")        
         conn.commit()
@@ -22,7 +22,7 @@ class dataz():
     @staticmethod
     def Insert_Into_customers(z,y,x,w,v,u):
         import sqlite3
-        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
+        conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("INSERT INTO customers (first_name,last_name,email,phone_number,password,payment_method) VALUES(?,?,?,?,?,?)",(z,y,x,w,v,u))
@@ -31,7 +31,7 @@ class dataz():
     @staticmethod    
     def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q):
         import sqlite3
-        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
+        conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO drivers
@@ -53,7 +53,7 @@ class dataz():
     @staticmethod
     def Insert_into_customer_payments(z,y,x,w,v):
         import sqlite3
-        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
+        conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO customer_payment
@@ -64,7 +64,7 @@ class dataz():
     @staticmethod
     def Insert_into_driver_payments(z,y,x,w,v,u):
         import sqlite3
-        conn = sqlite3.connect("/home/hao/Documents/ProjectHurricane/UI/assessment2.db")
+        conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute("""INSERT INTO driver_payments
         (name, account_number, sort_code, payme_link)
