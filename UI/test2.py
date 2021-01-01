@@ -290,13 +290,7 @@ class dataz():
 
 
     @staticmethod
-    def Update_end_piont_journey():
-        c.execute("""UPDATE journey
-        SET end_piont = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit()
-
-
+    def Update_end_piont_journey():remove null
     @staticmethod
     def Update_price_journey():
         c.execute("""UPDATE journey
