@@ -111,6 +111,48 @@ class dataz():
         conn.commit()
 
     @staticmethod
+    def check_email_customers():
+        c.execute("""SELECT COUNT(*) FROM customers
+        WHERE email = 'bleach2021@gmail.com'""")
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
+    def Check_phone_number_customers():
+        c.execute("""SELECT COUNT(*) FROM customers
+        WHERE phone_number = '12345678'""")
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
+    def Check_password_customers():
+        c.execute("""SELECT COUNT(*) FROM customers
+        WHERE password = 'noodles'""")
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
+    def Check_email_drivers():
+        c.execute("""SELECT COUNT(*) FROM drivers
+        WHERE email = 'hao123'""")
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
+    def Check_phone_number_drivers():
+        c.execute("""SELECT COUNT(*) FROM drivers
+        WHERE phone_number = '7412566921'""")
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
+    def Check_password_drivers():
+        c.execute("""SELECT COUNT(*) FROM drivers
+        WHERE password = 'password'""")
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
     def Update_Last_Name_customers():
         c.execute("""UPDATE customers
         SET last_name = 'someone'
@@ -428,4 +470,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.Read_From_customer_payment()
+v.Check_phone_number_customers()
