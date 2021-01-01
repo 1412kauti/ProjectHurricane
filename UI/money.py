@@ -1,23 +1,24 @@
 import sys
 from PyQt5 import QtWidgets
 from test2 import dataz
-from StartScreen import Ui_Form as ui1
-from Login_Screen import Ui_Form as ui2
-from Registration_Screen import Ui_Form as ui3
-from User_Card import Ui_Form as ui4
-from User_Paypal import Ui_Form as ui5
-from Driver_Card import Ui_Form as ui6
-from Driver_Paypal import Ui_Form as ui7
-from Thank_You import Ui_Form as ui8
-from Verification_Screen import Ui_Form as ui9
-from Congratulations import Ui_Form as ui10
-from forgotChoices import Ui_Form as ui11
-from changePassword import Ui_Form as ui12
-from UserScreen import Ui_Form as ui13
+from StartScreen import Ui_Form1
+from Login_Screen import Ui_Form2
+from Registration_Screen import Ui_Form3
+from User_Card import Ui_Form4
+from User_Paypal import Ui_Form5
+from Driver_Card import Ui_Form6
+from Driver_Paypal import Ui_Form7
+from Thank_You import Ui_Form8
+from Verification_Screen import Ui_Form9
+from Congratulations import Ui_Form10
+from forgotChoices import Ui_Form11
+from changePassword import Ui_Form12
+from UserScreen import Ui_Form13
 from BackEnd import BackEnd
 from random import randint
 import numpy as np
 import sqlite3
+import re
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
 print("connected2")
@@ -25,12 +26,12 @@ print("connected2")
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
         super(UserMainScreen,self).__init__()
-        self.ui13 = ui13()
+        self.ui13 = Ui_Form13()
         self.ui13.setupUi(self)
 class changePassword(QtWidgets.QWidget):
     def __init__(self):
         super(changePassword,self).__init__()
-        self.ui12 = ui12()
+        self.ui12 = Ui_Form12()
         self.ui12.setupUi(self)
         self.ui12.changePassword.clicked.connect(self.clos)
     def clos(self):
@@ -38,7 +39,7 @@ class changePassword(QtWidgets.QWidget):
 class forgotChoices(QtWidgets.QWidget):
     def __init__(self):
         super(forgotChoices,self).__init__()
-        self.ui11 = ui11()
+        self.ui11 = Ui_Form11()
         self.ui11.setupUi(self)
         self.ui11.verify_button.clicked.connect(self.verify)
     def verify(self):
@@ -48,7 +49,7 @@ class forgotChoices(QtWidgets.QWidget):
 class Congratulations(QtWidgets.QWidget):
     def __init__(self):
         super(Congratulations,self).__init__()
-        self.ui10 = ui10()
+        self.ui10 = Ui_Form10()
         self.ui10.setupUi(self)
         self.ui10.go2Login.clicked.connect(self.back2Login)
     def back2Login(self):
@@ -58,7 +59,7 @@ class Congratulations(QtWidgets.QWidget):
 class Verification_Screen(QtWidgets.QWidget):
     def __init__(self):
         super(Verification_Screen,self).__init__()
-        self.ui9 = ui9()
+        self.ui9 = Ui_Form9()
         self.ui9.setupUi(self)
         self.ui9.Complete_Verification.clicked.connect(self.go_to_Account_Activated)
 
@@ -70,7 +71,7 @@ class Thank_You(QtWidgets.QWidget):
     def __init__(self):
         super(Thank_You,self).__init__()
         a = randint(0,1000)
-        self.ui8 = ui8()
+        self.ui8 = Ui_Form8()
         self.ui8.setupUi(self)
         self.ui8.Verify_Now.clicked.connect(self.open_Verification_Screen)
         self.ui8.Security_Code.setText("%d"%a)
@@ -82,7 +83,7 @@ class Thank_You(QtWidgets.QWidget):
 class Driver_Paypal(QtWidgets.QWidget):
     def __init__(self):
         super(Driver_Paypal,self).__init__()
-        self.ui7 = ui7()
+        self.ui7 = Ui_Form7()
         self.ui7.setupUi(self)
         self.ui7.Submit_Details4.clicked.connect(self.open_Thankyou)
     def open_Thankyou(self):
@@ -100,7 +101,7 @@ class Driver_Paypal(QtWidgets.QWidget):
 class Driver_Card(QtWidgets.QWidget):
     def __init__(self):
         super(Driver_Card,self).__init__()
-        self.ui6 = ui6()
+        self.ui6 = Ui_Form6()
         self.ui6.setupUi(self)
         self.ui6.Submit_Details3.clicked.connect(self.open_Thankyou)
     def open_Thankyou(self):
@@ -121,7 +122,7 @@ class Driver_Card(QtWidgets.QWidget):
 class User_Paypal(QtWidgets.QWidget):
     def __init__(self):
         super(User_Paypal,self).__init__()
-        self.ui5 = ui5()
+        self.ui5 = Ui_Form5()
         self.ui5.setupUi(self)
         self.ui5.Submit_Details2.clicked.connect(self.open_Thankyou)
     def open_Thankyou(self):
@@ -140,7 +141,7 @@ class User_Paypal(QtWidgets.QWidget):
 class User_Card(QtWidgets.QWidget):
     def __init__(self):
         super(User_Card,self).__init__()
-        self.ui4 = ui4()
+        self.ui4 = Ui_Form4()
         self.ui4.setupUi(self)
         self.ui4.Submit_Details1.clicked.connect(self.open_Thankyou)
     def open_Thankyou(self):
@@ -159,21 +160,77 @@ class User_Card(QtWidgets.QWidget):
 class RegisterScreen(QtWidgets.QWidget):
     def __init__(self):
         super(RegisterScreen,self).__init__()
-        self.ui3 = ui3()
+        self.ui3 = Ui_Form3()
         self.ui3.setupUi(self)
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
+    def containsDigits(self, s):
+        for char in s:
+            if char.isdigit():
+                contains_digit = True
+            else:
+                contains_digit = False
+        return contains_digit
+    def emailCheck(self, m):
+        if re.match(r"[^@]+@[^@]+\.[^@]+", m):
+            return True
+        else:
+            return False
+
     def take_driver_inputs(self):
-        driver_first_name = self.ui3.Driver_First_Name_Text.text()
-        driver_last_name = self.ui3.Driver_Last_Name_Text.text()
-        driver_email = self.ui3.Driver_Email_Text.text()
-        driver_password = self.ui3.Driver_Password_Text.text()
-        driver_contact_number = self.ui3.Driver_Phone_Number_Text.text()
-        driver_license = self.ui3.Driver_License_Number.text()
-        driver_car_license = self.ui3.Driver_Car_Number.text()
-        driver_car_make = self.ui3.Driver_Car_Make_Text.text()
-        driver_car_color = self.ui3.Driver_Car_Color.text()
-        driver_payment = self.ui3.comboBox_2.currentText()
+        empty_str = ''
+
+        if self.ui3.Driver_First_Name_Text.text() == empty_str or \
+                self.containsDigits(self.ui3.Driver_First_Name_Text.text()) == True:
+            driver_first_name = self.ui3.Driver_First_Name_Text.text()
+        else:
+            self.ui3.User_Invalid_Password.setText("First name can't be empty or contain numbers")
+
+        if self.ui3.Driver_Last_Name_Text.text() == empty_str or \
+                self.containsDigits(self.ui3.Driver_Last_Name_Text.text()) == True:
+            driver_last_name = self.ui3.Driver_Last_Name_Text.text()
+        else:
+            self.ui3.User_Invalid_Password.setText("Last name can't be empty or contain numbers")
+
+        if self.ui3.Driver_Email_Text.text() == empty_str and \
+            self.emailCheck(self.ui3.Driver_Email_Text.text()) == True:
+            driver_email = self.ui3.Driver_Email_Text.text()
+        else:
+            self.ui3.User_Invalid_Password.setText("Enter a proper email address")
+
+        if self.ui3.Driver_Password_Text.text() == empty_str:
+            driver_password = self.ui3.Driver_Password_Text.text()
+        else:
+            self.ui3.User_Invalid_Password.setText("First name can't be empty")
+
+        if self.ui3.Driver_Phone_Number_Text.text() == empty_str:
+            driver_contact_number = self.ui3.Driver_Phone_Number_Text.text()
+        else:
+            self.ui3.User_Invalid_Password.setText("First name can't be empty")
+
+        if self.ui3.Driver_License_Number.text() == empty_str:
+            driver_license = self.ui3.Driver_License_Number.text()
+        else:
+            self.ui3.User_Invalid_Password.setText("First name can't be empty")
+
+        if self.ui3.Driver_Car_Number.text() == empty_str:
+            driver_car_license = self.ui3.Driver_Car_Number.text()
+        else:
+            self.ui3.User_Invalid_Password.setText("First name can't be empty")
+
+        if self.ui3.Driver_Car_Make_Text.text() == empty_str:
+            driver_car_make = self.ui3.Driver_Car_Make_Text.text()
+        else:
+            self.ui3.User_Invalid_Password.setText("First name can't be empty")
+        if self.ui3.Driver_Car_Color.text() == empty_str:
+            driver_car_color = self.ui3.Driver_Car_Color.text()
+        else:
+            self.ui3.User_Invalid_Password.setText("First name can't be empty")
+        if self.ui3.comboBox_2.currentText() == empty_str:
+            driver_payment = self.ui3.comboBox_2.currentText()
+        else:
+            self.ui3.User_Invalid_Password.setText("First name can't be empty")
+
         self.d2=dataz()
         self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
     def take_user_inputs(self):
@@ -222,7 +279,7 @@ class RegisterScreen(QtWidgets.QWidget):
 class LoginScreen(QtWidgets.QWidget):
     def __init__(self):
         super(LoginScreen,self).__init__()
-        self.ui2 = ui2()
+        self.ui2 = Ui_Form2()
         self.ui2.setupUi(self)
         self.ui2.user_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
@@ -237,7 +294,7 @@ class LoginScreen(QtWidgets.QWidget):
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
         super(StartScreen,self).__init__()
-        self.ui1 = ui1()
+        self.ui1 = Ui_Form1()
         self.ui1.setupUi(self)
         self.ui1.Login_Button.clicked.connect(self.open_Login)
         self.ui1.Register_Button.clicked.connect(self.open_Register)    
