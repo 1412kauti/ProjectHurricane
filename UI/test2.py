@@ -290,7 +290,7 @@ class dataz():
 
 
     @staticmethod
-    def Update_end_piont_journey():remove null
+    def Update_end_piont_journey():
     @staticmethod
     def Update_price_journey():
         c.execute("""UPDATE journey
