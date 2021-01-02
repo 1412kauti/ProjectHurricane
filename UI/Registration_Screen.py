@@ -108,7 +108,7 @@ class Ui_Form(object):
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.formLayoutWidget_2 = QtWidgets.QWidget(self.tab_2)
-        self.formLayoutWidget_2.setGeometry(QtCore.QRect(10, 50, 481, 456))
+        self.formLayoutWidget_2.setGeometry(QtCore.QRect(10, 50, 481, 371))
         self.formLayoutWidget_2.setObjectName("formLayoutWidget_2")
         self.formLayout_2 = QtWidgets.QFormLayout(self.formLayoutWidget_2)
         self.formLayout_2.setContentsMargins(10, 10, 0, 15)
@@ -216,7 +216,7 @@ class Ui_Form(object):
         self.tabWidget.addTab(self.tab_2, "")
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
