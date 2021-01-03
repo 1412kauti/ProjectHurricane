@@ -29,13 +29,13 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>10</y>
+     <y>30</y>
      <width>501</width>
-     <height>481</height>
+     <height>501</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -89,13 +89,146 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="QComboBox" name="comboBox">
+        <item>
+         <property name="text">
+          <string>University of Bedfordshire</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Luton train station</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Stockwood park</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Wardown house museum</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Bedford park</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Barker's lane</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>John Bunyan Museum and Library</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string> Light Pyramid</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Milton Keynes University Hospital</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>National Museum of Computing</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Milton keynes IKEA </string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Luton Mall</string>
+         </property>
+        </item>
+       </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QComboBox" name="comboBox_2"/>
+       <widget class="QComboBox" name="comboBox_2">
+        <item>
+         <property name="text">
+          <string>Luton mall</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Luton train station</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>University of bedfordshire</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Stockwood park</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Wardown house museum and gallery</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Bedford park</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Barker's lane</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>John Bunyan Museum and Library</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string> Light Pyramid</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>National Museum of Computing</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>milton keynes IKEA </string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Milton Keynes University Hospital</string>
+         </property>
+        </item>
+       </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBox_3"/>
+       <widget class="QComboBox" name="comboBox_3">
+        <item>
+         <property name="text">
+          <string>Default</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>XXL</string>
+         </property>
+        </item>
+       </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_5">
@@ -117,8 +250,8 @@
       <rect>
        <x>190</x>
        <y>400</y>
-       <width>175</width>
-       <height>31</height>
+       <width>187</width>
+       <height>32</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
