@@ -164,18 +164,6 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.setupUi(self)
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
-    def containsDigits(self, s):
-        for char in s:
-            if char.isdigit():
-                contains_digit = True
-            else:
-                contains_digit = False
-        return contains_digit
-    def emailCheck(self, m):
-        if re.match(r"[^@]+@[^@]+\.[^@]+", m):
-            return True
-        else:
-            return False
 
     def take_driver_inputs(self):
         empty_str = ''
@@ -184,52 +172,52 @@ class RegisterScreen(QtWidgets.QWidget):
                 self.containsDigits(self.ui3.Driver_First_Name_Text.text()) == True:
             driver_first_name = self.ui3.Driver_First_Name_Text.text()
         else:
-            self.ui3.User_Invalid_Password.setText("First name can't be empty or contain numbers")
+            self.ui3.Driver_Invalid_Password.setText("First name can't be empty or contain numbers")
 
         if self.ui3.Driver_Last_Name_Text.text() == empty_str or \
                 self.containsDigits(self.ui3.Driver_Last_Name_Text.text()) == True:
             driver_last_name = self.ui3.Driver_Last_Name_Text.text()
         else:
-            self.ui3.User_Invalid_Password.setText("Last name can't be empty or contain numbers")
+            self.ui3.Driver_Invalid_Password.setText("Last name can't be empty or contain numbers")
 
         if self.ui3.Driver_Email_Text.text() == empty_str and \
             self.emailCheck(self.ui3.Driver_Email_Text.text()) == True:
             driver_email = self.ui3.Driver_Email_Text.text()
         else:
-            self.ui3.User_Invalid_Password.setText("Enter a proper email address")
+            self.ui3.Driver_Invalid_Password.setText("Enter a proper email address")
 
         if self.ui3.Driver_Password_Text.text() == empty_str:
             driver_password = self.ui3.Driver_Password_Text.text()
         else:
-            self.ui3.User_Invalid_Password.setText("Password can't be empty")
+            self.ui3.Driver_Invalid_Password.setText("Password can't be empty")
 
         if self.ui3.Driver_Phone_Number_Text.text() == empty_str:
             driver_contact_number = self.ui3.Driver_Phone_Number_Text.text()
         else:
-            self.ui3.User_Invalid_Password.setText("Phone number can't be empty")
+            self.ui3.Driver_Invalid_Password.setText("Phone number can't be empty")
 
         if self.ui3.Driver_License_Number.text() == empty_str:
             driver_license = self.ui3.Driver_License_Number.text()
         else:
-            self.ui3.User_Invalid_Password.setText("License number name can't be empty")
+            self.ui3.Driver_Invalid_Password.setText("License number name can't be empty")
 
         if self.ui3.Driver_Car_Number.text() == empty_str:
             driver_car_license = self.ui3.Driver_Car_Number.text()
         else:
-            self.ui3.User_Invalid_Password.setText("Car number can't be empty")
+            self.ui3.Driver_Invalid_Password.setText("Car number can't be empty")
 
         if self.ui3.Driver_Car_Make_Text.text() == empty_str:
             driver_car_make = self.ui3.Driver_Car_Make_Text.text()
         else:
-            self.ui3.User_Invalid_Password.setText("Car make can't be empty")
+            self.ui3.Driver_Invalid_Password.setText("Car make can't be empty")
         if self.ui3.Driver_Car_Color.text() == empty_str:
             driver_car_color = self.ui3.Driver_Car_Color.text()
         else:
-            self.ui3.User_Invalid_Password.setText("Car color can't be empty")
+            self.ui3.Driver_Invalid_Password.setText("Car color can't be empty")
         if self.ui3.comboBox_2.currentText() == empty_str:
             driver_payment = self.ui3.comboBox_2.currentText()
         else:
-            self.ui3.User_Invalid_Password.setText("Payment method can't be empty")
+            self.ui3.Driver_Invalid_Password.setText("Payment method can't be empty")
 
         self.d2=dataz()
         self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
@@ -276,6 +264,19 @@ class RegisterScreen(QtWidgets.QWidget):
                 self.ui3.Driver_Submit_Button.clicked.connect(self.open_Driver_Paypal)
         else:
             self.ui3.Driver_Invalid_Password.setText("Passwords Mismatch, try again")
+    def containsDigits(self, s):
+        for char in s:
+            if char.isdigit():
+                contains_digit = True
+            else:
+                contains_digit = False
+        return contains_digit
+    def emailCheck(self, m):
+        if re.match(r"[^@]+@[^@]+\.[^@]+", m):
+            return True
+        else:
+            return False
+
 class LoginScreen(QtWidgets.QWidget):
     def __init__(self):
         super(LoginScreen,self).__init__()
