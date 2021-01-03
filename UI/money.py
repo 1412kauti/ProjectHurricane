@@ -164,6 +164,15 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.setupUi(self)
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
+    def take_user_inputs(self):
+        user_first_name = self.ui3.User_First_Name_Text.text()
+        user_last_name = self.ui3.User_Last_Name_Text.text()
+        user_email = self.ui3.User_Email_Text.text()
+        user_contact_number = self.ui3.User_Contact_Number_Text.text()
+        user_password = self.ui3.User_Password_Text.text()
+        user_payment = self.ui3.comboBox.currentText()
+        self.d1=dataz()
+        self.d1.Insert_Into_customers(user_first_name,user_last_name,user_email,user_contact_number,user_password,user_payment)
 
     def take_driver_inputs(self):
         empty_str = ''
@@ -221,15 +230,7 @@ class RegisterScreen(QtWidgets.QWidget):
 
         self.d2=dataz()
         self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
-    def take_user_inputs(self):
-        user_first_name = self.ui3.User_First_Name_Text.text()
-        user_last_name = self.ui3.User_Last_Name_Text.text()
-        user_email = self.ui3.User_Email_Text.text()
-        user_contact_number = self.ui3.User_Contact_Number_Text.text()
-        user_password = self.ui3.User_Password_Text.text()
-        user_payment = self.ui3.comboBox.currentText()
-        self.d1=dataz()
-        self.d1.Insert_Into_customers(user_first_name,user_last_name,user_email,user_contact_number,user_password,user_payment)
+
     def open_User_Card(self):
         self.o2 = User_Card()
         self.o2.show()
