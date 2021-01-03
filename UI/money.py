@@ -165,91 +165,110 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
     def take_user_inputs(self):
-        empty_str = ''
-        if self.ui3.User_First_Name_Text.text() != empty_str or \
-            self.containsDigits(self.ui3.User_First_Name_Text.text()) == True:
-            user_first_name = self.ui3.User_First_Name_Text.text()
-        else:
-            self.ui3.User_Invalid_Password.setText("First name can't be empty or contain numbers")
-        if self.ui3.User_Last_Name_Text.text() != empty_str or \
-            self.containsDigits(self.ui3.User_Last_Name_Text.text()) == True:
-            user_last_name = self.ui3.User_Last_Name_Text.text()
-        else:
-            self.ui3.User_Invalid_Password.setText("Last name can't be empty or contain numbers")
-        if self.ui3.User_Email_Text.text() != empty_str or not\
-            self.emailCheck(self.ui3.User_Email_Text.text()) == True:
-            user_email = self.ui3.User_Email_Text.text()
-        else:
-            self.ui3.User_Invalid_Password.setText("Enter a proper email address")
-        if self.ui3.User_Contact_Number_Text.text() != empty_str:
-            user_contact_number = self.ui3.User_Contact_Number_Text.text()
-        if self.ui3.User_Password_Text.text() != empty_str:
-            user_password = self.ui3.User_Password_Text.text()
-        else:
-            self.ui3.user_Invalid_Password.setText("Password can't be empty")
-        if self.ui3.comboBox.currentText() != empty_str:
-            user_payment = self.ui3.comboBox.currentText()
-        else:
-            self.ui3.User_Invalid_Password.setText("Payment method can't be empty")
-        self.d1=dataz()
-        self.d1.Insert_Into_customers(user_first_name,user_last_name,user_email,user_contact_number,user_password,user_payment)
-
+        user_first_name = self.ui3.User_First_Name_Text.text()
+        user_last_name = self.ui3.User_Last_Name_Text.text()
+        user_email = self.ui3.User_Email_Text.text()
+        user_contact_number = self.ui3.User_Contact_Number_Text.text()
+        user_password = self.ui3.User_Password_Text.text()
+        user_payment = self.ui3.comboBox.currentText()
     def take_driver_inputs(self):
-        empty_str = ''
+        driver_first_name = self.ui3.Driver_First_Name_Text.text()
+        driver_last_name = self.ui3.Driver_Last_Name_Text.text()
+        driver_email = self.ui3.Driver_Email_Text.text()
+        driver_password = self.ui3.Driver_Password_Text.text()
+        driver_contact_number = self.ui3.Driver_Phone_Number_Text.text()
+        driver_license = self.ui3.Driver_License_Number.text()
+        driver_car_license = self.ui3.Driver_Car_Number.text()
+        driver_car_make = self.ui3.Driver_Car_Make_Text.text()
+        driver_car_color = self.ui3.Driver_Car_Color.text()
+        driver_payment = self.ui3.comboBox_2.currentText()
 
-        if self.ui3.Driver_First_Name_Text.text() != empty_str or \
-                self.containsDigits(self.ui3.Driver_First_Name_Text.text()) == True:
-            driver_first_name = self.ui3.Driver_First_Name_Text.text()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("First name can't be empty or contain numbers")
+    # def take_user_inputs(self):
+    #     empty_str = ''
+    #     if self.ui3.User_First_Name_Text.text() != empty_str or \
+    #         self.containsDigits(self.ui3.User_First_Name_Text.text()) == True:
+    #         user_first_name = self.ui3.User_First_Name_Text.text()
+    #     else:
+    #         self.ui3.User_Invalid_Password.setText("First name can't be empty or contain numbers")
+    #     if self.ui3.User_Last_Name_Text.text() != empty_str or \
+    #         self.containsDigits(self.ui3.User_Last_Name_Text.text()) == True:
+    #         user_last_name = self.ui3.User_Last_Name_Text.text()
+    #     else:
+    #         self.ui3.User_Invalid_Password.setText("Last name can't be empty or contain numbers")
+    #     if self.ui3.User_Email_Text.text() != empty_str or not\
+    #         self.emailCheck(self.ui3.User_Email_Text.text()) == True:
+    #         user_email = self.ui3.User_Email_Text.text()
+    #     else:
+    #         self.ui3.User_Invalid_Password.setText("Enter a proper email address")
+    #     if self.ui3.User_Contact_Number_Text.text() != empty_str:
+    #         user_contact_number = self.ui3.User_Contact_Number_Text.text()
+    #     if self.ui3.User_Password_Text.text() != empty_str:
+    #         user_password = self.ui3.User_Password_Text.text()
+    #     else:
+    #         self.ui3.user_Invalid_Password.setText("Password can't be empty")
+    #     if self.ui3.comboBox.currentText() != empty_str:
+    #         user_payment = self.ui3.comboBox.currentText()
+    #     else:
+    #         self.ui3.User_Invalid_Password.setText("Payment method can't be empty")
+    #     self.d1=dataz()
+    #     self.d1.Insert_Into_customers(user_first_name,user_last_name,user_email,user_contact_number,user_password,user_payment)
 
-        if self.ui3.Driver_Last_Name_Text.text() != empty_str or \
-                self.containsDigits(self.ui3.Driver_Last_Name_Text.text()) == True:
-            driver_last_name = self.ui3.Driver_Last_Name_Text.text()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("Last name can't be empty or contain numbers")
+    # def take_driver_inputs(self):
+    #     empty_str = ''
 
-        if self.ui3.Driver_Email_Text.text() != empty_str or not\
-            self.emailCheck(self.ui3.Driver_Email_Text.text()) == True:
-            driver_email = self.ui3.Driver_Email_Text.text()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("Enter a proper email address")
+    #     if self.ui3.Driver_First_Name_Text.text() != empty_str or \
+    #             self.containsDigits(self.ui3.Driver_First_Name_Text.text()) == True:
+    #         driver_first_name = self.ui3.Driver_First_Name_Text.text()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("First name can't be empty or contain numbers")
 
-        if self.ui3.Driver_Password_Text.text() != empty_str:
-            driver_password = self.ui3.Driver_Password_Text.text()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("Password can't be empty")
+    #     if self.ui3.Driver_Last_Name_Text.text() != empty_str or \
+    #             self.containsDigits(self.ui3.Driver_Last_Name_Text.text()) == True:
+    #         driver_last_name = self.ui3.Driver_Last_Name_Text.text()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("Last name can't be empty or contain numbers")
 
-        if self.ui3.Driver_Phone_Number_Text.text() != empty_str:
-            driver_contact_number = self.ui3.Driver_Phone_Number_Text.text()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("Phone number can't be empty")
+    #     if self.ui3.Driver_Email_Text.text() != empty_str or not\
+    #         self.emailCheck(self.ui3.Driver_Email_Text.text()) == True:
+    #         driver_email = self.ui3.Driver_Email_Text.text()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("Enter a proper email address")
 
-        if self.ui3.Driver_License_Number.text() != empty_str:
-            driver_license = self.ui3.Driver_License_Number.text()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("License number name can't be empty")
+    #     if self.ui3.Driver_Password_Text.text() != empty_str:
+    #         driver_password = self.ui3.Driver_Password_Text.text()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("Password can't be empty")
 
-        if self.ui3.Driver_Car_Number.text() != empty_str:
-            driver_car_license = self.ui3.Driver_Car_Number.text()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("Car number can't be empty")
+    #     if self.ui3.Driver_Phone_Number_Text.text() != empty_str:
+    #         driver_contact_number = self.ui3.Driver_Phone_Number_Text.text()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("Phone number can't be empty")
 
-        if self.ui3.Driver_Car_Make_Text.text() != empty_str:
-            driver_car_make = self.ui3.Driver_Car_Make_Text.text()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("Car make can't be empty")
-        if self.ui3.Driver_Car_Color.text() != empty_str:
-            driver_car_color = self.ui3.Driver_Car_Color.text()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("Car color can't be empty")
-        if self.ui3.comboBox_2.currentText() != empty_str:
-            driver_payment = self.ui3.comboBox_2.currentText()
-        else:
-            self.ui3.Driver_Invalid_Password.setText("Payment method can't be empty")
+    #     if self.ui3.Driver_License_Number.text() != empty_str:
+    #         driver_license = self.ui3.Driver_License_Number.text()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("License number name can't be empty")
 
-        self.d2=dataz()
-        self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
+    #     if self.ui3.Driver_Car_Number.text() != empty_str:
+    #         driver_car_license = self.ui3.Driver_Car_Number.text()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("Car number can't be empty")
+
+    #     if self.ui3.Driver_Car_Make_Text.text() != empty_str:
+    #         driver_car_make = self.ui3.Driver_Car_Make_Text.text()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("Car make can't be empty")
+    #     if self.ui3.Driver_Car_Color.text() != empty_str:
+    #         driver_car_color = self.ui3.Driver_Car_Color.text()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("Car color can't be empty")
+    #     if self.ui3.comboBox_2.currentText() != empty_str:
+    #         driver_payment = self.ui3.comboBox_2.currentText()
+    #     else:
+    #         self.ui3.Driver_Invalid_Password.setText("Payment method can't be empty")
+
+    #     self.d2=dataz()
+    #     self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
 
     def open_User_Card(self):
         self.o2 = User_Card()
