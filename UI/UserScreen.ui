@@ -29,9 +29,9 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>30</y>
+     <y>10</y>
      <width>501</width>
-     <height>501</height>
+     <height>481</height>
     </rect>
    </property>
    <property name="currentIndex">

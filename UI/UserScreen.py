@@ -18,7 +18,7 @@ class Ui_Form(object):
         Form.setMinimumSize(QtCore.QSize(500, 500))
         Form.setMaximumSize(QtCore.QSize(500, 500))
         self.tabWidget = QtWidgets.QTabWidget(Form)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 30, 501, 501))
+        self.tabWidget.setGeometry(QtCore.QRect(0, 10, 501, 481))
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
