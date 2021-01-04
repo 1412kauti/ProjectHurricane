@@ -171,6 +171,8 @@ class RegisterScreen(QtWidgets.QWidget):
         user_contact_number = self.ui3.User_Contact_Number_Text.text()
         user_password = self.ui3.User_Password_Text.text()
         user_payment = self.ui3.comboBox.currentText()
+        self.d1=dataz()
+        self.d1.Insert_Into_customers(user_first_name,user_last_name,user_email,user_contact_number,user_password,user_payment)
     def take_driver_inputs(self):
         driver_first_name = self.ui3.Driver_First_Name_Text.text()
         driver_last_name = self.ui3.Driver_Last_Name_Text.text()
@@ -182,6 +184,12 @@ class RegisterScreen(QtWidgets.QWidget):
         driver_car_make = self.ui3.Driver_Car_Make_Text.text()
         driver_car_color = self.ui3.Driver_Car_Color.text()
         driver_payment = self.ui3.comboBox_2.currentText()
+        self.d2=dataz()
+        self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
+    def validate_user_email(self):
+        reg_ex = QRegExp("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")
+        input_validator = QRegExpValidator(reg_ex, self.ui3.User_Email_Text.text())
+        self.ui3.User_Email_Text.text().setValidator(input_validator)
 
     # def take_user_inputs(self):
     #     empty_str = ''
@@ -288,6 +296,7 @@ class RegisterScreen(QtWidgets.QWidget):
         self.close()
     def User_Payment(self):
         self.take_user_inputs()
+
         if self.ui3.User_Password_Text.text() == self.ui3.User_Confirm_Password_Text.text():
             if self.ui3.comboBox.currentText()=="Card":
                 self.ui3.User_Submit_Button.clicked.connect(self.open_User_Card)
