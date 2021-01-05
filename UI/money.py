@@ -1,7 +1,5 @@
 import sys
-from PyQt5 import QtWidgets
-from PyQt5.QtCore import QRegExp
-from PyQt5.QtGui import QRegExpValidator
+from PyQt5 import QtWidgets, QtCore , QtGui
 from test2 import dataz
 from StartScreen import Ui_Form as ui1
 from Login_Screen import Ui_Form as ui2
@@ -167,6 +165,22 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.setupUi(self)
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
+        self.ui3.User_Email_Text.textChanged.connect(self.check_state)
+        self.ui3.User_Email_Text.textChanged.emit(self.ui3.User_Email_Text.text())
+        # reg_ex_email = QRegExp(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+        # input_validator_email = QRegExpValidator(reg_ex_email, self.ui3.User_Email_Text)
+        # self.ui3.User_Email_Text.setValidator(input_validator_email)
+    def check_state(self):
+        input_email = self.ui3.User_Email_Text
+        regexp = QtCore.QRegExp(r"^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$")
+        validator = QtGui.QRegExpValidator(regexp)
+        # input_email.setValidator(validator)
+        state = validator.validate(input_email.text(),0)[0]
+        if state != QtGui.QValidator.Acceptable:
+            color = '#f6989d' # green
+        else:
+            color = '#c4df9b' # red
+        input_email.setStyleSheet('QLineEdit { background-color: %s }' % color)
     
     def take_user_inputs(self):
         # self.validate_user_email()
@@ -298,6 +312,9 @@ class RegisterScreen(QtWidgets.QWidget):
     def Delete_Dup_Customers(self):
         self.d9=dataz()
         self.d9.Delete_Duplicates_Customers()
+    def Delete_Dup_Drivers(self):
+        self.d10=dataz()
+        self.d10.Delete_Duplicates_Drivers()
     def User_Payment(self):
         self.take_user_inputs()
         self.Delete_Dup_Customers()    
@@ -310,7 +327,9 @@ class RegisterScreen(QtWidgets.QWidget):
         else:
             self.ui3.User_Invalid_Password.setText("Passwords Mismatch, try again")
     def Driver_Payment(self):
+        self.Delete_Dup_Drivers()
         self.take_driver_inputs()
+        self.Delete_Dup_Drivers()
         if self.ui3.Driver_Password_Text.text() == self.ui3.Driver_Confirm_Password_Text.text():
             if self.ui3.comboBox_2.currentText()=="Card":
                 self.ui3.Driver_Submit_Button.clicked.connect(self.open_Driver_Card)
