@@ -1,5 +1,7 @@
 import sys
 from PyQt5 import QtWidgets
+from PyQt5.QtCore import QRegExp
+from PyQt5.QtGui import QRegExpValidator
 from test2 import dataz
 from StartScreen import Ui_Form as ui1
 from Login_Screen import Ui_Form as ui2
@@ -19,6 +21,7 @@ from random import randint
 import numpy as np
 import sqlite3
 import re
+email_regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
 print("Check")
@@ -164,7 +167,9 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.setupUi(self)
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
+    
     def take_user_inputs(self):
+        # self.validate_user_email()
         user_first_name = self.ui3.User_First_Name_Text.text()
         user_last_name = self.ui3.User_Last_Name_Text.text()
         user_email = self.ui3.User_Email_Text.text()
@@ -186,10 +191,6 @@ class RegisterScreen(QtWidgets.QWidget):
         driver_payment = self.ui3.comboBox_2.currentText()
         self.d2=dataz()
         self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
-    def validate_user_email(self):
-        reg_ex = QRegExp("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b")
-        input_validator = QRegExpValidator(reg_ex, self.ui3.User_Email_Text.text())
-        self.ui3.User_Email_Text.text().setValidator(input_validator)
 
     # def take_user_inputs(self):
     #     empty_str = ''
@@ -294,8 +295,12 @@ class RegisterScreen(QtWidgets.QWidget):
         self.o5 = Driver_Paypal()
         self.o5.show()
         self.close()
+    def Delete_Dup_Customers(self):
+        self.d9=dataz()
+        self.d9.Delete_Duplicates_Customers()
     def User_Payment(self):
         self.take_user_inputs()
+        self.Delete_Dup_Customers()    
 
         if self.ui3.User_Password_Text.text() == self.ui3.User_Confirm_Password_Text.text():
             if self.ui3.comboBox.currentText()=="Card":
