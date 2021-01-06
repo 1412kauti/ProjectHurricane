@@ -47,7 +47,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -58,7 +58,7 @@
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>471</width>
+       <width>481</width>
        <height>401</height>
       </rect>
      </property>
@@ -182,12 +182,26 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>450</y>
-       <width>471</width>
+       <y>430</y>
+       <width>481</width>
        <height>31</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout"/>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPushButton" name="User_Submit_Button">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Submit</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
     <widget class="QLabel" name="User_Invalid_Password">
      <property name="geometry">
@@ -203,25 +217,6 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="User_Submit_Button">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>430</y>
-       <width>469</width>
-       <height>29</height>
-      </rect>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Submit</string>
      </property>
     </widget>
    </widget>
@@ -415,9 +410,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>420</y>
+       <y>430</y>
        <width>481</width>
-       <height>41</height>
+       <height>31</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">

@@ -19,22 +19,42 @@ from random import randint
 import numpy as np
 import sqlite3
 import re
-email_regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
 print("Check")
-        
+
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
         super(UserMainScreen,self).__init__()
         self.ui13 = ui13()
         self.ui13.setupUi(self)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
+        self.loaddata()
+    def loaddata(self):
+        connection = sqlite3.connect('assessment2.db')
+        cur = connection.cursor()
+        sqlstr = 'SELECT * FROM journey'
+        tablerow=0
+        results = cur.execute(sqlstr)
+        self.ui13.tableWidget.setRowCount(40)
+        for row in results:
+            self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.ui13.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.ui13.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
+            tablerow+=1
+
+
 class changePassword(QtWidgets.QWidget):
     def __init__(self):
         super(changePassword,self).__init__()
         self.ui12 = ui12()
         self.ui12.setupUi(self)
         self.ui12.changePassword.clicked.connect(self.clos)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
     def clos(self):
         self.close()
 class forgotChoices(QtWidgets.QWidget):
@@ -43,6 +63,9 @@ class forgotChoices(QtWidgets.QWidget):
         self.ui11 = ui11()
         self.ui11.setupUi(self)
         self.ui11.verify_button.clicked.connect(self.verify)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
     def verify(self):
         self.o10 = changePassword()
         self.o10.show()
@@ -53,6 +76,9 @@ class Congratulations(QtWidgets.QWidget):
         self.ui10 = ui10()
         self.ui10.setupUi(self)
         self.ui10.go2Login.clicked.connect(self.back2Login)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())        
     def back2Login(self):
         self.o9 = LoginScreen()
         self.o9.show()
@@ -63,7 +89,9 @@ class Verification_Screen(QtWidgets.QWidget):
         self.ui9 = ui9()
         self.ui9.setupUi(self)
         self.ui9.Complete_Verification.clicked.connect(self.go_to_Account_Activated)
-
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
     def go_to_Account_Activated(self):
         self.o8 = Congratulations()
         self.o8.show()
@@ -76,6 +104,9 @@ class Thank_You(QtWidgets.QWidget):
         self.ui8.setupUi(self)
         self.ui8.Verify_Now.clicked.connect(self.open_Verification_Screen)
         self.ui8.Security_Code.setText("%d"%a)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
         # self.ui8.Security_Code.setText(self.Security_generator)
     def open_Verification_Screen(self):
         self.o7 = Verification_Screen()
@@ -87,6 +118,9 @@ class Driver_Paypal(QtWidgets.QWidget):
         self.ui7 = ui7()
         self.ui7.setupUi(self)
         self.ui7.Submit_Details4.clicked.connect(self.open_Thankyou)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
     def open_Thankyou(self):
         self.o6 = Thank_You()
         self.o6.show()
@@ -105,6 +139,9 @@ class Driver_Card(QtWidgets.QWidget):
         self.ui6 = ui6()
         self.ui6.setupUi(self)
         self.ui6.Submit_Details3.clicked.connect(self.open_Thankyou)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
     def open_Thankyou(self):
         self.o6 = Thank_You()
         self.o6.show()
@@ -126,6 +163,9 @@ class User_Paypal(QtWidgets.QWidget):
         self.ui5 = ui5()
         self.ui5.setupUi(self)
         self.ui5.Submit_Details2.clicked.connect(self.open_Thankyou)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
     def open_Thankyou(self):
         self.o6 = Thank_You()
         self.o6.show()
@@ -145,6 +185,9 @@ class User_Card(QtWidgets.QWidget):
         self.ui4 = ui4()
         self.ui4.setupUi(self)
         self.ui4.Submit_Details1.clicked.connect(self.open_Thankyou)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
     def open_Thankyou(self):
         self.o6 = Thank_You()
         self.o6.show()
@@ -165,23 +208,104 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.setupUi(self)
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
-        self.ui3.User_Email_Text.textChanged.connect(self.check_state)
-        self.ui3.User_Email_Text.textChanged.emit(self.ui3.User_Email_Text.text())
-        # reg_ex_email = QRegExp(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
-        # input_validator_email = QRegExpValidator(reg_ex_email, self.ui3.User_Email_Text)
-        # self.ui3.User_Email_Text.setValidator(input_validator_email)
-    def check_state(self):
-        input_email = self.ui3.User_Email_Text
-        regexp = QtCore.QRegExp(r"^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$")
+        self.check_states1()
+        self.check_states2()
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
+    def check_confirm_password_state(self):
+        input_confirm_password_name = self.ui3.User_Confirm_Password_Text
+        regexp = QtCore.QRegExp(r"^[A-Za-z0-9 .-_]{7,20}+$")
         validator = QtGui.QRegExpValidator(regexp)
-        # input_email.setValidator(validator)
-        state = validator.validate(input_email.text(),0)[0]
-        if state != QtGui.QValidator.Acceptable:
-            color = '#f6989d' # green
+        state = validator.validate(input_confirm_password_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
         else:
-            color = '#c4df9b' # red
+            color = ''
+        input_confirm_password_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def check_password_state(self):
+        input_password_name = self.ui3.User_Password_Text
+        regexp = QtCore.QRegExp(r"^[A-Za-z0-9 .-_]{7,20}+$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_password_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_password_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def check_last_name_state(self):
+        input_last_name = self.ui3.User_Last_Name_Text
+        regexp = QtCore.QRegExp(r"^[A-Za-z .-]+$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_last_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_last_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def check_first_name_state(self):
+        input_first_name = self.ui3.User_First_Name_Text
+        regexp = QtCore.QRegExp(r"^[A-Za-z .-]+$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_first_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_first_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def check_email_state(self):
+        input_email = self.ui3.User_Email_Text
+        regexp = QtCore.QRegExp(r"^([a-z\d.-]+)@([a-z\.d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_email.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
         input_email.setStyleSheet('QLineEdit { background-color: %s }' % color)
-    
+    def check_contact_state(self):
+        input_contact_number = self.ui3.User_Contact_Number_Text
+        regexp = QtCore.QRegExp(r"^[0-9\-\+]{9,15}$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_contact_number.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_contact_number.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def check_states1(self):
+        self.check_first_name_state()
+        self.check_email_state()
+        self.check_contact_state()
+        self.check_last_name_state()
+        self.check_password_state()
+        self.check_confirm_password_state()
+    def check_states2(self):
+        self.ui3.User_Last_Name_Text.textEdited.connect(self.check_last_name_state)
+        self.ui3.User_Last_Name_Text.textEdited.emit(self.ui3.User_Last_Name_Text.text())
+        self.ui3.User_First_Name_Text.textEdited.connect(self.check_first_name_state)
+        self.ui3.User_First_Name_Text.textEdited.emit(self.ui3.User_First_Name_Text.text())
+        self.ui3.User_Email_Text.textEdited.connect(self.check_email_state)
+        self.ui3.User_Email_Text.textEdited.emit(self.ui3.User_Email_Text.text())
+        self.ui3.User_Contact_Number_Text.textEdited.connect(self.check_contact_state)
+        self.ui3.User_Contact_Number_Text.textEdited.emit(self.ui3.User_Contact_Number_Text.text())
+        self.ui3.User_Password_Text.textEdited.connect(self.check_password_state)
+        self.ui3.User_Password_Text.textEdited.emit(self.ui3.User_Password_Text.text())
+        self.ui3.User_Confirm_Password_Text.textEdited.connect(self.check_confirm_password_state)
+        self.ui3.User_Confirm_Password_Text.textEdited.emit(self.ui3.User_Confirm_Password_Text.text())
+
     def take_user_inputs(self):
         # self.validate_user_email()
         user_first_name = self.ui3.User_First_Name_Text.text()
@@ -205,94 +329,6 @@ class RegisterScreen(QtWidgets.QWidget):
         driver_payment = self.ui3.comboBox_2.currentText()
         self.d2=dataz()
         self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
-
-    # def take_user_inputs(self):
-    #     empty_str = ''
-    #     if self.ui3.User_First_Name_Text.text() != empty_str or \
-    #         self.containsDigits(self.ui3.User_First_Name_Text.text()) == True:
-    #         user_first_name = self.ui3.User_First_Name_Text.text()
-    #     else:
-    #         self.ui3.User_Invalid_Password.setText("First name can't be empty or contain numbers")
-    #     if self.ui3.User_Last_Name_Text.text() != empty_str or \
-    #         self.containsDigits(self.ui3.User_Last_Name_Text.text()) == True:
-    #         user_last_name = self.ui3.User_Last_Name_Text.text()
-    #     else:
-    #         self.ui3.User_Invalid_Password.setText("Last name can't be empty or contain numbers")
-    #     if self.ui3.User_Email_Text.text() != empty_str or not\
-    #         self.emailCheck(self.ui3.User_Email_Text.text()) == True:
-    #         user_email = self.ui3.User_Email_Text.text()
-    #     else:
-    #         self.ui3.User_Invalid_Password.setText("Enter a proper email address")
-    #     if self.ui3.User_Contact_Number_Text.text() != empty_str:
-    #         user_contact_number = self.ui3.User_Contact_Number_Text.text()
-    #     if self.ui3.User_Password_Text.text() != empty_str:
-    #         user_password = self.ui3.User_Password_Text.text()
-    #     else:
-    #         self.ui3.user_Invalid_Password.setText("Password can't be empty")
-    #     if self.ui3.comboBox.currentText() != empty_str:
-    #         user_payment = self.ui3.comboBox.currentText()
-    #     else:
-    #         self.ui3.User_Invalid_Password.setText("Payment method can't be empty")
-    #     self.d1=dataz()
-    #     self.d1.Insert_Into_customers(user_first_name,user_last_name,user_email,user_contact_number,user_password,user_payment)
-
-    # def take_driver_inputs(self):
-    #     empty_str = ''
-
-    #     if self.ui3.Driver_First_Name_Text.text() != empty_str or \
-    #             self.containsDigits(self.ui3.Driver_First_Name_Text.text()) == True:
-    #         driver_first_name = self.ui3.Driver_First_Name_Text.text()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("First name can't be empty or contain numbers")
-
-    #     if self.ui3.Driver_Last_Name_Text.text() != empty_str or \
-    #             self.containsDigits(self.ui3.Driver_Last_Name_Text.text()) == True:
-    #         driver_last_name = self.ui3.Driver_Last_Name_Text.text()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("Last name can't be empty or contain numbers")
-
-    #     if self.ui3.Driver_Email_Text.text() != empty_str or not\
-    #         self.emailCheck(self.ui3.Driver_Email_Text.text()) == True:
-    #         driver_email = self.ui3.Driver_Email_Text.text()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("Enter a proper email address")
-
-    #     if self.ui3.Driver_Password_Text.text() != empty_str:
-    #         driver_password = self.ui3.Driver_Password_Text.text()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("Password can't be empty")
-
-    #     if self.ui3.Driver_Phone_Number_Text.text() != empty_str:
-    #         driver_contact_number = self.ui3.Driver_Phone_Number_Text.text()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("Phone number can't be empty")
-
-    #     if self.ui3.Driver_License_Number.text() != empty_str:
-    #         driver_license = self.ui3.Driver_License_Number.text()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("License number name can't be empty")
-
-    #     if self.ui3.Driver_Car_Number.text() != empty_str:
-    #         driver_car_license = self.ui3.Driver_Car_Number.text()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("Car number can't be empty")
-
-    #     if self.ui3.Driver_Car_Make_Text.text() != empty_str:
-    #         driver_car_make = self.ui3.Driver_Car_Make_Text.text()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("Car make can't be empty")
-    #     if self.ui3.Driver_Car_Color.text() != empty_str:
-    #         driver_car_color = self.ui3.Driver_Car_Color.text()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("Car color can't be empty")
-    #     if self.ui3.comboBox_2.currentText() != empty_str:
-    #         driver_payment = self.ui3.comboBox_2.currentText()
-    #     else:
-    #         self.ui3.Driver_Invalid_Password.setText("Payment method can't be empty")
-
-    #     self.d2=dataz()
-    #     self.d2.Insert_Into_drivers(driver_first_name,driver_last_name,driver_email,driver_password,driver_contact_number,driver_license,driver_car_license,driver_car_make,driver_car_color,driver_payment)
-
     def open_User_Card(self):
         self.o2 = User_Card()
         self.o2.show()
@@ -316,9 +352,9 @@ class RegisterScreen(QtWidgets.QWidget):
         self.d10=dataz()
         self.d10.Delete_Duplicates_Drivers()
     def User_Payment(self):
+        self.check_email_state()
         self.take_user_inputs()
-        self.Delete_Dup_Customers()    
-
+        self.Delete_Dup_Customers() 
         if self.ui3.User_Password_Text.text() == self.ui3.User_Confirm_Password_Text.text():
             if self.ui3.comboBox.currentText()=="Card":
                 self.ui3.User_Submit_Button.clicked.connect(self.open_User_Card)
@@ -326,8 +362,8 @@ class RegisterScreen(QtWidgets.QWidget):
                 self.ui3.User_Submit_Button.clicked.connect(self.open_User_Paypal)
         else:
             self.ui3.User_Invalid_Password.setText("Passwords Mismatch, try again")
+
     def Driver_Payment(self):
-        self.Delete_Dup_Drivers()
         self.take_driver_inputs()
         self.Delete_Dup_Drivers()
         if self.ui3.Driver_Password_Text.text() == self.ui3.Driver_Confirm_Password_Text.text():
@@ -358,6 +394,9 @@ class LoginScreen(QtWidgets.QWidget):
         self.ui2.user_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.user_Submit.clicked.connect(self.openLogin)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
     def forgetPass(self):
         self.o11 = forgotChoices()
         self.o11.show()
@@ -371,7 +410,10 @@ class StartScreen(QtWidgets.QWidget):
         self.ui1 = ui1()
         self.ui1.setupUi(self)
         self.ui1.Login_Button.clicked.connect(self.open_Login)
-        self.ui1.Register_Button.clicked.connect(self.open_Register)    
+        self.ui1.Register_Button.clicked.connect(self.open_Register)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())    
     def open_Login(self):
         self.o1 = LoginScreen()
         self.o1.show()
@@ -385,6 +427,7 @@ def main():
     application = StartScreen()
     application.show()
     sys.exit(app.exec_())
+    
 
 if __name__ == "__main__":
     main()

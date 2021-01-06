@@ -23,7 +23,7 @@ class Ui_Form(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.formLayoutWidget = QtWidgets.QWidget(self.tab)
-        self.formLayoutWidget.setGeometry(QtCore.QRect(120, 0, 291, 386))
+        self.formLayoutWidget.setGeometry(QtCore.QRect(120, 0, 353, 386))
         self.formLayoutWidget.setObjectName("formLayoutWidget")
         self.formLayout = QtWidgets.QFormLayout(self.formLayoutWidget)
         self.formLayout.setContentsMargins(0, 20, 0, 0)
@@ -186,6 +186,7 @@ class Ui_Form(object):
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.tableWidget = QtWidgets.QTableWidget(self.scrollAreaWidgetContents)
+        self.tableWidget.setEditTriggers(QtWidgets.QAbstractItemView.AnyKeyPressed)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(8)
         self.tableWidget.setRowCount(0)
@@ -306,7 +307,7 @@ class Ui_Form(object):
         self.tabWidget.addTab(self.tab_5, "")
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
