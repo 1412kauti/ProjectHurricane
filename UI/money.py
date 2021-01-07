@@ -1,4 +1,5 @@
 import sys
+from datetime import datetime
 from PyQt5 import QtWidgets, QtCore , QtGui
 from test2 import dataz
 from StartScreen import Ui_Form as ui1
@@ -50,6 +51,10 @@ class UserMainScreen(QtWidgets.QWidget):
         end_point = self.ui13.comboBox_2.currentText()
         car_type = self.ui13.comboBox_3.currentText()
         return start_point, end_point, car_type
+    def getDateAndTime(self):
+        date = datetime.date(datetime.now())
+        #time =
+
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
