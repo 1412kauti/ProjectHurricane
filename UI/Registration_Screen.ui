@@ -43,11 +43,11 @@
      <x>0</x>
      <y>0</y>
      <width>500</width>
-     <height>500</height>
+     <height>501</height>
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -56,9 +56,9 @@
     <widget class="QWidget" name="formLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>30</y>
-       <width>481</width>
+       <width>491</width>
        <height>401</height>
       </rect>
      </property>
@@ -181,9 +181,9 @@
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>430</y>
-       <width>481</width>
+       <width>491</width>
        <height>31</height>
       </rect>
      </property>
@@ -227,9 +227,9 @@
     <widget class="QWidget" name="formLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>20</y>
-       <width>481</width>
+       <width>491</width>
        <height>411</height>
       </rect>
      </property>
@@ -247,7 +247,7 @@
        <number>10</number>
       </property>
       <property name="bottomMargin">
-       <number>15</number>
+       <number>5</number>
       </property>
       <item row="0" column="0">
        <widget class="QLabel" name="label_8">
@@ -338,44 +338,61 @@
         </property>
        </widget>
       </item>
+      <item row="7" column="1">
+       <widget class="QDateEdit" name="dateEdit">
+        <property name="displayFormat">
+         <string>M/yyyy</string>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
       <item row="8" column="0">
+       <widget class="QLabel" name="label_20">
+        <property name="text">
+         <string>Car Class : </string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0">
        <widget class="QLabel" name="label_16">
         <property name="text">
          <string>Car License Number:</string>
         </property>
        </widget>
       </item>
-      <item row="8" column="1">
+      <item row="9" column="1">
        <widget class="QLineEdit" name="Driver_Car_Number"/>
       </item>
-      <item row="9" column="0">
+      <item row="10" column="0">
        <widget class="QLabel" name="label_17">
         <property name="text">
          <string>Car Make:</string>
         </property>
        </widget>
       </item>
-      <item row="9" column="1">
+      <item row="10" column="1">
        <widget class="QLineEdit" name="Driver_Car_Make_Text"/>
       </item>
-      <item row="10" column="0">
+      <item row="11" column="0">
        <widget class="QLabel" name="label_18">
         <property name="text">
          <string>Car Colour:</string>
         </property>
        </widget>
       </item>
-      <item row="10" column="1">
+      <item row="11" column="1">
        <widget class="QLineEdit" name="Driver_Car_Color"/>
       </item>
-      <item row="11" column="0">
+      <item row="12" column="0">
        <widget class="QLabel" name="label_19">
         <property name="text">
          <string>Payment: </string>
         </property>
        </widget>
       </item>
-      <item row="11" column="1">
+      <item row="12" column="1">
        <widget class="QComboBox" name="comboBox_2">
         <item>
          <property name="text">
@@ -394,14 +411,38 @@
         </item>
        </widget>
       </item>
-      <item row="7" column="1">
-       <widget class="QDateEdit" name="dateEdit">
-        <property name="displayFormat">
-         <string>M/yyyy</string>
-        </property>
-        <property name="calendarPopup">
-         <bool>true</bool>
-        </property>
+      <item row="8" column="1">
+       <widget class="QComboBox" name="comboBox_3">
+        <item>
+         <property name="text">
+          <string>Mini</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Micro</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sedan</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Luxury</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>XL</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>XXL</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
@@ -409,9 +450,9 @@
     <widget class="QWidget" name="verticalLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>430</y>
-       <width>481</width>
+       <width>491</width>
        <height>31</height>
       </rect>
      </property>
@@ -434,9 +475,9 @@
     <widget class="QLabel" name="Driver_Invalid_Password">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>0</x>
        <y>0</y>
-       <width>481</width>
+       <width>491</width>
        <height>21</height>
       </rect>
      </property>
