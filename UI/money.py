@@ -14,6 +14,7 @@ from Congratulations import Ui_Form as ui10
 from forgotChoices import Ui_Form as ui11
 from changePassword import Ui_Form as ui12
 from UserScreen import Ui_Form as ui13
+from User_Submit_Payment import Ui_Form as ui14
 from BackEnd import BackEnd
 from random import randint
 import numpy as np
@@ -22,7 +23,14 @@ import re
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
 print("Check")
-
+class User_Payment(QtWidgets.QWidget):
+    def __init__(self):
+        super(User_Payment,self).__init__()
+        self.ui14 = ui14()
+        self.ui14.setupUi(self)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
         super(UserMainScreen,self).__init__()
@@ -32,12 +40,13 @@ class UserMainScreen(QtWidgets.QWidget):
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
         self.loaddata()
-        start_point, end_point, car_type = self.getNewBookingItems()
+        self.getNewBookingItems()
+        self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
     def getNewBookingItems(self):
         start_point = self.ui13.comboBox.currentText()
-        end_point = self.ui13.comboBox.currentText()
-        car_type = self.ui13.comboBox.currentText()
-        return start_point, end_point, car_type
+        end_point = self.ui13.comboBox_2.currentText()
+        car_type = self.ui13.comboBox_3.currentText()
+
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
@@ -50,6 +59,10 @@ class UserMainScreen(QtWidgets.QWidget):
             self.ui13.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
             self.ui13.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
             tablerow+=1
+    def open_User_Payment_Options(self):
+        self.o14 = User_Payment()
+        self.o14.show()
+
 
 
 class changePassword(QtWidgets.QWidget):

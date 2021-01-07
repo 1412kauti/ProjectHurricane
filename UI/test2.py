@@ -470,4 +470,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.Check_phone_number_customers()
+# v.Check_phone_number_customers()

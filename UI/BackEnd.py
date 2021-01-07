@@ -42,6 +42,6 @@ def priceCalc(loc1, loc2):
         trip_price = distance_km * 5
         return format(trip_price, '.2f' ) + ' quid for ' + str(format(distance_km, '.2f')) + ' kilometers'
 
-print(priceCalc(locations['luton_mall'], locations['stockwood_park']))
-print(priceCalc(locations['milton_ikea'], locations['stockwood_park']))
-print(priceCalc(locations['milton_ikea'], locations['milton_ikea']))
+# print(priceCalc(locations['luton_mall'], locations['stockwood_park']))
+# print(priceCalc(locations['milton_ikea'], locations['stockwood_park']))
+# print(priceCalc(locations['milton_ikea'], locations['milton_ikea']))
