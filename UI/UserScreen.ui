@@ -46,7 +46,7 @@
       <rect>
        <x>120</x>
        <y>0</y>
-       <width>353</width>
+       <width>370</width>
        <height>386</height>
       </rect>
      </property>
@@ -221,6 +221,31 @@
         <item>
          <property name="text">
           <string>Default</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Mini</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Micro</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sedan</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Luxury</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>XL</string>
          </property>
         </item>
         <item>

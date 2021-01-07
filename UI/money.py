@@ -46,14 +46,17 @@ class UserMainScreen(QtWidgets.QWidget):
             self.setStyleSheet(fh.read())
         self.loaddata()
         self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
+        date, time = BackEnd().getDateAndTime()
     def getNewBookingItems(self):
         start_point = self.ui13.comboBox.currentText()
         end_point = self.ui13.comboBox_2.currentText()
         car_type = self.ui13.comboBox_3.currentText()
         return start_point, end_point, car_type
-    def getDateAndTime(self):
-        date = datetime.date(datetime.now())
-        #time =
+
+    #def modifyPrice(self, price, car):
+        #if car == ''
+
+
 
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')

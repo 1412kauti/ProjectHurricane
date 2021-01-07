@@ -2,6 +2,7 @@ from random import randint
 import sqlite3
 import haversine as hs
 import distanceCheck as dc
+import datetime
 
 class BackEnd(object):
 
@@ -38,5 +39,8 @@ class BackEnd(object):
             #print(distance_km, trip_price)
             return distance_km, trip_price
 
-
-BackEnd.priceCalc(BackEnd.locations['National Museum of Computing'], BackEnd.locations['University of Bedfordshire'])
+    def getDateAndTime(self):
+        today = datetime.date.today()
+        now = datetime.datetime.now()
+        current_time = now.strftime("%H:%M")
+        return today, current_time
