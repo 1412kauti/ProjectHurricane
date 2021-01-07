@@ -77,7 +77,9 @@ class UserMainScreen(QtWidgets.QWidget):
         distance, price = BackEnd.priceCalc(BackEnd.locations[start_point], BackEnd.locations[end_point])
         distance = format(distance, '.2f')
         price = format(price, '.2f')
-        print(distance, price)
+        self.ui13.Distance_Label.setText(distance)
+        self.ui13.Price_Label.setText(price)
+        # print(distance, price)
 class changePassword(QtWidgets.QWidget):
     def __init__(self):
         super(changePassword,self).__init__()
