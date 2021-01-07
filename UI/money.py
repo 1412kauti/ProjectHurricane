@@ -32,10 +32,12 @@ class UserMainScreen(QtWidgets.QWidget):
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
         self.loaddata()
-
+        start_point, end_point, car_type = self.getNewBookingItems()
+    def getNewBookingItems(self):
         start_point = self.ui13.comboBox.currentText()
         end_point = self.ui13.comboBox.currentText()
         car_type = self.ui13.comboBox.currentText()
+        return start_point, end_point, car_type
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
