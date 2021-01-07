@@ -14,6 +14,7 @@ from Congratulations import Ui_Form as ui10
 from forgotChoices import Ui_Form as ui11
 from changePassword import Ui_Form as ui12
 from UserScreen import Ui_Form as ui13
+from User_Submit_Payment import Ui_Form as ui14
 from BackEnd import BackEnd
 from random import randint
 import numpy as np
@@ -22,6 +23,17 @@ import re
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
 #print("Check")
+class User_Submit_Payment(QtWidgets.QWidget):
+    def __init__(self):
+        super(User_Submit_Payment,self).__init__()
+        self.ui14 = ui14()
+        self.ui14.setupUi(self)
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
+        self.ui14.User_Submit_Payment_Method.clicked.connect(self.clos)
+    def clos(self):
+        self.close()
 
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
@@ -32,12 +44,7 @@ class UserMainScreen(QtWidgets.QWidget):
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
         self.loaddata()
-        start_point, end_point, car_type = self.getNewBookingItems()
-        distance, price = BackEnd.priceCalc(BackEnd.locations[start_point], BackEnd.locations[end_point])
-        distance = format(distance, '.2f')
-        price = format(price, '.2f')
-        print(distance, price)
-
+        self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
     def getNewBookingItems(self):
         start_point = self.ui13.comboBox.currentText()
         end_point = self.ui13.comboBox_2.currentText()
@@ -55,8 +62,14 @@ class UserMainScreen(QtWidgets.QWidget):
             self.ui13.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
             self.ui13.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
             tablerow+=1
-
-
+    def open_User_Payment_Options(self):
+        self.o13 = User_Submit_Payment()
+        self.o13.show()
+        start_point, end_point, car_type = self.getNewBookingItems()
+        distance, price = BackEnd.priceCalc(BackEnd.locations[start_point], BackEnd.locations[end_point])
+        distance = format(distance, '.2f')
+        price = format(price, '.2f')
+        print(distance, price)
 class changePassword(QtWidgets.QWidget):
     def __init__(self):
         super(changePassword,self).__init__()

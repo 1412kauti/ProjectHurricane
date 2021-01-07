@@ -307,7 +307,7 @@ class Ui_Form(object):
         self.tabWidget.addTab(self.tab_5, "")
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -331,7 +331,7 @@ class Ui_Form(object):
         self.comboBox.setItemText(11, _translate("Form", "Luton Mall"))
         self.comboBox_2.setItemText(0, _translate("Form", "Luton mall"))
         self.comboBox_2.setItemText(1, _translate("Form", "Luton train station"))
-        self.comboBox_2.setItemText(2, _translate("Form", "University of bedfordshire"))
+        self.comboBox_2.setItemText(2, _translate("Form", "University of Bedfordshire"))
         self.comboBox_2.setItemText(3, _translate("Form", "Stockwood park"))
         self.comboBox_2.setItemText(4, _translate("Form", "Wardown house museum and gallery"))
         self.comboBox_2.setItemText(5, _translate("Form", "Bedford park"))
