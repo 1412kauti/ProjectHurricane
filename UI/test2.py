@@ -111,45 +111,10 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def check_email_customers(z):
-        c.execute("""SELECT COUNT(*) FROM customers
-        WHERE (email) VALUES(?)""", (z))
-        print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def Check_phone_number_customers(z):
-        c.execute("""SELECT COUNT(*) FROM customers
-        WHERE (phone_number) VALUES(?)""", (z))
-        print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def Check_password_customers(z):
-        c.execute("""SELECT COUNT(*) FROM customers
-        WHERE (password) VALUES(?)""", (z))
-        print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def Check_email_drivers(z):
-        c.execute("""SELECT COUNT(*) FROM drivers
-        WHERE (email) VALUES(?)""", (z))
-        print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def Check_phone_number_drivers(z):
-        c.execute("""SELECT COUNT(*) FROM drivers
-        WHERE (phone_number) VALUES(?)""", (z))
-        print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def Check_password_drivers(z):
-        c.execute("""SELECT COUNT(*) FROM drivers
-        WHERE (password) VALUES(?)""", (z))
-        print(c.fetchall())
+    def Check_email_and_phone_number_customers(z,y):
+        c.execute("""SELECT email, phone_number
+        FROM customers
+        WHERE email = ? OR phone_number = ?""", (z,y))
         conn.commit()
 
     @staticmethod
