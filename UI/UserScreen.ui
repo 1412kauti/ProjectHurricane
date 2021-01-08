@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -44,10 +44,10 @@
     <widget class="QWidget" name="formLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>0</y>
-       <width>370</width>
-       <height>386</height>
+       <x>10</x>
+       <y>10</y>
+       <width>471</width>
+       <height>381</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
@@ -55,7 +55,7 @@
        <number>0</number>
       </property>
       <property name="verticalSpacing">
-       <number>60</number>
+       <number>30</number>
       </property>
       <property name="topMargin">
        <number>20</number>
@@ -64,27 +64,6 @@
        <widget class="QLabel" name="label">
         <property name="text">
          <string>Start Location : </string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Destination :</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Car Type :</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Date : </string>
         </property>
        </widget>
       </item>
@@ -152,6 +131,13 @@
         </item>
        </widget>
       </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Destination :</string>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="1">
        <widget class="QComboBox" name="comboBox_2">
         <item>
@@ -216,6 +202,13 @@
         </item>
        </widget>
       </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Car Type :</string>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="1">
        <widget class="QComboBox" name="comboBox_3">
         <item>
@@ -275,25 +268,46 @@
         </item>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_5">
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>Time : </string>
+         <string>Date : </string>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
        <widget class="QDateEdit" name="dateEdit"/>
       </item>
-      <item row="4" column="1">
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Time : </string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
        <widget class="QTimeEdit" name="timeEdit"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="CurrentDate_CheckBox">
+        <property name="text">
+         <string>Current Date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QCheckBox" name="CurrentTime_CheckBox">
+        <property name="text">
+         <string>Current Time</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>160</x>
        <y>400</y>
        <width>187</width>
        <height>32</height>
@@ -323,9 +337,9 @@
     <widget class="QWidget" name="formLayoutWidget_2">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>0</y>
-       <width>491</width>
+       <width>471</width>
        <height>433</height>
       </rect>
      </property>
@@ -721,7 +735,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="Logout_Btn">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
           <horstretch>0</horstretch>

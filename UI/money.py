@@ -24,40 +24,43 @@ import re
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
 #print("Check")
+
 class User_Submit_Payment(QtWidgets.QWidget):
     def __init__(self):
         super(User_Submit_Payment,self).__init__()
         self.ui14 = ui14()
         self.ui14.setupUi(self)
-        qss_file = 'QSS/OrangeDark.qss'
-        with open(qss_file,"r") as fh:
-            self.setStyleSheet(fh.read())
+        self.qss()
         self.ui14.User_Submit_Payment_Method.clicked.connect(self.clos)
     def clos(self):
         self.close()
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
 
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
         super(UserMainScreen,self).__init__()
         self.ui13 = ui13()
         self.ui13.setupUi(self)
-        qss_file = 'QSS/OrangeDark.qss'
-        with open(qss_file,"r") as fh:
-            self.setStyleSheet(fh.read())
         self.loaddata()
         self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
+        self.ui13.Logout_Btn.clicked.connect(self.open_Start_Screen)
         date, time = BackEnd().getDateAndTime()
+        self.qss()
     def getNewBookingItems(self):
         start_point = self.ui13.comboBox.currentText()
         end_point = self.ui13.comboBox_2.currentText()
         car_type = self.ui13.comboBox_3.currentText()
-        return start_point, end_point, car_type
-
-    #def modifyPrice(self, price, car):
-        #if car == ''
-
-
-
+        distance, price = BackEnd.priceCalc(BackEnd.locations[start_point], BackEnd.locations[end_point])
+        distance = format(distance, '.2f')
+        price = format(price, '.2f')
+        self.ui13.Distance_Label.setText(distance)
+        self.ui13.Price_Label.setText(price)
+        self.ui13.Upcoming_Start_Location_Lbl.setText(start_point)
+        self.ui13.Upcoming_Destination_Lbl.setText(end_point)
+        self.ui13.Car_Class_Label.setText(car_type)
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
@@ -73,19 +76,27 @@ class UserMainScreen(QtWidgets.QWidget):
     def open_User_Payment_Options(self):
         self.o13 = User_Submit_Payment()
         self.o13.show()
-        start_point, end_point, car_type = self.getNewBookingItems()
-        distance, price = BackEnd.priceCalc(BackEnd.locations[start_point], BackEnd.locations[end_point])
-        distance = format(distance, '.2f')
-        price = format(price, '.2f')
-        self.ui13.Distance_Label.setText(distance)
-        self.ui13.Price_Label.setText(price)
+        self.getNewBookingItems()
+    def open_Start_Screen(self):
+        self.o14 = StartScreen()
+        self.o14.show()
+        self.close()
+    def toggle_Date(self):
+        print('x')
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
+
         # print(distance, price)
 class changePassword(QtWidgets.QWidget):
     def __init__(self):
         super(changePassword,self).__init__()
         self.ui12 = ui12()
         self.ui12.setupUi(self)
+        self.qss()
         self.ui12.changePassword.clicked.connect(self.clos)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -96,7 +107,9 @@ class forgotChoices(QtWidgets.QWidget):
         super(forgotChoices,self).__init__()
         self.ui11 = ui11()
         self.ui11.setupUi(self)
+        self.qss()
         self.ui11.verify_button.clicked.connect(self.verify)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -109,7 +122,9 @@ class Congratulations(QtWidgets.QWidget):
         super(Congratulations,self).__init__()
         self.ui10 = ui10()
         self.ui10.setupUi(self)
+        self.qss()
         self.ui10.go2Login.clicked.connect(self.back2Login)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())        
@@ -122,7 +137,9 @@ class Verification_Screen(QtWidgets.QWidget):
         super(Verification_Screen,self).__init__()
         self.ui9 = ui9()
         self.ui9.setupUi(self)
+        self.qss()
         self.ui9.Complete_Verification.clicked.connect(self.go_to_Account_Activated)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -136,8 +153,10 @@ class Thank_You(QtWidgets.QWidget):
         a = randint(0,1000)
         self.ui8 = ui8()
         self.ui8.setupUi(self)
+        self.qss()
         self.ui8.Verify_Now.clicked.connect(self.open_Verification_Screen)
         self.ui8.Security_Code.setText("%d"%a)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -151,7 +170,9 @@ class Driver_Paypal(QtWidgets.QWidget):
         super(Driver_Paypal,self).__init__()
         self.ui7 = ui7()
         self.ui7.setupUi(self)
+        self.qss()
         self.ui7.Submit_Details4.clicked.connect(self.open_Thankyou)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -172,7 +193,9 @@ class Driver_Card(QtWidgets.QWidget):
         super(Driver_Card,self).__init__()
         self.ui6 = ui6()
         self.ui6.setupUi(self)
+        self.qss()
         self.ui6.Submit_Details3.clicked.connect(self.open_Thankyou)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -196,7 +219,9 @@ class User_Paypal(QtWidgets.QWidget):
         super(User_Paypal,self).__init__()
         self.ui5 = ui5()
         self.ui5.setupUi(self)
+        self.qss()
         self.ui5.Submit_Details2.clicked.connect(self.open_Thankyou)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -218,7 +243,9 @@ class User_Card(QtWidgets.QWidget):
         super(User_Card,self).__init__()
         self.ui4 = ui4()
         self.ui4.setupUi(self)
+        self.qss()
         self.ui4.Submit_Details1.clicked.connect(self.open_Thankyou)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -240,10 +267,12 @@ class RegisterScreen(QtWidgets.QWidget):
         super(RegisterScreen,self).__init__()
         self.ui3 = ui3()
         self.ui3.setupUi(self)
+        self.qss()
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
         self.check_states1()
         self.check_states2()
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -425,9 +454,11 @@ class LoginScreen(QtWidgets.QWidget):
         super(LoginScreen,self).__init__()
         self.ui2 = ui2()
         self.ui2.setupUi(self)
+        self.qss()
         self.ui2.user_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.user_Submit.clicked.connect(self.openLogin)
+    def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
@@ -445,9 +476,10 @@ class StartScreen(QtWidgets.QWidget):
         self.ui1.setupUi(self)
         self.ui1.Login_Button.clicked.connect(self.open_Login)
         self.ui1.Register_Button.clicked.connect(self.open_Register)
-        qss_file = 'QSS/OrangeDark.qss'
-        with open(qss_file,"r") as fh:
-            self.setStyleSheet(fh.read())    
+        self.qss()
+        # qss_file = 'QSS/OrangeDark.qss'
+        # with open(qss_file,"r") as fh:
+        #     self.setStyleSheet(fh.read())    
     def open_Login(self):
         self.o1 = LoginScreen()
         self.o1.show()
@@ -456,6 +488,10 @@ class StartScreen(QtWidgets.QWidget):
         self.o2 = RegisterScreen()
         self.o2.show()
         self.close()
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file,"r") as fh:
+            self.setStyleSheet(fh.read())
 def main():
     app = QtWidgets.QApplication(sys.argv)
     application = StartScreen()
