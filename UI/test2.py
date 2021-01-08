@@ -111,10 +111,11 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Check_email_and_phone_number_customers(z,y):
+    def Check_email_and_phone_number_customers(email,phone_number):
         c.execute("""SELECT email, phone_number
         FROM customers
-        WHERE email = ? OR phone_number = ?""", (z,y))
+        WHERE email = ? OR phone_number = ?""", (email,phone_number))
+        print(c.fetchall())
         conn.commit()
 
     @staticmethod
@@ -435,4 +436,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-# v.Check_phone_number_customers()
+v.Check_email_and_phone_number_customers('bleach2021@gmail.com','9999999999')
