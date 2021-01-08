@@ -111,16 +111,32 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Check_email_and_phone_number_customers(email,phone_number):
-        c.execute("""SELECT email, phone_number
+    def Check_phone_number_customers(phone_number):
+        c.execute("""SELECT phone_number
         FROM customers
-        WHERE email = ? OR phone_number = ?""", (email,phone_number))
+        WHERE phone_number = ?""", (phone_number))
         c.fetchone()
         conn.commit()
         # if dummy == None:
         #     print("GTFO")
         # else:
         #     print('Your welcome')
+
+    @staticmethod
+    def Check_email_customers(email):
+        c.execute("""SELECT email
+        FROM customers
+        WHERE email = ?""", (email))
+        c.fetchone()
+        conn.commit()
+
+    @staticmethod
+    def Check_password_customers(password):
+        c.execute("""SELECT password
+        FROM customers
+        WHERE password = ?""", (password))
+        c.fetchone()
+        conn.commit()
 
     @staticmethod
     def Update_Last_Name_customers():
