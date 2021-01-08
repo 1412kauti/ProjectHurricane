@@ -139,6 +139,30 @@ class dataz():
         conn.commit()
 
     @staticmethod
+    def Check_phone_number_drivers(phone_number):
+        c.execute("""SELECT email, phone_number
+        FROM drivers
+        WHERE phone_number = ?""", (phone_number))
+        c.fetchone()
+        conn.commit()
+
+    @staticmethod
+    def Check_email_drivers(email):
+        c.execute("""SELECT email
+        FROM drivers
+        WHERE email = ?""", (email))
+        c.fetchone()
+        conn.commit()
+
+    @staticmethod
+    def Check_password_drivers(password):
+        c.execute("""SELECT password
+        FROM drivers
+        WHERE password = ?""", (password))
+        c.fetchone()
+        conn.commit()
+
+    @staticmethod
     def Update_Last_Name_customers():
         c.execute("""UPDATE customers
         SET last_name = 'someone'
