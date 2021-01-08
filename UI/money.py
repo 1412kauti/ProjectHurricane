@@ -80,8 +80,6 @@ class UserMainScreen(QtWidgets.QWidget):
         self.o14 = StartScreen()
         self.o14.show()
         self.close()
-    def toggle_Date(self):
-
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
@@ -467,11 +465,13 @@ class LoginScreen(QtWidgets.QWidget):
     def openLogin(self):
         self.o12 = UserMainScreen()
         self.o12.show()
+        self.checker()
         self.close()
     def checker(self):
         email = self.ui2.userLoginEC.text()
+        phone_number = self.ui2.userPass.text()
         self.o13 = dataz()
-        self.o13.Check_phone_number_customers()
+        self.o13.Check_email_and_phone_number_customers(email,phone_number)
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
         super(StartScreen,self).__init__()

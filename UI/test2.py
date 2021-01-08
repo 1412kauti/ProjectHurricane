@@ -115,8 +115,12 @@ class dataz():
         c.execute("""SELECT email, phone_number
         FROM customers
         WHERE email = ? OR phone_number = ?""", (email,phone_number))
-        print(c.fetchall())
+        dummy = c.fetchone()
         conn.commit()
+        if dummy == None:
+            print("GTFO")
+        else:
+            print('Your welcome')
 
     @staticmethod
     def Update_Last_Name_customers():
@@ -436,4 +440,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.Check_email_and_phone_number_customers('bleach2021@gmail.com','9999999999')
+# v.Check_email_and_phone_number_customers('bleach2021@gmail.com','9999999999')
