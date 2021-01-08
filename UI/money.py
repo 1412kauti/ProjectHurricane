@@ -45,6 +45,10 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13 = ui13()
         self.ui13.setupUi(self)
         self.loaddata()
+        self.ui13.LaterDate_CheckBox.setChecked(True)
+        self.ui13.CurrentDate_CheckBox.setChecked(False)
+        self.ui13.CurrentTime_CheckBox.setChecked(False)
+        self.ui13.LaterTime_CheckBox.setChecked(True)
         self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
         self.ui13.Logout_Btn.clicked.connect(self.open_Start_Screen)
         date, time = BackEnd().getDateAndTime()
@@ -82,7 +86,11 @@ class UserMainScreen(QtWidgets.QWidget):
         self.o14.show()
         self.close()
     def toggle_Date(self):
-        print('x')
+        if self.ui13.CurrentDate_CheckBox.isChecked() == True:
+            self.ui13.dateEdit.setEnabled(False)
+        else:
+            print('x')
+
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
@@ -272,6 +280,7 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
         self.check_states1()
         self.check_states2()
+
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
@@ -469,6 +478,10 @@ class LoginScreen(QtWidgets.QWidget):
         self.o12 = UserMainScreen()
         self.o12.show()
         self.close()
+    def checker(self):
+        email = self.ui2.userLoginEC.text()
+        self.o13 = dataz()
+        self.o13.Check_phone_number_customers()
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
         super(StartScreen,self).__init__()
