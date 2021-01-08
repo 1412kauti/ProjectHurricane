@@ -113,14 +113,14 @@ class dataz():
     @staticmethod
     def check_email_customers(z):
         c.execute("""SELECT COUNT(*) FROM customers
-        WHERE (email) VALUE(?)""", (z))
+        WHERE (email) VALUES(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
     @staticmethod
     def Check_phone_number_customers(z):
         c.execute("""SELECT COUNT(*) FROM customers
-        WHERE (phone_number) VALUE(?)""", (z))
+        WHERE (phone_number) VALUES(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
@@ -134,21 +134,21 @@ class dataz():
     @staticmethod
     def Check_email_drivers(z):
         c.execute("""SELECT COUNT(*) FROM drivers
-        WHERE (email) VALUE(?)""", (z))
+        WHERE (email) VALUES(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
     @staticmethod
     def Check_phone_number_drivers(z):
         c.execute("""SELECT COUNT(*) FROM drivers
-        WHERE (phone_number) VALUE(?)""", (z))
+        WHERE (phone_number) VALUES(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
     @staticmethod
     def Check_password_drivers(z):
         c.execute("""SELECT COUNT(*) FROM drivers
-        WHERE (password) VALUE(?)""", (z))
+        WHERE (password) VALUES(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
