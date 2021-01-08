@@ -115,12 +115,12 @@ class dataz():
         c.execute("""SELECT email, phone_number
         FROM customers
         WHERE email = ? OR phone_number = ?""", (email,phone_number))
-        dummy = c.fetchone()
+        c.fetchone()
         conn.commit()
-        if dummy == None:
-            print("GTFO")
-        else:
-            print('Your welcome')
+        # if dummy == None:
+        #     print("GTFO")
+        # else:
+        #     print('Your welcome')
 
     @staticmethod
     def Update_Last_Name_customers():

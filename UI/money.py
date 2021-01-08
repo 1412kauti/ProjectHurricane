@@ -471,7 +471,11 @@ class LoginScreen(QtWidgets.QWidget):
         email = self.ui2.userLoginEC.text()
         phone_number = self.ui2.userPass.text()
         self.o13 = dataz()
-        self.o13.Check_email_and_phone_number_customers(email,phone_number)
+        if self.o13.Check_email_and_phone_number_customers(email,phone_number) == None:
+            print("I wanna sleep")
+        else:
+            print("not with u")
+
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
         super(StartScreen,self).__init__()
