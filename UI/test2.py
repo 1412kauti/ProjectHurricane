@@ -29,13 +29,13 @@ class dataz():
         conn.commit()
     
     @staticmethod    
-    def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q):
+    def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q,p):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO drivers
-        (first_name, last_name, email, phone_number, password, car_make, car_colour, car_license_plate_number, license_expiry, driver_license) VALUES (?,?,?,?,?,?,?,?,?,?)""", (z,y,x,w,v,u,t,s,r,q))
+        (first_name, last_name, email, password, phone_number, driver_license, license_expiry, car_class, car_license_plate_number, car_make, car_colour) VALUES (?,?,?,?,?,?,?,?,?,?)""", (z,y,x,w,v,u,t,s,r,q,p))
         conn.commit()
 
     @staticmethod
@@ -111,44 +111,44 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def check_email_customers():
+    def check_email_customers(z):
         c.execute("""SELECT COUNT(*) FROM customers
-        WHERE email = 'bleach2021@gmail.com'""")
+        WHERE (email) VALUE(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
     @staticmethod
-    def Check_phone_number_customers():
+    def Check_phone_number_customers(z):
         c.execute("""SELECT COUNT(*) FROM customers
-        WHERE phone_number = '12345678'""")
+        WHERE (phone_number) VALUE(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
     @staticmethod
-    def Check_password_customers():
+    def Check_password_customers(z):
         c.execute("""SELECT COUNT(*) FROM customers
-        WHERE password = 'noodles'""")
+        WHERE (password) VALUES(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
     @staticmethod
-    def Check_email_drivers():
+    def Check_email_drivers(z):
         c.execute("""SELECT COUNT(*) FROM drivers
-        WHERE email = 'hao123'""")
+        WHERE (email) VALUE(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
     @staticmethod
-    def Check_phone_number_drivers():
+    def Check_phone_number_drivers(z):
         c.execute("""SELECT COUNT(*) FROM drivers
-        WHERE phone_number = '7412566921'""")
+        WHERE (phone_number) VALUE(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
     @staticmethod
-    def Check_password_drivers():
+    def Check_password_drivers(z):
         c.execute("""SELECT COUNT(*) FROM drivers
-        WHERE password = 'password'""")
+        WHERE (password) VALUE(?)""", (z))
         print(c.fetchall())
         conn.commit()
 
