@@ -38,17 +38,12 @@ class User_Submit_Payment(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
-
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
         super(UserMainScreen,self).__init__()
         self.ui13 = ui13()
         self.ui13.setupUi(self)
         self.loaddata()
-        self.ui13.LaterDate_CheckBox.setChecked(True)
-        self.ui13.CurrentDate_CheckBox.setChecked(False)
-        self.ui13.CurrentTime_CheckBox.setChecked(False)
-        self.ui13.LaterTime_CheckBox.setChecked(True)
         self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
         self.ui13.Logout_Btn.clicked.connect(self.open_Start_Screen)
         date, time = BackEnd().getDateAndTime()
@@ -86,10 +81,6 @@ class UserMainScreen(QtWidgets.QWidget):
         self.o14.show()
         self.close()
     def toggle_Date(self):
-        if self.ui13.CurrentDate_CheckBox.isChecked() == True:
-            self.ui13.dateEdit.setEnabled(False)
-        else:
-            print('x')
 
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -457,7 +448,6 @@ class RegisterScreen(QtWidgets.QWidget):
             return True
         else:
             return False
-
 class LoginScreen(QtWidgets.QWidget):
     def __init__(self):
         super(LoginScreen,self).__init__()
