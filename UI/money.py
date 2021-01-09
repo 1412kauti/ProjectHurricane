@@ -33,26 +33,50 @@ class change_User_Phone_Number(QtWidgets.QWidget):
         super(change_User_Phone_Number,self).__init__()
         self.ui19 = ui19()
         self.ui19.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.Phone_Number_Label.setText(self)
+        self.o21.show()
+        self.close()
 class change_User_Password(QtWidgets.QWidget):
     def __init__(self):
         super(change_User_Password,self).__init__()
         self.ui18 = ui18()
         self.ui18.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.show()
+        self.close()
 class change_User_Email(QtWidgets.QWidget):
     def __init__(self):
         super(change_User_Email,self).__init__()
         self.ui17 = ui17()
         self.ui17.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.Email_Label.setText(self)
+        self.o21.show()
+        self.close()
 class change_User_LastName(QtWidgets.QWidget):
     def __init__(self):
         super(change_User_LastName,self).__init__()
         self.ui16 = ui16()
         self.ui16.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.Last_Name_Label.setText(self)
+        self.o21.show()
+        self.close()
 class change_User_FirstName(QtWidgets.QWidget):
     def __init__(self):
         super(change_User_FirstName,self).__init__()
         self.ui15 = ui15()
         self.ui15.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.First_Name_Label.setText(self)
+        self.o21.show()
+        self.close()
 class User_Submit_Payment(QtWidgets.QWidget):
     def __init__(self):
         super(User_Submit_Payment,self).__init__()
