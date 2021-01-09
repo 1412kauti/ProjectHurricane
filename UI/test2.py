@@ -480,4 +480,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-print(v.get_userID_by_phone_number('9999999999'))
+# print(v.get_userID_by_phone_number('9999999999'))
