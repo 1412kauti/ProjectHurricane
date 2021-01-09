@@ -114,7 +114,7 @@ class dataz():
     def Check_phone_number_customers(phone_number):
         c.execute("""SELECT phone_number
         FROM customers
-        WHERE phone_number = ?""", (phone_number))
+        WHERE phone_number = ?""", (phone_number,))
         c.fetchone()
         conn.commit()
         # if dummy == None:
@@ -126,7 +126,7 @@ class dataz():
     def Check_email_customers(email):
         c.execute("""SELECT email
         FROM customers
-        WHERE email = ?""", (email))
+        WHERE email = ?""", (email,))
         c.fetchone()
         conn.commit()
 
@@ -134,7 +134,7 @@ class dataz():
     def Check_password_customers(password):
         c.execute("""SELECT password
         FROM customers
-        WHERE password = ?""", (password))
+        WHERE password = ?""", (password,))
         c.fetchone()
         conn.commit()
 

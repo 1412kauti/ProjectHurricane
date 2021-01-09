@@ -454,7 +454,7 @@ class LoginScreen(QtWidgets.QWidget):
         self.qss()
         self.ui2.user_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
-        self.ui2.user_Submit.clicked.connect(self.openLogin)
+        self.ui2.user_Submit.clicked.connect(self.checker)
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
@@ -468,14 +468,18 @@ class LoginScreen(QtWidgets.QWidget):
         self.checker()
         self.close()
     def checker(self):
-        email = self.ui2.userLoginEC.text()
-        phone_number = self.ui2.userPass.text()
+        user_login = str(self.ui2.userLoginEC.text())
+        user_Password = str(self.ui2.userPass.text())
         self.o13 = dataz()
-        if self.o13.Check_email_and_phone_number_customers(email,phone_number) == None:
-            print("I wanna sleep")
+        a = self.o13.Check_email_customers(user_login)
+        b = self.o13.Check_phone_number_customers(user_login)
+        c = self.o13.Check_password_customers(user_Password)
+        if (a != None or b == None) and c != None:
+            self.openLogin()
+        elif (a == None or b != None) and c != None:
+            self.openLogin()
         else:
-            print("not with u")
-
+            self.ui2.user_login_Fail.setText("Try Again")
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
         super(StartScreen,self).__init__()
