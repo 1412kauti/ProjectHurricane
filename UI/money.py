@@ -16,7 +16,7 @@ from forgotChoices import Ui_Form as ui11
 from changePassword import Ui_Form as ui12
 from UserScreen import Ui_Form as ui13
 from User_Submit_Payment import Ui_Form as ui14
-from changes_User_First_Name import Ui_Form as ui15
+from change_User_First_Name import Ui_Form as ui15
 from change_User_Last_Name import Ui_Form as ui16
 from change_User_Email import Ui_Form as ui17
 from change_User_Password import Ui_Form as ui18
