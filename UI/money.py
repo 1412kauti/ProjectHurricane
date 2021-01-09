@@ -16,6 +16,11 @@ from forgotChoices import Ui_Form as ui11
 from changePassword import Ui_Form as ui12
 from UserScreen import Ui_Form as ui13
 from User_Submit_Payment import Ui_Form as ui14
+from changes_User_First_Name import Ui_Form as ui15
+from change_User_Last_Name import Ui_Form as ui16
+from change_User_Email import Ui_Form as ui17
+from change_User_Password import Ui_Form as ui18
+from change_User_Phone_Number import Ui_Form as ui19
 from BackEnd import BackEnd
 from random import randint
 import numpy as np
@@ -23,8 +28,55 @@ import sqlite3
 import re
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
-#print("Check")
-
+class change_User_Phone_Number(QtWidgets.QWidget):
+    def __init__(self):
+        super(change_User_Phone_Number,self).__init__()
+        self.ui19 = ui19()
+        self.ui19.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.Phone_Number_Label.setText(self)
+        self.o21.show()
+        self.close()
+class change_User_Password(QtWidgets.QWidget):
+    def __init__(self):
+        super(change_User_Password,self).__init__()
+        self.ui18 = ui18()
+        self.ui18.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.show()
+        self.close()
+class change_User_Email(QtWidgets.QWidget):
+    def __init__(self):
+        super(change_User_Email,self).__init__()
+        self.ui17 = ui17()
+        self.ui17.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.Email_Label.setText(self)
+        self.o21.show()
+        self.close()
+class change_User_LastName(QtWidgets.QWidget):
+    def __init__(self):
+        super(change_User_LastName,self).__init__()
+        self.ui16 = ui16()
+        self.ui16.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.Last_Name_Label.setText(self)
+        self.o21.show()
+        self.close()
+class change_User_FirstName(QtWidgets.QWidget):
+    def __init__(self):
+        super(change_User_FirstName,self).__init__()
+        self.ui15 = ui15()
+        self.ui15.setupUi(self)
+    def hit_Submit(self):
+        self.o21 = UserMainScreen()
+        self.o21.First_Name_Label.setText(self)
+        self.o21.show()
+        self.close()
 class User_Submit_Payment(QtWidgets.QWidget):
     def __init__(self):
         super(User_Submit_Payment,self).__init__()
@@ -47,6 +99,13 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
         self.ui13.Logout_Btn.clicked.connect(self.open_Start_Screen)
         date, time = BackEnd().getDateAndTime()
+        self.ui13.change_First_Name.clicked.connect(self.open_Change_First_Name)
+        self.ui13.change_Last_Name.clicked.connect(self.open_Change_Last_Name)
+        self.ui13.change_Email.clicked.connect(self.open_Change_Email)
+        self.ui13.change_Phone_Number.clicked.connect(self.open_Change_Phone_Number)
+        self.ui13.change_Password.clicked.connect(self.open_Change_Password)
+        self.ui13.change_Card.clicked.connect(self.open_Card_Change)
+        self.ui13.change_Paypal.clicked.conect(self.open_Paypal_Change)
         self.qss()
     def getNewBookingItems(self):
         start_point = self.ui13.comboBox.currentText()
@@ -79,6 +138,34 @@ class UserMainScreen(QtWidgets.QWidget):
     def open_Start_Screen(self):
         self.o14 = StartScreen()
         self.o14.show()
+        self.close()
+    def open_Change_First_Name(self):
+        self.o15 = change_User_FirstName()
+        self.o15.show()
+        self.close()
+    def open_Change_Last_Name(self):
+        self.o16 = change_User_LastName()
+        self.o16.show()
+        self.close()
+    def open_Change_Email(self):
+        self.o17 = change_User_Email()
+        self.o17.show()
+        self.close()
+    def open_Change_Password(self):
+        self.o18 = change_User_Password()
+        self.o18.show()
+        self.close()
+    def open_Change_Phone_Number(self):
+        self.o19 = change_User_Phone_Number()
+        self.o19.show()
+        self.close()
+    def open_Card_Change(self):
+        self.o20 = User_Card()
+        self.o20.show()
+        self.close()
+    def open_Paypal_Change(self):
+        self.o21 = User_Paypal()
+        self.o21.show()
         self.close()
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -454,7 +541,8 @@ class LoginScreen(QtWidgets.QWidget):
         self.qss()
         self.ui2.user_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
-        self.ui2.user_Submit.clicked.connect(self.checker)
+        # self.ui2.user_Submit.clicked.connect(self.checker)
+        self.ui2.user_Submit.clicked.connect(self.openLogin)
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
