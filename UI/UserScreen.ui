@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -211,31 +211,6 @@
       </item>
       <item row="2" column="1">
        <widget class="QComboBox" name="comboBox_3">
-        <item>
-         <property name="text">
-          <string>Mini</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Micro</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Sedan</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Luxury</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>XL</string>
-         </property>
-        </item>
         <item>
          <property name="text">
           <string>Mini</string>
