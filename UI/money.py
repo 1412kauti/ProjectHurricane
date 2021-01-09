@@ -357,14 +357,27 @@ class RegisterScreen(QtWidgets.QWidget):
         self.qss()
         self.ui3.User_Submit_Button.clicked.connect(self.User_Payment)
         self.ui3.Driver_Submit_Button.clicked.connect(self.Driver_Payment)
-        self.check_states1()
-        self.check_states2()
-
+        self.user_check_states1()
+        self.user_check_states2()
+        self.driver_check_states1()
+        self.driver_check_states2()
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
-    def check_confirm_password_state(self):
+    def driver_check_confirm_password_state(self):
+        input_confirm_password_name = self.ui3.Driver_Confirm_Password_Text
+        regexp = QtCore.QRegExp(r"^[A-Za-z0-9 .-_]{7,20}+$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_confirm_password_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_confirm_password_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def user_check_confirm_password_state(self):
         input_confirm_password_name = self.ui3.User_Confirm_Password_Text
         regexp = QtCore.QRegExp(r"^[A-Za-z0-9 .-_]{7,20}+$")
         validator = QtGui.QRegExpValidator(regexp)
@@ -376,7 +389,19 @@ class RegisterScreen(QtWidgets.QWidget):
         else:
             color = ''
         input_confirm_password_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
-    def check_password_state(self):
+    def driver_check_password_state(self):
+        input_password_name = self.ui3.Driver_Password_Text
+        regexp = QtCore.QRegExp(r"^[A-Za-z0-9 .-_]{7,20}+$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_password_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_password_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def user_check_password_state(self):
         input_password_name = self.ui3.User_Password_Text
         regexp = QtCore.QRegExp(r"^[A-Za-z0-9 .-_]{7,20}+$")
         validator = QtGui.QRegExpValidator(regexp)
@@ -388,7 +413,19 @@ class RegisterScreen(QtWidgets.QWidget):
         else:
             color = ''
         input_password_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
-    def check_last_name_state(self):
+    def driver_check_last_name_state(self):
+        input_last_name = self.ui3.Driver_Last_Name_Text
+        regexp = QtCore.QRegExp(r"^[A-Za-z .-]+$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_last_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_last_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def user_check_last_name_state(self):
         input_last_name = self.ui3.User_Last_Name_Text
         regexp = QtCore.QRegExp(r"^[A-Za-z .-]+$")
         validator = QtGui.QRegExpValidator(regexp)
@@ -400,7 +437,19 @@ class RegisterScreen(QtWidgets.QWidget):
         else:
             color = ''
         input_last_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
-    def check_first_name_state(self):
+    def driver_check_first_name_state(self):
+        input_first_name = self.ui3.Driver_First_Name_Text
+        regexp = QtCore.QRegExp(r"^[A-Za-z .-]+$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_first_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_first_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def user_check_first_name_state(self):
         input_first_name = self.ui3.User_First_Name_Text
         regexp = QtCore.QRegExp(r"^[A-Za-z .-]+$")
         validator = QtGui.QRegExpValidator(regexp)
@@ -412,7 +461,19 @@ class RegisterScreen(QtWidgets.QWidget):
         else:
             color = ''
         input_first_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
-    def check_email_state(self):
+    def driver_check_email_state(self):
+        input_email = self.ui3.Driver_Email_Text
+        regexp = QtCore.QRegExp(r"^([a-z\d.-]+)@([a-z\.d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_email.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_email.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def user_check_email_state(self):
         input_email = self.ui3.User_Email_Text
         regexp = QtCore.QRegExp(r"^([a-z\d.-]+)@([a-z\.d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$")
         validator = QtGui.QRegExpValidator(regexp)
@@ -424,7 +485,19 @@ class RegisterScreen(QtWidgets.QWidget):
         else:
             color = ''
         input_email.setStyleSheet('QLineEdit { background-color: %s }' % color)
-    def check_contact_state(self):
+    def driver_check_contact_state(self):
+        input_contact_number = self.ui3.Driver_Phone_Number_Text
+        regexp = QtCore.QRegExp(r"^[0-9\-\+]{9,15}$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_contact_number.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_contact_number.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def user_check_contact_state(self):
         input_contact_number = self.ui3.User_Contact_Number_Text
         regexp = QtCore.QRegExp(r"^[0-9\-\+]{9,15}$")
         validator = QtGui.QRegExpValidator(regexp)
@@ -436,25 +509,45 @@ class RegisterScreen(QtWidgets.QWidget):
         else:
             color = ''
         input_contact_number.setStyleSheet('QLineEdit { background-color: %s }' % color)
-    def check_states1(self):
-        self.check_first_name_state()
-        self.check_email_state()
-        self.check_contact_state()
-        self.check_last_name_state()
-        self.check_password_state()
-        self.check_confirm_password_state()
-    def check_states2(self):
-        self.ui3.User_Last_Name_Text.textEdited.connect(self.check_last_name_state)
+    def driver_check_states1(self):
+        self.driver_check_first_name_state()
+        self.driver_check_email_state()
+        self.driver_check_contact_state()
+        self.driver_check_last_name_state()
+        self.driver_check_password_state()
+        self.driver_check_confirm_password_state()
+    def user_check_states1(self):
+        self.user_check_first_name_state()
+        self.user_check_email_state()
+        self.user_check_contact_state()
+        self.user_check_last_name_state()
+        self.user_check_password_state()
+        self.user_check_confirm_password_state()
+    def driver_check_states2(self):
+        self.ui3.Driver_Last_Name_Text.textEdited.connect(self.driver_check_last_name_state)
+        self.ui3.Driver_Last_Name_Text.textEdited.emit(self.ui3.Driver_Last_Name_Text.text())
+        self.ui3.Driver_First_Name_Text.textEdited.connect(self.driver_check_first_name_state)
+        self.ui3.Driver_First_Name_Text.textEdited.emit(self.ui3.Driver_First_Name_Text.text())
+        self.ui3.Driver_Email_Text.textEdited.connect(self.driver_check_email_state)
+        self.ui3.Driver_Email_Text.textEdited.emit(self.ui3.Driver_Email_Text.text())
+        self.ui3.Driver_Phone_Number_Text.textEdited.connect(self.driver_check_contact_state)
+        self.ui3.Driver_Phone_Number_Text.textEdited.emit(self.ui3.Driver_Phone_Number_Text.text())
+        self.ui3.Driver_Password_Text.textEdited.connect(self.driver_check_password_state)
+        self.ui3.Driver_Password_Text.textEdited.emit(self.ui3.Driver_Password_Text.text())
+        self.ui3.Driver_Confirm_Password_Text.textEdited.connect(self.driver_check_confirm_password_state)
+        self.ui3.Driver_Confirm_Password_Text.textEdited.emit(self.ui3.Driver_Confirm_Password_Text.text())
+    def user_check_states2(self):
+        self.ui3.User_Last_Name_Text.textEdited.connect(self.user_check_last_name_state)
         self.ui3.User_Last_Name_Text.textEdited.emit(self.ui3.User_Last_Name_Text.text())
-        self.ui3.User_First_Name_Text.textEdited.connect(self.check_first_name_state)
+        self.ui3.User_First_Name_Text.textEdited.connect(self.user_check_first_name_state)
         self.ui3.User_First_Name_Text.textEdited.emit(self.ui3.User_First_Name_Text.text())
-        self.ui3.User_Email_Text.textEdited.connect(self.check_email_state)
+        self.ui3.User_Email_Text.textEdited.connect(self.user_check_email_state)
         self.ui3.User_Email_Text.textEdited.emit(self.ui3.User_Email_Text.text())
-        self.ui3.User_Contact_Number_Text.textEdited.connect(self.check_contact_state)
+        self.ui3.User_Contact_Number_Text.textEdited.connect(self.user_check_contact_state)
         self.ui3.User_Contact_Number_Text.textEdited.emit(self.ui3.User_Contact_Number_Text.text())
-        self.ui3.User_Password_Text.textEdited.connect(self.check_password_state)
+        self.ui3.User_Password_Text.textEdited.connect(self.user_check_password_state)
         self.ui3.User_Password_Text.textEdited.emit(self.ui3.User_Password_Text.text())
-        self.ui3.User_Confirm_Password_Text.textEdited.connect(self.check_confirm_password_state)
+        self.ui3.User_Confirm_Password_Text.textEdited.connect(self.user_check_confirm_password_state)
         self.ui3.User_Confirm_Password_Text.textEdited.emit(self.ui3.User_Confirm_Password_Text.text())
 
     def take_user_inputs(self):
@@ -503,7 +596,7 @@ class RegisterScreen(QtWidgets.QWidget):
         self.d10=dataz()
         self.d10.Delete_Duplicates_Drivers()
     def User_Payment(self):
-        self.check_email_state()
+        self.user_check_email_state()
         self.take_user_inputs()
         self.Delete_Dup_Customers() 
         if self.ui3.User_Password_Text.text() == self.ui3.User_Confirm_Password_Text.text():
