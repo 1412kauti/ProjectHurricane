@@ -139,6 +139,14 @@ class dataz():
         conn.commit()
 
     @staticmethod
+    def Check_password_customers(ROWID):
+        c.execute("""SELECT email,password
+        FROM customers
+        WHERE ROWID = ?""", (ROWID))
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
     def Check_phone_number_drivers(phone_number):
         c.execute("""SELECT email, phone_number
         FROM drivers
@@ -480,4 +488,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-# v.Check_email_and_phone_number_customers('bleach2021@gmail.com','9999999999')
+v.Check_password_customers('6')
