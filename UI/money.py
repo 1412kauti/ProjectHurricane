@@ -561,11 +561,10 @@ class LoginScreen(QtWidgets.QWidget):
         self.o13 = dataz()
         a = self.o13.Check_email_customers(user_login)
         b = self.o13.Check_phone_number_customers(user_login)
-        c = self.o13.Check_password_customers(user_Password)
-        if (a != None or b == None) and c != None:
-            self.openLogin()
-        elif (a == None or b != None) and c != None:
-            self.openLogin()
+        c = self.o13.get_customer_userID_by_password(user_Password)
+        if a != None and b != None and c != None:
+            if a == b == c:
+                self.openLogin()
         else:
             self.ui2.user_login_Fail.setText("Try Again")
 class StartScreen(QtWidgets.QWidget):

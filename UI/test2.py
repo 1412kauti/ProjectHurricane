@@ -115,12 +115,9 @@ class dataz():
         c.execute("""SELECT phone_number
         FROM customers
         WHERE phone_number = ?""", (phone_number,))
-        c.fetchone()
+        var = c.fetchone()
+        print(var)
         conn.commit()
-        # if dummy == None:
-        #     print("GTFO")
-        # else:
-        #     print('Your welcome')
 
     @staticmethod
     def Check_email_customers(email):
@@ -139,7 +136,8 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Check_email_and_password_customers(password):
+    def get_customer_userID_by_password(password):
+        """Takes password as an input and returns userID"""
         c.execute("""SELECT email,password,user_ID
         FROM customers
         WHERE password = ?""", (password,))
@@ -152,7 +150,7 @@ class dataz():
         c.execute("""SELECT phone_number
         FROM drivers
         WHERE phone_number = ?""", (phone_number,))
-        c.fetchone()
+        var = c.fetchone()
         conn.commit()
 
     @staticmethod
@@ -489,4 +487,5 @@ class dataz():
         conn.commit()
 
 v = dataz()
-print(v.Check_email_and_password_customers('12345678'))
+print(v.Check_password_by_email('12345678'))
+v.Check_phone_number_customers('7502419481')
