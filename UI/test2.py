@@ -145,7 +145,7 @@ class dataz():
         WHERE password = ?""", (password,))
         var = c.fetchone()
         conn.commit()
-        return var
+        return var[2]
 
     @staticmethod
     def Check_phone_number_drivers(phone_number):
@@ -489,6 +489,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-var = v.Check_email_and_password_customers('12345678')
-
-print(var[2])
+print(v.Check_email_and_password_customers('12345678'))
