@@ -139,18 +139,18 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Check_password_customers(ROWID):
-        c.execute("""SELECT email,password
+    def Check_email_and_password_customers(password):
+        c.execute("""SELECT email,password,user_ID
         FROM customers
-        WHERE ROWID = ?""", (ROWID))
-        print(c.fetchall())
+        WHERE password = ?""", (password,))
+        print(c.fetchone())
         conn.commit()
 
     @staticmethod
     def Check_phone_number_drivers(phone_number):
-        c.execute("""SELECT email, phone_number
+        c.execute("""SELECT phone_number
         FROM drivers
-        WHERE phone_number = ?""", (phone_number))
+        WHERE phone_number = ?""", (phone_number,))
         c.fetchone()
         conn.commit()
 
@@ -488,4 +488,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.Check_password_customers('6')
+v.Check_email_and_password_customers('12345678')
