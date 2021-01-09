@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -55,10 +55,10 @@
        <number>0</number>
       </property>
       <property name="verticalSpacing">
-       <number>21</number>
+       <number>50</number>
       </property>
       <property name="topMargin">
-       <number>20</number>
+       <number>40</number>
       </property>
       <item row="0" column="0">
        <widget class="QLabel" name="label">
@@ -275,47 +275,30 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
-       <widget class="QCheckBox" name="CurrentDate_CheckBox">
-        <property name="text">
-         <string>Current Date</string>
+      <item row="3" column="1">
+       <widget class="QDateEdit" name="dateEdit">
+        <property name="currentSection">
+         <enum>QDateTimeEdit::DaySection</enum>
         </property>
-        <property name="checked">
-         <bool>false</bool>
+        <property name="calendarPopup">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
+      <item row="4" column="0">
        <widget class="QLabel" name="label_5">
         <property name="text">
          <string>Time : </string>
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QTimeEdit" name="timeEdit"/>
-      </item>
-      <item row="6" column="1">
-       <widget class="QCheckBox" name="CurrentTime_CheckBox">
-        <property name="text">
-         <string>Current Time</string>
+      <item row="4" column="1">
+       <widget class="QTimeEdit" name="timeEdit">
+        <property name="calendarPopup">
+         <bool>true</bool>
         </property>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QCheckBox" name="LaterTime_CheckBox">
-        <property name="text">
-         <string>Later Time</string>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>Select Later Date</string>
+        <property name="currentSectionIndex">
+         <number>0</number>
         </property>
        </widget>
       </item>
@@ -623,9 +606,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
+       <y>40</y>
        <width>481</width>
-       <height>461</height>
+       <height>431</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
@@ -637,7 +620,7 @@
        </widget>
       </item>
       <item row="2" column="2">
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="QPushButton" name="change_Email">
         <property name="text">
          <string>Change E-Mail</string>
         </property>
@@ -651,14 +634,14 @@
        </widget>
       </item>
       <item row="3" column="2">
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="QPushButton" name="change_Phone_Number">
         <property name="text">
          <string>Change Phone Number</string>
         </property>
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="change_Last_Name">
         <property name="text">
          <string>Change Last Name</string>
         </property>
@@ -679,9 +662,9 @@
        </widget>
       </item>
       <item row="5" column="0" colspan="3">
-       <widget class="QPushButton" name="pushButton_8">
+       <widget class="QPushButton" name="change_Card">
         <property name="text">
-         <string>Change Card Details</string>
+         <string>Add/Change Card Details</string>
         </property>
        </widget>
       </item>
@@ -693,7 +676,7 @@
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="change_First_Name">
         <property name="text">
          <string>Change First Name</string>
         </property>
@@ -721,20 +704,33 @@
        </widget>
       </item>
       <item row="4" column="1" colspan="2">
-       <widget class="QPushButton" name="pushButton_7">
+       <widget class="QPushButton" name="change_Password">
         <property name="text">
          <string>Change Password</string>
         </property>
        </widget>
       </item>
       <item row="6" column="0" colspan="3">
-       <widget class="QPushButton" name="pushButton_9">
+       <widget class="QPushButton" name="change_Paypal">
         <property name="text">
-         <string>Change PayPal Details</string>
+         <string>Add/Change PayPal Details</string>
         </property>
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QPushButton" name="Refresh_Btn">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>10</y>
+       <width>80</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Refresh</string>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_5">
