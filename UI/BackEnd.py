@@ -19,7 +19,7 @@ class BackEnd(object):
     records = cursor.fetchall()
 
     locations = {
-        'Luton mall' : (records[0][2], records[0][3]),
+        'Luton Mall' : (records[0][2], records[0][3]),
         'Luton train station' : (records[1][2], records[1][3]),
         'University of Bedfordshire' : (records[2][2], records[2][3]),
         'Stockwood park' : (records[3][2], records[3][3]),
@@ -30,7 +30,7 @@ class BackEnd(object):
         ' Light Pyramid' : (records[8][2], records[8][3]),
         'Milton Keynes University Hospital' : (records[8][2], records[8][3]),
         'National Museum of Computing' : (records[9][2], records[9][3]),
-        'milton keynes IKEA ' : (records[10][2], records[10][3])
+        'Milton Keynes IKEA ' : (records[10][2], records[10][3])
     }
 
     def priceCalc(loc1, loc2):

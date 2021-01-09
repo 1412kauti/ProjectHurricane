@@ -86,7 +86,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Wardown house museum</string>
+          <string>Wardown house museum and gallery</string>
          </property>
         </item>
         <item>
@@ -315,7 +315,7 @@
        <x>10</x>
        <y>0</y>
        <width>471</width>
-       <height>433</height>
+       <height>457</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
