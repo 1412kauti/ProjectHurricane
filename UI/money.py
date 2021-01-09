@@ -105,7 +105,7 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.change_Phone_Number.clicked.connect(self.open_Change_Phone_Number)
         self.ui13.change_Password.clicked.connect(self.open_Change_Password)
         self.ui13.change_Card.clicked.connect(self.open_Card_Change)
-        self.ui13.change_Paypal.clicked.conect(self.open_Paypal_Change)
+        self.ui13.change_Paypal.clicked.connect(self.open_Paypal_Change)
         self.qss()
     def getNewBookingItems(self):
         start_point = self.ui13.comboBox.currentText()
