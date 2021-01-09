@@ -44,3 +44,19 @@ class BackEnd(object):
         now = datetime.datetime.now()
         current_time = now.strftime("%H:%M")
         return today, current_time
+
+    def assignTheDriver(self):
+        connection = sqlite3.connect("assessment2.db")
+
+        sql_select_Query = "select * from drivers"
+        cursor = connection.cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        r = randint(0, 3)
+        driver = records[r]
+        driver_name = str(driver[0]) + ' ' + str(driver[1])
+        car_make = driver[9]
+        car_color = driver[10]
+        return driver_name, car_make, car_color
+
+BackEnd().assignTheDriver()
