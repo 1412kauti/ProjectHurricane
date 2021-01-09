@@ -111,32 +111,25 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Check_phone_number_customers(phone_number):
-        c.execute("""SELECT phone_number
+    def get_userID_by_phone_number(phone_number):
+        c.execute("""SELECT phone_number,password,user_ID
         FROM customers
         WHERE phone_number = ?""", (phone_number,))
         var = c.fetchone()
-        print(var)
         conn.commit()
+        return var[2]
 
     @staticmethod
-    def Check_email_customers(email):
-        c.execute("""SELECT email
+    def get_userID_by_email(email):
+        c.execute("""SELECT email,password,user_ID
         FROM customers
         WHERE email = ?""", (email,))
-        c.fetchone()
+        var = c.fetchone()
         conn.commit()
+        return var[2]
 
     @staticmethod
-    def Check_password_customers(password):
-        c.execute("""SELECT password
-        FROM customers
-        WHERE password = ?""", (password,))
-        c.fetchone()
-        conn.commit()
-
-    @staticmethod
-    def get_customer_userID_by_password(password):
+    def get_userID_by_password(password):
         """Takes password as an input and returns userID"""
         c.execute("""SELECT email,password,user_ID
         FROM customers
@@ -487,5 +480,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-print(v.Check_password_by_email('12345678'))
-v.Check_phone_number_customers('7502419481')
+print(v.get_userID_by_phone_number('9999999999'))
