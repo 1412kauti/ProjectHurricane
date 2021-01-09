@@ -98,7 +98,7 @@ class UserMainScreen(QtWidgets.QWidget):
         self.loaddata()
         self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
         self.ui13.Logout_Btn.clicked.connect(self.open_Start_Screen)
-        date, time = BackEnd().getDateAndTime()
+        
         self.ui13.change_First_Name.clicked.connect(self.open_Change_First_Name)
         self.ui13.change_Last_Name.clicked.connect(self.open_Change_Last_Name)
         self.ui13.change_Email.clicked.connect(self.open_Change_Email)
@@ -114,6 +114,9 @@ class UserMainScreen(QtWidgets.QWidget):
         distance, price = BackEnd.priceCalc(BackEnd.locations[start_point], BackEnd.locations[end_point])
         distance = format(distance, '.2f')
         price = format(price, '.2f')
+        date, time = BackEnd().getDateAndTime()
+        self.ui13.Upcoming_Time_Lbl.setText(time)
+        self.ui13.Upcoming_Date_Lbl.setText(date)
         self.ui13.Distance_Label.setText(distance)
         self.ui13.Price_Label.setText(price)
         self.ui13.Upcoming_Start_Location_Lbl.setText(start_point)
@@ -561,7 +564,7 @@ class LoginScreen(QtWidgets.QWidget):
         self.o13 = dataz()
         a = self.o13.Check_email_customers(user_login)
         b = self.o13.Check_phone_number_customers(user_login)
-        c = self.o13.get_customer_userID_by_password(user_Password)
+        c = self.o13.get_userID_by_password(user_Password)
         if a != None and b != None and c != None:
             if a == b == c:
                 self.openLogin()

@@ -40,10 +40,10 @@ class BackEnd(object):
             return distance_km, trip_price
 
     def getDateAndTime(self):
-        today = datetime.date.today()
-        now = datetime.datetime.now()
-        current_time = now.strftime("%H:%M")
-        return today, current_time
+        today = (datetime.date.today())
+        now = (datetime.datetime.now())
+        current_time = (now.strftime("%H:%M"))
+        return str(today), str(current_time)
 
     def assignTheDriver(self):
         connection = sqlite3.connect("assessment2.db")
