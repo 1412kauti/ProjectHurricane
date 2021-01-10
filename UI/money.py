@@ -696,7 +696,8 @@ class LoginScreen(QtWidgets.QWidget):
         self.qss()
         self.ui2.user_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
-        self.ui2.user_Submit.clicked.connect(self.checker)
+        self.ui2.user_Submit.clicked.connect(self.userChecker)
+        #self.ui2.driver_Submit.clicked.connect(self.driverChecker) # !!!
         # self.ui2.user_Submit.clicked.connect(self.openLogin)
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -705,30 +706,51 @@ class LoginScreen(QtWidgets.QWidget):
     def forgetPass(self):
         self.o11 = forgotChoices()
         self.o11.show()
-    def openLogin(self):
+    def openUserLogin(self):
         self.o12 = UserMainScreen()
         self.o12.show()
         self.close()
-    def checker(self):
+
+    def userChecker(self):
+        """Login verification for the customers."""
         user_login = str(self.ui2.userLoginEC.text())
         user_Password = str(self.ui2.userPass.text())
         self.o13 = dataz()
-        #a = self.o13.get_customer_userID_by_email(user_login)
-        #b = self.o13.get_customer_userID_by_phone_number(user_login)
         c = self.o13.get_customer_userID_by_password(user_Password)
-        list_of_emails = BackEnd().emailList()
-        list_of_phone_numbers = BackEnd().phoneNumberList()
-        #print(email_tuple, phone_numbers_tuple)
+        list_of_emails = BackEnd().customerEmailList()
+        list_of_phone_numbers = BackEnd().customerPhoneNumberList()
+
         if user_login in list_of_emails:
             a = self.o13.get_customer_userID_by_email(user_login)
             if a == c:
-                self.openLogin()
+                self.openUserLogin()
         elif user_login in list_of_phone_numbers:
             b = self.o13.get_customer_userID_by_phone_number(user_login)
             if b == c:
-                self.openLogin()
+                self.openUserLogin()
         else:
             self.ui2.user_login_Fail.setText("Try Again")
+
+    def driverChecker(self):
+        """Login verification for the drivers."""
+        driver_login = str(self.ui2.driverLoginEC.text())
+        driver_password = str(self.ui2.driverPass.text())
+        self.o13 = dataz()
+        c = self.o13.get_driver_driverID_by_password(driver_password)
+        list_of_emails = BackEnd().driverEmailList()
+        list_of_phone_numbers = BackEnd().driverPhoneNumberList()
+
+        if driver_login in list_of_emails:
+            a = self.o13.get_driver_driverID_by_email(driver_login)
+            if a == c:
+                pass
+        if driver_login in list_of_phone_numbers:
+            b = self.o13.get_driver_driverID_by_phone_number(driver_login)
+            if b == c:
+                pass
+        else:
+            self.ui2.driver_login_Fail.setText('Try Again')
+
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
         super(StartScreen,self).__init__()
