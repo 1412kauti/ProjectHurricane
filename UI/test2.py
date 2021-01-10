@@ -117,15 +117,15 @@ class dataz():
         :param phone_number:
         :return: user_ID
         """
-        try:
+        if phone_number != '':
             c.execute("""SELECT phone_number, user_ID
             FROM customers
             WHERE phone_number = ?""", (phone_number,))
             var = c.fetchone()
             conn.commit()
             return var[1]
-        except:
-            raise IOError("User doesn't exist")
+        else:
+            raise OSError("User doesn't exist")
 
     @staticmethod
     def get_customer_userID_by_email(email):
@@ -134,15 +134,15 @@ class dataz():
         :param email:
         :return: user_ID
         """
-        try:
+        if email != '':
             c.execute("""SELECT email, user_ID
             FROM customers
             WHERE email = ?""", (email,))
             var = c.fetchone()
             conn.commit()
             return var[1]
-        except:
-            raise IOError("User doesn't exist")
+        else:
+            raise OSError("User doesn't exist")
 
     @staticmethod
     def Check_password_customers(password):
@@ -159,15 +159,15 @@ class dataz():
         :param password:
         :return: user_ID
         """
-        try:
+        if password != '':
             c.execute("""SELECT email,password,user_ID
             FROM customers
             WHERE password = ?""", (password,))
             var = c.fetchone()
             conn.commit()
             return var[2]
-        except:
-            raise IOError("User doesn't exist")
+        else:
+            raise OSError("User doesn't exist")
 
     @staticmethod
     def Check_phone_number_drivers(phone_number):
