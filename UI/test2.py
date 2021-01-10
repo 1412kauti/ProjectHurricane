@@ -145,14 +145,6 @@ class dataz():
             raise OSError("User doesn't exist")
 
     @staticmethod
-    def Check_password_customers(password):
-        c.execute("""SELECT password
-        FROM customers
-        WHERE password = ?""", (password,))
-        c.fetchone()
-        conn.commit()
-
-    @staticmethod
     def get_customer_userID_by_password(password):
         """
             Takes a password as an input. And returns a userID connected do it in the DB.
@@ -170,27 +162,62 @@ class dataz():
             raise OSError("User doesn't exist")
 
     @staticmethod
+    def get_driver_driverID_by_password(password):
+        """
+            Takes a password as an input. And returns a driverID connected do it in the DB.
+        :param password:
+        :return: driver_ID
+        """
+        if password != '':
+            c.execute("""SELECT email,password,driver_ID
+            FROM drivers
+            WHERE password = ?""", (password,))
+            var = c.fetchone()
+            conn.commit()
+            return var[2]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_driver_driverID_by_email(email):
+        """
+            Takes an email as an input. And returns a driverID connected do it in the DB.
+        :param email:
+        :return: driver_ID
+        """
+        if email != '':
+            c.execute("""SELECT email, driver_ID
+            FROM drivers
+            WHERE email = ?""", (email,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_driver_driverID_by_phone_number(phone_number):
+        """
+            Takes a phone number as an input. And returns a driverID connected do it in the DB.
+        :param phone_number:
+        :return: driver_ID
+        """
+        if phone_number != '':
+            c.execute("""SELECT phone_number, driver_ID
+            FROM drivers
+            WHERE phone_number = ?""", (phone_number,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
     def Check_phone_number_drivers(phone_number):
         c.execute("""SELECT phone_number
         FROM drivers
         WHERE phone_number = ?""", (phone_number,))
         var = c.fetchone()
-        conn.commit()
-
-    @staticmethod
-    def Check_email_drivers(email):
-        c.execute("""SELECT email
-        FROM drivers
-        WHERE email = ?""", (email))
-        c.fetchone()
-        conn.commit()
-
-    @staticmethod
-    def Check_password_drivers(password):
-        c.execute("""SELECT password
-        FROM drivers
-        WHERE password = ?""", (password))
-        c.fetchone()
         conn.commit()
 
     @staticmethod
