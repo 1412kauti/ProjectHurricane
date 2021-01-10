@@ -60,11 +60,3 @@ class BackEnd(object):
         return driver_name, car_make, car_color
 
 
-
-
-        if a != None and c != None or \
-                b != None and c != None:
-            if a == c or b == c:
-                self.openLogin()
-        else:
-            self.ui2.user_login_Fail.setText("Try Again")

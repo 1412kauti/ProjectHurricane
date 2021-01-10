@@ -117,12 +117,15 @@ class dataz():
         :param phone_number:
         :return: user_ID
         """
-        c.execute("""SELECT phone_number, user_ID
-        FROM customers
-        WHERE phone_number = ?""", (phone_number,))
-        var = c.fetchone()
-        conn.commit()
-        return var[1]
+        try:
+            c.execute("""SELECT phone_number, user_ID
+            FROM customers
+            WHERE phone_number = ?""", (phone_number,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        except:
+            raise IOError("User doesn't exist")
 
     @staticmethod
     def get_customer_userID_by_email(email):
@@ -131,12 +134,15 @@ class dataz():
         :param email:
         :return: user_ID
         """
-        c.execute("""SELECT email, user_ID
-        FROM customers
-        WHERE email = ?""", (email,))
-        var = c.fetchone()
-        conn.commit()
-        return var[1]
+        try:
+            c.execute("""SELECT email, user_ID
+            FROM customers
+            WHERE email = ?""", (email,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        except:
+            raise IOError("User doesn't exist")
 
     @staticmethod
     def Check_password_customers(password):
@@ -153,12 +159,15 @@ class dataz():
         :param password:
         :return: user_ID
         """
-        c.execute("""SELECT email,password,user_ID
-        FROM customers
-        WHERE password = ?""", (password,))
-        var = c.fetchone()
-        conn.commit()
-        return var[2]
+        try:
+            c.execute("""SELECT email,password,user_ID
+            FROM customers
+            WHERE password = ?""", (password,))
+            var = c.fetchone()
+            conn.commit()
+            return var[2]
+        except:
+            raise IOError("User doesn't exist")
 
     @staticmethod
     def Check_phone_number_drivers(phone_number):
@@ -503,5 +512,3 @@ class dataz():
 
 v = dataz()
 
-v.Check_phone_number_customers('qweqwe')
-v.get_customer_userID_by_email
