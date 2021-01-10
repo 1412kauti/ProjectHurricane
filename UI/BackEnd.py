@@ -19,18 +19,18 @@ class BackEnd(object):
     records = cursor.fetchall()
 
     locations = {
-        'Luton mall' : (records[0][2], records[0][3]),
-        'Luton train station' : (records[1][2], records[1][3]),
+        'Luton Mall' : (records[0][2], records[0][3]),
+        'Luton Train Station' : (records[1][2], records[1][3]),
         'University of Bedfordshire' : (records[2][2], records[2][3]),
-        'Stockwood park' : (records[3][2], records[3][3]),
-        'Wardown house museum and gallery' : (records[4][2], records[4][3]),
-        'Bedford park' : (records[5][2], records[5][3]),
-        "Barker's lane" : (records[6][2], records[6][3]),
+        'Stockwood Park' : (records[3][2], records[3][3]),
+        'Wardown House Museum and Gallery' : (records[4][2], records[4][3]),
+        'Bedford Park' : (records[5][2], records[5][3]),
+        "Barker's Lane" : (records[6][2], records[6][3]),
         'John Bunyan Museum and Library' : (records[7][2], records[7][3]),
-        ' Light Pyramid' : (records[8][2], records[8][3]),
+        'Light Pyramid' : (records[8][2], records[8][3]),
         'Milton Keynes University Hospital' : (records[8][2], records[8][3]),
         'National Museum of Computing' : (records[9][2], records[9][3]),
-        'milton keynes IKEA ' : (records[10][2], records[10][3])
+        'Milton Keynes IKEA ' : (records[10][2], records[10][3])
     }
 
     def priceCalc(loc1, loc2):
@@ -40,10 +40,10 @@ class BackEnd(object):
             return distance_km, trip_price
 
     def getDateAndTime(self):
-        today = datetime.date.today()
-        now = datetime.datetime.now()
-        current_time = now.strftime("%H:%M")
-        return today, current_time
+        today = (datetime.date.today())
+        now = (datetime.datetime.now())
+        current_time = (now.strftime("%H:%M"))
+        return str(today), str(current_time)
 
     def assignTheDriver(self):
         connection = sqlite3.connect("assessment2.db")
@@ -58,3 +58,13 @@ class BackEnd(object):
         car_make = driver[9]
         car_color = driver[10]
         return driver_name, car_make, car_color
+
+
+
+
+        if a != None and c != None or \
+                b != None and c != None:
+            if a == c or b == c:
+                self.openLogin()
+        else:
+            self.ui2.user_login_Fail.setText("Try Again")
