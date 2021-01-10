@@ -59,4 +59,26 @@ class BackEnd(object):
         car_color = driver[10]
         return driver_name, car_make, car_color
 
+    def emailList(self):
+        connection = sqlite3.connect("assessment2.db")
 
+        sql_select_Query = "select * from customers"
+        cursor = connection.cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        list_of_emails = []
+        for record in records:
+            list_of_emails.append(record[2])
+        return list_of_emails
+
+    def phoneNumberList(self):
+        connection = sqlite3.connect("assessment2.db")
+
+        sql_select_Query = "select * from customers"
+        cursor = connection.cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        list_of_phone_numbers = []
+        for record in records:
+            list_of_phone_numbers.append(record[3])
+        return list_of_phone_numbers

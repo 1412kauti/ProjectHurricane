@@ -714,10 +714,18 @@ class LoginScreen(QtWidgets.QWidget):
         user_Password = str(self.ui2.userPass.text())
         self.o13 = dataz()
         #a = self.o13.get_customer_userID_by_email(user_login)
-        b = self.o13.get_customer_userID_by_phone_number(user_login)
+        #b = self.o13.get_customer_userID_by_phone_number(user_login)
         c = self.o13.get_customer_userID_by_password(user_Password)
-        # print(b, c)
-        if b == c:
+        list_of_emails = BackEnd().emailList()
+        list_of_phone_numbers = BackEnd().phoneNumberList()
+        #print(email_tuple, phone_numbers_tuple)
+        if user_login in list_of_emails:
+            a = self.o13.get_customer_userID_by_email(user_login)
+            if a == c:
+                self.openLogin()
+        elif user_login in list_of_phone_numbers:
+            b = self.o13.get_customer_userID_by_phone_number(user_login)
+            if b == c:
                 self.openLogin()
         else:
             self.ui2.user_login_Fail.setText("Try Again")
