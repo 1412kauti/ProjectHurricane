@@ -696,8 +696,8 @@ class LoginScreen(QtWidgets.QWidget):
         self.qss()
         self.ui2.user_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
-        # self.ui2.user_Submit.clicked.connect(self.checker)
-        self.ui2.user_Submit.clicked.connect(self.openLogin)
+        self.ui2.user_Submit.clicked.connect(self.checker)
+        # self.ui2.user_Submit.clicked.connect(self.openLogin)
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
@@ -708,7 +708,6 @@ class LoginScreen(QtWidgets.QWidget):
     def openLogin(self):
         self.o12 = UserMainScreen()
         self.o12.show()
-        self.checker()
         self.close()
     def checker(self):
         user_login = str(self.ui2.userLoginEC.text())
@@ -717,7 +716,7 @@ class LoginScreen(QtWidgets.QWidget):
         #a = self.o13.get_customer_userID_by_email(user_login)
         b = self.o13.get_customer_userID_by_phone_number(user_login)
         c = self.o13.get_customer_userID_by_password(user_Password)
-        print(b, c)
+        # print(b, c)
         if b == c:
                 self.openLogin()
         else:
