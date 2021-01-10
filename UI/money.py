@@ -365,6 +365,54 @@ class RegisterScreen(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file,"r") as fh:
             self.setStyleSheet(fh.read())
+    def driver_check_car_color_state(self):
+        input_car_color_name = self.ui3.Driver_Car_Color
+        regexp = QtCore.QRegExp(r"^[A-Za-z -]+$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_car_color_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_car_color_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def driver_check_car_make_state(self):
+        input_car_make_name = self.ui3.Driver_Car_Make_Text
+        regexp = QtCore.QRegExp(r"^[A-Za-z0-9 .-]+$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_car_make_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_car_make_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def driver_check_car_license_state(self):
+        input_car_license_name = self.ui3.Driver_Car_Number
+        regexp = QtCore.QRegExp(r"(^[A-Z]{2}[0-9]{2}\s?[A-Z]{3}$)|(^[A-Z][0-9]{1,3}[A-Z]{3}$)|(^[A-Z]{3}[0-9]{1,3}[A-Z]$)|(^[0-9]{1,4}[A-Z]{1,2}$)|(^[0-9]{1,3}[A-Z]{1,3}$)|(^[A-Z]{1,2}[0-9]{1,4}$)|(^[A-Z]{1,3}[0-9]{1,3}$)|(^[A-Z]{1,3}[0-9]{1,4}$)|(^[0-9]{3}[DX]{1}[0-9]{3}$)")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_car_license_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_car_license_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
+    def driver_check_drivers_license_state(self):
+        input_drivers_license_name = self.ui3.Driver_License_Number
+        regexp = QtCore.QRegExp(r"^[A-Z9]{5}\d{6}[A-Z9]{2}\d[A-Z]{2}$")
+        validator = QtGui.QRegExpValidator(regexp)
+        state = validator.validate(input_drivers_license_name.text(), 0)[0]
+        if state == QtGui.QValidator.Acceptable:
+            color = '#456B19'
+        elif state == QtGui.QValidator.Intermediate:
+            color = ''
+        else:
+            color = ''
+        input_drivers_license_name.setStyleSheet('QLineEdit { background-color: %s }' % color)
     def driver_check_confirm_password_state(self):
         input_confirm_password_name = self.ui3.Driver_Confirm_Password_Text
         regexp = QtCore.QRegExp(r"^[A-Za-z0-9 .-_]{7,20}+$")
@@ -516,6 +564,10 @@ class RegisterScreen(QtWidgets.QWidget):
         self.driver_check_last_name_state()
         self.driver_check_password_state()
         self.driver_check_confirm_password_state()
+        self.driver_check_drivers_license_state()
+        self.driver_check_car_license_state()
+        self.driver_check_car_make_state()
+        self.driver_check_car_color_state()
     def user_check_states1(self):
         self.user_check_first_name_state()
         self.user_check_email_state()
@@ -524,6 +576,14 @@ class RegisterScreen(QtWidgets.QWidget):
         self.user_check_password_state()
         self.user_check_confirm_password_state()
     def driver_check_states2(self):
+        self.ui3.Driver_Car_Color.textEdited.connect(self.driver_check_car_color_state)
+        self.ui3.Driver_Car_Color.textEdited.emit(self.ui3.Driver_Car_Color.text())
+        self.ui3.Driver_Car_Make_Text.textEdited.connect(self.driver_check_car_make_state)
+        self.ui3.Driver_Car_Make_Text.textEdited.emit(self.ui3.Driver_Car_Make_Text.text())
+        self.ui3.Driver_Car_Number.textEdited.connect(self.driver_check_car_license_state)
+        self.ui3.Driver_Car_Number.textEdited.emit(self.ui3.Driver_Car_Number.text())
+        self.ui3.Driver_License_Number.textEdited.connect(self.driver_check_drivers_license_state)
+        self.ui3.Driver_License_Number.textEdited.emit(self.ui3.Driver_License_Number.text())
         self.ui3.Driver_Last_Name_Text.textEdited.connect(self.driver_check_last_name_state)
         self.ui3.Driver_Last_Name_Text.textEdited.emit(self.ui3.Driver_Last_Name_Text.text())
         self.ui3.Driver_First_Name_Text.textEdited.connect(self.driver_check_first_name_state)
@@ -551,7 +611,6 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.User_Confirm_Password_Text.textEdited.emit(self.ui3.User_Confirm_Password_Text.text())
 
     def take_user_inputs(self):
-        # self.validate_user_email()
         user_first_name = self.ui3.User_First_Name_Text.text()
         user_last_name = self.ui3.User_Last_Name_Text.text()
         user_email = self.ui3.User_Email_Text.text()
