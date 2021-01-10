@@ -111,32 +111,63 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def get_userID_by_phone_number(phone_number):
-        c.execute("""SELECT phone_number,password,user_ID
-        FROM customers
-        WHERE phone_number = ?""", (phone_number,))
-        var = c.fetchone()
-        conn.commit()
-        return var[2]
+    def get_customer_userID_by_phone_number(phone_number):
+        """
+            Takes a phone number as an input. And returns a userID connected do it in the DB.
+        :param phone_number:
+        :return: user_ID
+        """
+        try:
+            c.execute("""SELECT phone_number, user_ID
+            FROM customers
+            WHERE phone_number = ?""", (phone_number,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        except:
+            raise IOError("User doesn't exist")
 
     @staticmethod
-    def get_userID_by_email(email):
-        c.execute("""SELECT email,password,user_ID
-        FROM customers
-        WHERE email = ?""", (email,))
-        var = c.fetchone()
-        conn.commit()
-        return var[2]
+    def get_customer_userID_by_email(email):
+        """
+            Takes an email as an input. And returns a userID connected do it in the DB.
+        :param email:
+        :return: user_ID
+        """
+        try:
+            c.execute("""SELECT email, user_ID
+            FROM customers
+            WHERE email = ?""", (email,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        except:
+            raise IOError("User doesn't exist")
 
     @staticmethod
-    def get_userID_by_password(password):
-        """Takes password as an input and returns userID"""
-        c.execute("""SELECT email,password,user_ID
+    def Check_password_customers(password):
+        c.execute("""SELECT password
         FROM customers
         WHERE password = ?""", (password,))
-        var = c.fetchone()
+        c.fetchone()
         conn.commit()
-        return var[2]
+
+    @staticmethod
+    def get_customer_userID_by_password(password):
+        """
+            Takes a password as an input. And returns a userID connected do it in the DB.
+        :param password:
+        :return: user_ID
+        """
+        try:
+            c.execute("""SELECT email,password,user_ID
+            FROM customers
+            WHERE password = ?""", (password,))
+            var = c.fetchone()
+            conn.commit()
+            return var[2]
+        except:
+            raise IOError("User doesn't exist")
 
     @staticmethod
     def Check_phone_number_drivers(phone_number):
@@ -480,4 +511,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-# print(v.get_userID_by_phone_number('9999999999'))
+
