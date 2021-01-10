@@ -58,5 +58,3 @@ class BackEnd(object):
         car_make = driver[9]
         car_color = driver[10]
         return driver_name, car_make, car_color
-
-BackEnd().assignTheDriver()
