@@ -697,7 +697,7 @@ class LoginScreen(QtWidgets.QWidget):
         self.ui2.user_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.user_Submit.clicked.connect(self.userChecker)
-        #self.ui2.driver_Submit.clicked.connect(self.driverChecker) # !!!
+        self.ui2.driver_Submit.clicked.connect(self.driverChecker)
         # self.ui2.user_Submit.clicked.connect(self.openLogin)
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -710,7 +710,22 @@ class LoginScreen(QtWidgets.QWidget):
         self.o12 = UserMainScreen()
         self.o12.show()
         self.close()
+    def openDriverLogin(self):
+        pass
 
+    def setUpcomingJourney(self):
+        ui13.Upcoming_Date_Lbl.setText("")
+        ui13.Upcoming_Time_Lbl.setText("")
+        ui13.Upcomin_Journey_ID_Lbl.setText("")
+        ui13.Upcoming_Start_Location_Lbl.setText("")
+        ui13.Upcoming_Destination_Lbl.setText("")
+        ui13.Upcoming_Driver_Name_Lbl.setText("")
+        # car class
+        ui13.Upcoming_Car_Make_Lbl.setText("")
+        ui13.Upcoming_Car_Color_Lbl.setText("")
+        ui13.Upcoming_ETA.setText("")
+        # price
+        # distance
     def userChecker(self):
         """Login verification for the customers."""
         user_login = str(self.ui2.userLoginEC.text())
