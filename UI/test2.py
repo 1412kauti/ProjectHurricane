@@ -45,13 +45,13 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Insert_Into_journey():
+    def Insert_Into_journey(date,time,jID,start_point,end_point,driver_name,car_type,car_make,car_color,price,distance):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO journey
-        ()""")
+        (Date, Time, Journey_ID, Start_Location, End_Location, driver_name, Car_Class, Car_Make, Car_Colour, Price, Distance, status) VALUES (?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,start_point,end_point,driver_name,car_type,car_make,car_color,price,distance))
         conn.commit()
 
     @staticmethod
