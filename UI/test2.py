@@ -46,8 +46,12 @@ class dataz():
 
     @staticmethod
     def Insert_Into_journey():
+        import sqlite3
+        conn = sqlite3.connect("assessment2.db")
+        c = conn.cursor()
+        c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO journey
-        (order_ID, date_created, customer_ID, driver_name, status, driver_ID, start_point, end_point, price, customer_number) VALUES(23, 'someday', 1, 'driver', 'finished', 5, 'somewhere', 'somewhere_else', 42, 23)""")
+        ()""")
         conn.commit()
 
     @staticmethod
