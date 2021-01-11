@@ -112,8 +112,8 @@ class UserMainScreen(QtWidgets.QWidget):
         end_point = self.ui13.comboBox_2.currentText()
         car_type = self.ui13.comboBox_3.currentText()
         distance, price = BackEnd.priceCalc(BackEnd.locations[start_point], BackEnd.locations[end_point])
-        distance = format(distance, '.2f')
-        price = format(price, '.2f')
+        distance = format(distance, '.2f') + 'km'
+        price = format(price, '.2f') + '£'
         date, time = BackEnd().getDateAndTime()
         jID = BackEnd().getJourneyID()
         driver_name, car_make, car_color = BackEnd().assignTheDriver()
