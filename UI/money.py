@@ -721,19 +721,6 @@ class LoginScreen(QtWidgets.QWidget):
     def openDriverLogin(self):
         pass
 
-    def setUpcomingJourney(self, date, time, jID, sl, dest, dn, cl, cm, cc, eta, price, distance):
-        ui13.Upcoming_Date_Lbl.setText(date)
-        ui13.Upcoming_Time_Lbl.setText(time)
-        ui13.Upcomin_Journey_ID_Lbl.setText(jID)
-        ui13.Upcoming_Start_Location_Lbl.setText(sl)
-        ui13.Upcoming_Destination_Lbl.setText(dest)
-        ui13.Upcoming_Driver_Name_Lbl.setText(dn)
-        ui13.Car_Class_Label.setText(cl)
-        ui13.Upcoming_Car_Make_Lbl.setText(cm)
-        ui13.Upcoming_Car_Color_Lbl.setText(cc)
-        ui13.Upcoming_ETA.setText(eta)
-        ui13.Price_Label.setText(price)
-        ui13.Distance_Label.setText(distance)
     def userChecker(self):
         """Login verification for the customers."""
         user_login = str(self.ui2.userLoginEC.text())
