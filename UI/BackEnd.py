@@ -3,14 +3,12 @@ import sqlite3
 import haversine as hs
 import distanceCheck as dc
 import datetime
+from UserScreen import Ui_Form as ui13
 
 class BackEnd(object):
-
-    def security_code(self):
-       return randint(1, 1000)
-
-
-
+    """
+        Main class with BackEnd functions.
+    """
     connection = sqlite3.connect("assessment2.db")
 
     sql_select_Query = "select * from map_of_locations"
@@ -44,6 +42,14 @@ class BackEnd(object):
         now = (datetime.datetime.now())
         current_time = (now.strftime("%H:%M"))
         return str(today), str(current_time)
+
+    def getJourneyID(self):
+        id = randint(1, 1000000)
+        return '#' + str(id)
+
+    def getETA(self):
+        eta = randint(3, 15)
+        return str(eta) + ' minutes'
 
     def assignTheDriver(self):
         connection = sqlite3.connect("assessment2.db")

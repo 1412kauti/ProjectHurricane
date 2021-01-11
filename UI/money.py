@@ -115,13 +115,21 @@ class UserMainScreen(QtWidgets.QWidget):
         distance = format(distance, '.2f')
         price = format(price, '.2f')
         date, time = BackEnd().getDateAndTime()
-        self.ui13.Upcoming_Time_Lbl.setText(time)
+        jID = BackEnd().getJourneyID()
+        driver_name, car_make, car_color = BackEnd().assignTheDriver()
+        eta = BackEnd().getETA()
         self.ui13.Upcoming_Date_Lbl.setText(date)
-        self.ui13.Distance_Label.setText(distance)
-        self.ui13.Price_Label.setText(price)
+        self.ui13.Upcoming_Time_Lbl.setText(time)
+        self.ui13.Upcomin_Journey_ID_Lbl.setText(jID)
         self.ui13.Upcoming_Start_Location_Lbl.setText(start_point)
         self.ui13.Upcoming_Destination_Lbl.setText(end_point)
+        self.ui13.Upcoming_Driver_Name_Lbl.setText(driver_name)
         self.ui13.Car_Class_Label.setText(car_type)
+        self.ui13.Upcoming_Car_Make_Lbl.setText(car_make)
+        self.ui13.Upcoming_Car_Color_Lbl.setText(car_color)
+        self.ui13.Upcoming_ETA.setText(eta)
+        self.ui13.Price_Label.setText(price)
+        self.ui13.Distance_Label.setText(distance)
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
@@ -713,19 +721,19 @@ class LoginScreen(QtWidgets.QWidget):
     def openDriverLogin(self):
         pass
 
-    def setUpcomingJourney(self):
-        ui13.Upcoming_Date_Lbl.setText("")
-        ui13.Upcoming_Time_Lbl.setText("")
-        ui13.Upcomin_Journey_ID_Lbl.setText("")
-        ui13.Upcoming_Start_Location_Lbl.setText("")
-        ui13.Upcoming_Destination_Lbl.setText("")
-        ui13.Upcoming_Driver_Name_Lbl.setText("")
-        # car class
-        ui13.Upcoming_Car_Make_Lbl.setText("")
-        ui13.Upcoming_Car_Color_Lbl.setText("")
-        ui13.Upcoming_ETA.setText("")
-        # price
-        # distance
+    def setUpcomingJourney(self, date, time, jID, sl, dest, dn, cl, cm, cc, eta, price, distance):
+        ui13.Upcoming_Date_Lbl.setText(date)
+        ui13.Upcoming_Time_Lbl.setText(time)
+        ui13.Upcomin_Journey_ID_Lbl.setText(jID)
+        ui13.Upcoming_Start_Location_Lbl.setText(sl)
+        ui13.Upcoming_Destination_Lbl.setText(dest)
+        ui13.Upcoming_Driver_Name_Lbl.setText(dn)
+        ui13.Car_Class_Label.setText(cl)
+        ui13.Upcoming_Car_Make_Lbl.setText(cm)
+        ui13.Upcoming_Car_Color_Lbl.setText(cc)
+        ui13.Upcoming_ETA.setText(eta)
+        ui13.Price_Label.setText(price)
+        ui13.Distance_Label.setText(distance)
     def userChecker(self):
         """Login verification for the customers."""
         user_login = str(self.ui2.userLoginEC.text())
