@@ -114,7 +114,11 @@ class dataz():
         print(c.fetchall())
         conn.commit()
 
-
+    @staticmethod
+    def update_userID_customers_payments():
+        c.execute("""UPDATE customer_payment
+        SET user_ID = (SELECT user_ID FROM customers WHERE customer_payment.email = customers.email)""")
+        conn.commit()
 
     @staticmethod
     def get_customer_userID_by_phone_number(phone_number):
