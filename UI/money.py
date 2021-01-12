@@ -21,7 +21,6 @@ from change_User_Last_Name import Ui_Form as ui16
 from change_User_Email import Ui_Form as ui17
 from change_User_Password import Ui_Form as ui18
 from change_User_Phone_Number import Ui_Form as ui19
-from DriverScreen import Ui_Form as ui20
 from BackEnd import BackEnd
 from random import randint
 import numpy as np
@@ -107,19 +106,6 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.change_Password.clicked.connect(self.open_Change_Password)
         self.ui13.change_Card.clicked.connect(self.open_Card_Change)
         self.ui13.change_Paypal.clicked.connect(self.open_Paypal_Change)
-        self.qss()
-class DriverMainScreen(QtWidgets.QWidget):
-    def __init__(self):
-        super(DriverMainScreen, self).__init__()
-        self.ui20 = ui20()
-        self.ui20.setupUi(self)
-        self.ui20.change_First_Name.clicked.connect(self.open_Change_First_Name)
-        self.ui20.change_Last_Name.clicked.connect(self.open_Change_Last_Name)
-        self.ui20.change_Email.clicked.connect(self.open_Change_Email)
-        self.ui20.change_Phone_Number.clicked.connect(self.open_Change_Phone_Number)
-        self.ui20.change_Password.clicked.connect(self.open_Change_Password)
-        self.ui20.change_Card.clicked.connect(self.open_Card_Change)
-        self.ui20.change_Paypal.clicked.connect(self.open_Paypal_Change)
         self.qss()
     def getNewBookingItems(self):
         start_point = self.ui13.comboBox.currentText()
@@ -733,19 +719,14 @@ class LoginScreen(QtWidgets.QWidget):
         self.o12.show()
         self.close()
     def openDriverLogin(self):
-        self.o25 = DriverMainScreen()
-        self.o25.show()
-        self.close()
+        pass
 
     def userChecker(self):
         """Login verification for the customers."""
         user_login = str(self.ui2.userLoginEC.text())
         user_Password = str(self.ui2.userPass.text())
         self.o13 = dataz()
-        try:
-            c = self.o13.get_customer_userID_by_password(user_Password)
-        except TypeError:
-            self.ui2.user_login_Fail.setText("Try Again")
+        c = self.o13.get_customer_userID_by_password(user_Password)
         list_of_emails = BackEnd().customerEmailList()
         list_of_phone_numbers = BackEnd().customerPhoneNumberList()
 
@@ -764,22 +745,19 @@ class LoginScreen(QtWidgets.QWidget):
         """Login verification for the drivers."""
         driver_login = str(self.ui2.driverLoginEC.text())
         driver_password = str(self.ui2.driverPass.text())
-        self.o25 = dataz()
-        try:
-            c = self.o25.get_driver_driverID_by_password(driver_password)
-        except TypeError:
-            self.ui2.driver_login_Fail.setText('Try Again')
+        self.o13 = dataz()
+        c = self.o13.get_driver_driverID_by_password(driver_password)
         list_of_emails = BackEnd().driverEmailList()
         list_of_phone_numbers = BackEnd().driverPhoneNumberList()
 
         if driver_login in list_of_emails:
-            a = self.o25.get_driver_driverID_by_email(driver_login)
+            a = self.o13.get_driver_driverID_by_email(driver_login)
             if a == c:
-                self.openDriverLogin()
+                pass
         if driver_login in list_of_phone_numbers:
-            b = self.o25.get_driver_driverID_by_phone_number(driver_login)
+            b = self.o13.get_driver_driverID_by_phone_number(driver_login)
             if b == c:
-                self.openDriverLogin()
+                pass
         else:
             self.ui2.driver_login_Fail.setText('Try Again')
 
