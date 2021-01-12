@@ -115,6 +115,12 @@ class dataz():
         conn.commit()
 
     @staticmethod
+    def update_userID_customers_payments():
+        c.execute("""UPDATE customer_payment
+        SET user_ID = (SELECT user_ID FROM customers WHERE customer_payment.email = customers.email)""")
+        conn.commit()
+
+    @staticmethod
     def get_customer_userID_by_phone_number(phone_number):
         """
             Takes a phone number as an input. And returns a userID connected do it in the DB.
