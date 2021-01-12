@@ -114,6 +114,8 @@ class dataz():
         print(c.fetchall())
         conn.commit()
 
+
+
     @staticmethod
     def get_customer_userID_by_phone_number(phone_number):
         """
