@@ -560,4 +560,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.Delete_Duplicates_Customers()
+v.update_userID_customers_payments()
