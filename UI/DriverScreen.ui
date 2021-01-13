@@ -35,13 +35,13 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
-     <string>New Booking</string>
+     <string>New Order</string>
     </attribute>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="start_location">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -54,7 +54,7 @@
       <string>Start Location:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="end_location">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -67,33 +67,33 @@
       <string>End Location:</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="accept_order">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>50</x>
        <y>40</y>
-       <width>83</width>
+       <width>131</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
-      <string>completed</string>
+      <string>accept order</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="decline_order">
      <property name="geometry">
       <rect>
-       <x>330</x>
+       <x>310</x>
        <y>40</y>
-       <width>83</width>
+       <width>121</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
-      <string>declined</string>
+      <string>decline order</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="sl_value">
      <property name="geometry">
       <rect>
        <x>250</x>
@@ -106,7 +106,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="el_value">
      <property name="geometry">
       <rect>
        <x>240</x>
@@ -124,6 +124,71 @@
     <attribute name="title">
      <string>Upcoming Journey</string>
     </attribute>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>40</y>
+       <width>60</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>From :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>40</y>
+       <width>181</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>80</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>To :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>149</x>
+       <y>80</y>
+       <width>221</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>200</y>
+       <width>113</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Completed</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
