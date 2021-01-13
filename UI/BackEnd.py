@@ -58,7 +58,7 @@ class BackEnd(object):
         cursor = connection.cursor()
         cursor.execute(sql_select_Query)
         records = cursor.fetchall()
-        r = randint(0, 3)
+        r = randint(0, len(records) - 1)
         driver = records[r]
         driver_name = str(driver[0]) + ' ' + str(driver[1])
         car_make = driver[9]
@@ -116,4 +116,25 @@ class BackEnd(object):
         for record in records:
             list_of_phone_numbers.append(record[4])
         return list_of_phone_numbers
+
+    def findOrder(self):
+        """
+            Selects a random order.
+        :return: start_location, destination, order_id
+        """
+        connection = sqlite3.connect("assessment2.db")
+
+        sql_select_Query = "select * from orders"
+        cursor = connection.cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        r = randint(0, len(records) - 1)
+        order = records[r]
+        start_location = order[0]
+        destination = order[1]
+        order_id = order[2]
+        return start_location, destination, order_id
+
+BackEnd().findOrder()
+
 

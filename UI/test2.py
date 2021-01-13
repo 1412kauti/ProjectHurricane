@@ -82,7 +82,7 @@ class dataz():
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO orders
-        (start_location, end_locarion, order_ID)
+        (start_location, end_location, order_ID)
         VALUES (?,?,?)""",(z,y,x,))
         conn.commit()
     
