@@ -130,9 +130,9 @@ class DriverScreen(QtWidgets.QWidget):
         self.qss()
         start_location, destination, order_id = BackEnd().findOrder()
         self.getNewOrder(start_location, destination)
-        self.ui20.accept_order.clicked.connect(self.placeOrderToUpcomingJourney(start_location, destination))
-        self.ui20.accept_order.clicked.connect(self.emptyNewOrder())
-        self.ui20.decline_order.cliked.connect(self.emptyNewOrder())
+        self.ui20.accept_order.clicked.connect()
+        self.ui20.accept_order.clicked.connect(self.empt())
+        self.ui20.decline_order.cliked.connect(self.empt())
 
     def open_User_Payment_Options(self):
         self.o13 = User_Submit_Payment()
@@ -191,6 +191,8 @@ class DriverScreen(QtWidgets.QWidget):
     def emptyNewOrder(self):
         self.ui20.sl_value.setText('')
         self.ui20.el_value.setText('')
+    def empt(self):
+        self.emptyNewOrder()
 
     def placeOrderToUpcomingJourney(self, start, end):
         self.ui20.from_value.setText(start)
