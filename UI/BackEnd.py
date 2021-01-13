@@ -135,6 +135,3 @@ class BackEnd(object):
         order_id = order[2]
         return start_location, destination, order_id
 
-BackEnd().findOrder()
-
-
