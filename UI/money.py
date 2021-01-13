@@ -128,6 +128,11 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.change_Card.clicked.connect(self.open_Card_Change)
         self.ui20.change_Paypal.clicked.connect(self.open_Paypal_Change)
         self.qss()
+        start_location, destination, order_id = BackEnd().findOrder()
+        self.getNewOrder(start_location, destination)
+        self.ui20.accept_order.clicked.connect(self.placeOrderToUpcomingJourney(start_location, destination))
+        self.ui20.accept_order.clicked.connect(self.emptyNewOrder())
+        self.ui20.decline_order.cliked.connect(self.emptyNewOrder())
 
     def open_User_Payment_Options(self):
         self.o13 = User_Submit_Payment()
@@ -195,14 +200,6 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.from_value.setText('')
         self.ui20.To_value.setText('')
 
-    def manageOrders(self):
-        if self.ui20.pushButton.clicked:
-            start_location, destination, order_id = BackEnd().findOrder()
-            self.getNewOrder(start_location, destination)
-            if self.ui20.accept_order.clicked:
-                pass
-            elif self.ui20.decline_order.cliked:
-                pass
 
 
 
