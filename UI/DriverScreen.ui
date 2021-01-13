@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -124,7 +124,7 @@
     <attribute name="title">
      <string>Upcoming Journey</string>
     </attribute>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="From">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -137,7 +137,7 @@
       <string>From :</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="from_value">
      <property name="geometry">
       <rect>
        <x>150</x>
@@ -150,7 +150,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="To">
      <property name="geometry">
       <rect>
        <x>80</x>
@@ -163,7 +163,7 @@
       <string>To :</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="To_value">
      <property name="geometry">
       <rect>
        <x>149</x>
@@ -176,7 +176,7 @@
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="Completed_button">
      <property name="geometry">
       <rect>
        <x>160</x>
