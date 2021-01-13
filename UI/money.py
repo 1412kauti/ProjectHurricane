@@ -195,9 +195,9 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.from_value.setText('')
         self.ui20.To_value.setText('')
 
-    def manageOrders(self):
-        if self.ui20.pushButton.clicked:
-            pass
+    #def manageOrders(self):
+      #  if self.ui20.pushButton.clicked:
+
 
 
 class UserMainScreen(QtWidgets.QWidget):
@@ -241,6 +241,7 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.Upcoming_ETA.setText(eta)
         self.ui13.Price_Label.setText(price)
         self.ui13.Distance_Label.setText(distance)
+        dataz().Insert_Into_orders(start_point, end_point, jID)
 
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
