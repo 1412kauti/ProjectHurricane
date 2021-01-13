@@ -195,8 +195,14 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.from_value.setText('')
         self.ui20.To_value.setText('')
 
-    #def manageOrders(self):
-      #  if self.ui20.pushButton.clicked:
+    def manageOrders(self):
+        if self.ui20.pushButton.clicked:
+            start_location, destination, order_id = BackEnd().findOrder()
+            self.getNewOrder(start_location, destination)
+            if self.ui20.accept_order.clicked:
+                pass
+            elif self.ui20.decline_order.cliked:
+                pass
 
 
 
