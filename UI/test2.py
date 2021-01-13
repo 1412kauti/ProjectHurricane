@@ -76,6 +76,18 @@ class dataz():
         conn.commit()    
 
     @staticmethod
+    def Insert_Into_orders(z,y,x):
+        import sqlite3
+        conn = sqlite3.connect("assessment2.db")
+        c = conn.cursor()
+        c.execute('''PRAGMA journal_mode = WAL''')
+        c.execute("""INSERT INTO orders
+        (start_location, end_locarion, order_ID)
+        VALUES (?,?,?)""",(z,y,x,))
+        conn.commit()
+    
+
+    @staticmethod
     def Delete_Duplicates_Customers():
         c.execute("""DELETE FROM customers
         WHERE rowid NOT IN (SELECT min(rowid) 
