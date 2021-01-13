@@ -530,6 +530,11 @@ class dataz():
         conn.commit()
 
     @staticmethod
+    def Delete_Row_orders(orderID):
+        c.execute("DELETE FROM orders where order_ID = ?",(orderID))
+        conn.commit()
+
+    @staticmethod
     def Read_From_customer_payment():
         c.execute("SELECT*FROM customer_payment")
         print(c.fetchall())
