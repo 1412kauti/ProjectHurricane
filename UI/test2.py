@@ -530,8 +530,8 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Delete_Row_orders(orderID):
-        c.execute("DELETE FROM orders where order_ID = ?",(orderID))
+    def Delete_Row_orders():
+        c.execute("DELETE FROM orders where rowid = 1")
         conn.commit()
 
     @staticmethod
