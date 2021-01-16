@@ -37,6 +37,7 @@ class change_User_Phone_Number(QtWidgets.QWidget):
         super(change_User_Phone_Number, self).__init__()
         self.ui19 = ui19()
         self.ui19.setupUi(self)
+        self.qss()
 
     def hit_Submit(self):
         self.o21 = UserMainScreen()
@@ -44,24 +45,34 @@ class change_User_Phone_Number(QtWidgets.QWidget):
         self.o21.show()
         self.close()
 
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
 
 class change_User_Password(QtWidgets.QWidget):
     def __init__(self):
         super(change_User_Password, self).__init__()
         self.ui18 = ui18()
         self.ui18.setupUi(self)
+        self.qss()
 
     def hit_Submit(self):
         self.o21 = UserMainScreen()
         self.o21.show()
         self.close()
 
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
 
 class change_User_Email(QtWidgets.QWidget):
     def __init__(self):
         super(change_User_Email, self).__init__()
         self.ui17 = ui17()
         self.ui17.setupUi(self)
+        self.qss()
 
     def hit_Submit(self):
         self.o21 = UserMainScreen()
@@ -69,12 +80,17 @@ class change_User_Email(QtWidgets.QWidget):
         self.o21.show()
         self.close()
 
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
 
 class change_User_LastName(QtWidgets.QWidget):
     def __init__(self):
         super(change_User_LastName, self).__init__()
         self.ui16 = ui16()
         self.ui16.setupUi(self)
+        self.qss()
 
     def hit_Submit(self):
         self.o21 = UserMainScreen()
@@ -82,12 +98,18 @@ class change_User_LastName(QtWidgets.QWidget):
         self.o21.show()
         self.close()
 
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
+
 
 class change_User_FirstName(QtWidgets.QWidget):
     def __init__(self):
         super(change_User_FirstName, self).__init__()
         self.ui15 = ui15()
         self.ui15.setupUi(self)
+        self.qss()
 
     def hit_Submit(self):
         self.o21 = UserMainScreen()
@@ -95,6 +117,10 @@ class change_User_FirstName(QtWidgets.QWidget):
         self.o21.show()
         self.close()
 
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
 
 class User_Submit_Payment(QtWidgets.QWidget):
     def __init__(self):
@@ -213,7 +239,6 @@ class UserMainScreen(QtWidgets.QWidget):
         self.loaddata()
         self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
         self.ui13.Logout_Btn.clicked.connect(self.open_Start_Screen)
-
         self.ui13.change_First_Name.clicked.connect(self.open_Change_First_Name)
         self.ui13.change_Last_Name.clicked.connect(self.open_Change_Last_Name)
         self.ui13.change_Email.clicked.connect(self.open_Change_Email)
@@ -221,6 +246,7 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.change_Password.clicked.connect(self.open_Change_Password)
         self.ui13.change_Card.clicked.connect(self.open_Card_Change)
         self.ui13.change_Paypal.clicked.connect(self.open_Paypal_Change)
+        self.ui13.Refresh_Btn.clicked.connect(self.hit_refresh)
         self.qss()
 
     def getNewBookingItems(self):
@@ -310,6 +336,11 @@ class UserMainScreen(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
+    
+    def hit_refresh(self):
+        self.ox = UserMainScreen()
+        self.ox.show()
+        self.close()
 
         # print(distance, price)
 
@@ -898,7 +929,7 @@ class RegisterScreen(QtWidgets.QWidget):
                 contains_digit = True
             else:
                 contains_digit = False
-        return contains_digit
+        # return contains_digit
 
     def emailCheck(self, m):
         if re.match(r"[^@]+@[^@]+\.[^@]+", m):
@@ -952,10 +983,12 @@ class LoginScreen(QtWidgets.QWidget):
 
         if user_login in list_of_emails:
             a = self.o13.get_customer_userID_by_email(user_login)
+            c = self.o13.get_customer_userID_by_password(user_Password)
             if a == c:
                 self.openUserLogin()
         elif user_login in list_of_phone_numbers:
             b = self.o13.get_customer_userID_by_phone_number(user_login)
+            c = self.o13.get_customer_userID_by_password(user_Password)
             if b == c:
                 self.openUserLogin()
         else:
@@ -975,10 +1008,12 @@ class LoginScreen(QtWidgets.QWidget):
 
         if driver_login in list_of_emails:
             a = self.o13.get_driver_driverID_by_email(driver_login)
+            c = self.o13.get_driver_driverID_by_password(driver_password)
             if a == c:
                 self.openDriverLogin()
         if driver_login in list_of_phone_numbers:
             b = self.o13.get_driver_driverID_by_phone_number(driver_login)
+            c = self.o13.get_driver_driverID_by_password(driver_password)
             if b == c:
                 self.openDriverLogin()
         else:

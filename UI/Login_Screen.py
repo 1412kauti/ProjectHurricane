@@ -46,6 +46,7 @@ class Ui_Form(object):
         self.label_2.setObjectName("label_2")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label_2)
         self.userPass = QtWidgets.QLineEdit(self.formLayoutWidget)
+        self.userPass.setEchoMode(QtWidgets.QLineEdit.Password)
         self.userPass.setObjectName("userPass")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.userPass)
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.tab)
@@ -152,7 +153,7 @@ class Ui_Form(object):
         self.admin_login_fail.setObjectName("admin_login_fail")
         self.verticalLayout_3.addWidget(self.admin_login_fail)
         self.formLayoutWidget_3 = QtWidgets.QWidget(self.tab_3)
-        self.formLayoutWidget_3.setGeometry(QtCore.QRect(10, 90, 481, 241))
+        self.formLayoutWidget_3.setGeometry(QtCore.QRect(10, 90, 481, 245))
         self.formLayoutWidget_3.setObjectName("formLayoutWidget_3")
         self.formLayout_3 = QtWidgets.QFormLayout(self.formLayoutWidget_3)
         self.formLayout_3.setContentsMargins(0, 25, 0, 0)
@@ -193,7 +194,7 @@ class Ui_Form(object):
         self.tabWidget.addTab(self.tab_3, "")
 
         self.retranslateUi(Form)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
