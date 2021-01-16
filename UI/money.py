@@ -154,11 +154,32 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.change_Card.clicked.connect(self.open_Card_Change)
         self.ui20.change_Paypal.clicked.connect(self.open_Paypal_Change)
         self.qss()
+        self.ui20.pushButton.clicked.connect(self.findOrderButton)
+        self.ui20.accept_order.clicked.connect(self.emptySomething)
+        self.ui20.accept_order.clicked.connect(self.deleteOrder)
+        self.ui20.decline_order.clicked.connect(self.emptyEverything)
+
+    def deleteOrder(self):
+        dataz().Delete_Row_orders(1)
+    def findOrderButton(self):
         start_location, destination, order_id = BackEnd().findOrder()
         self.getNewOrder(start_location, destination)
-        self.ui20.accept_order.clicked.connect()
-        self.ui20.accept_order.clicked.connect(self.empt())
-        self.ui20.decline_order.cliked.connect(self.empt())
+        self.ui20.from_value.setText(start_location)
+        self.ui20.To_value.setText(destination)
+
+    def emptyEverything(self):
+        self.ui20.sl_value.setText('')
+        self.ui20.el_value.setText('')
+        self.ui20.from_value.setText('')
+        self.ui20.To_value.setText('')
+
+    def emptySomething(self):
+        self.ui20.sl_value.setText('')
+        self.ui20.el_value.setText('')
+
+    def placeOrderToUpcomingJourney(self, start, end):
+        self.ui20.from_value.setText(start)
+        self.ui20.To_value.setText(end)
 
     def open_User_Payment_Options(self):
         self.o13 = User_Submit_Payment()
@@ -213,20 +234,6 @@ class DriverScreen(QtWidgets.QWidget):
     def getNewOrder(self, start_point, end_point):
         self.ui20.sl_value.setText(start_point)
         self.ui20.el_value.setText(end_point)
-
-    def emptyNewOrder(self):
-        self.ui20.sl_value.setText('')
-        self.ui20.el_value.setText('')
-    def empt(self):
-        self.emptyNewOrder()
-
-    def placeOrderToUpcomingJourney(self, start, end):
-        self.ui20.from_value.setText(start)
-        self.ui20.To_value.setText(end)
-
-    def emptyUpcomingJourney(self):
-        self.ui20.from_value.setText('')
-        self.ui20.To_value.setText('')
 
 
 
