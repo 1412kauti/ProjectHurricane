@@ -135,3 +135,16 @@ class BackEnd(object):
         order_id = order[2]
         return start_location, destination, order_id
 
+    def getOrderID(self):
+        connection = sqlite3.connect("assessment2.db")
+
+        sql_select_Query = "select * from orders"
+        cursor = connection.cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        orders = []
+        for item in records:
+            orders.append(item[2])
+        r = randint(0, len(orders) - 1)
+        return str(orders[r])
+

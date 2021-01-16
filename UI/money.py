@@ -160,7 +160,9 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.decline_order.clicked.connect(self.emptyEverything)
 
     def deleteOrder(self):
-        dataz().Delete_Row_orders(1)
+        id = BackEnd().getOrderID()
+        dataz().Delete_Row_orders(id)
+
     def findOrderButton(self):
         start_location, destination, order_id = BackEnd().findOrder()
         self.getNewOrder(start_location, destination)
