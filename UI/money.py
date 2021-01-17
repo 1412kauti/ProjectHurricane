@@ -158,6 +158,18 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.accept_order.clicked.connect(self.emptySomething)
         self.ui20.accept_order.clicked.connect(self.deleteOrder)
         self.ui20.decline_order.clicked.connect(self.emptyEverything)
+    def loaddata(self):
+        connection = sqlite3.connect('assessment2.db')
+        cur = connection.cursor()
+        sqlstr = 'SELECT * FROM journey'
+        tablerow = 0
+        results = cur.execute(sqlstr)
+        self.ui13.tableWidget.setRowCount(40)
+        for row in results:
+            self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.ui13.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.ui13.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
+            tablerow += 1
 
     def deleteOrder(self):
         id = BackEnd().getOrderID()
