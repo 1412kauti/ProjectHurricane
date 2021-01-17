@@ -150,6 +150,21 @@ class dataz():
             raise OSError("User doesn't exist")
 
     @staticmethod
+    def get_driver_username_by_id(driver_ID):
+        """
+            ...
+        """
+        if driver_ID != '':
+            c.execute("""SELECT driver_ID, first_name
+                FROM drivers
+                WHERE driver_ID = ?""", (driver_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
     def get_customer_userID_by_email(email):
         """
             Takes an email as an input. And returns a userID connected do it in the DB.
@@ -565,4 +580,3 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.Delete_Row_orders("#199632")
