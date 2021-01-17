@@ -531,7 +531,7 @@ class dataz():
 
     @staticmethod
     def Delete_Row_orders(order_ID):
-        c.execute("DELETE FROM orders where order_ID = ?",(order_ID))
+        c.execute("DELETE FROM orders where order_ID = ?",(order_ID,))
         conn.commit()
 
     @staticmethod
@@ -565,4 +565,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-v.update_userID_customers_payments()
+v.Delete_Row_orders("#199632")
