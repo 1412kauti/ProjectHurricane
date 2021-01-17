@@ -31,7 +31,6 @@ import re
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
 
-
 class change_User_Phone_Number(QtWidgets.QWidget):
     def __init__(self):
         super(change_User_Phone_Number, self).__init__()
@@ -158,17 +157,32 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.accept_order.clicked.connect(self.emptySomething)
         self.ui20.accept_order.clicked.connect(self.deleteOrder)
         self.ui20.decline_order.clicked.connect(self.emptyEverything)
+        self.loaddata()
+
+    def getDriver(self, v):
+        fn = dataz().get_driver_username_by_id(v)
+        ln = dataz().get_driver_lastname_by_id(v)
+        email = dataz().get_driver_email_by_id(v)
+        pn = dataz().get_driver_pn_by_id(v)
+        return fn, ln, email, pn
+
+    def phillOut(self, fn, ln, email, pn):
+        self.ui20.First_Name_Label.setText(fn)
+        self.ui20.Last_Name_Label.setText(ln)
+        self.ui20.Email_Label.setText(email)
+        self.ui20.Phone_Number_Label.setText(pn)
+
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
         sqlstr = 'SELECT * FROM journey'
         tablerow = 0
         results = cur.execute(sqlstr)
-        self.ui13.tableWidget.setRowCount(40)
+        self.ui20.tableWidget.setRowCount(40)
         for row in results:
-            self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
-            self.ui13.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
-            self.ui13.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.ui20.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.ui20.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.ui20.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
             tablerow += 1
 
     def deleteOrder(self):
@@ -969,7 +983,6 @@ class LoginScreen(QtWidgets.QWidget):
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.user_Submit.clicked.connect(self.userChecker)
         self.ui2.driver_Submit.clicked.connect(self.driverChecker)
-        # self.ui2.user_Submit.clicked.connect(self.openLogin)
 
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -1031,11 +1044,15 @@ class LoginScreen(QtWidgets.QWidget):
             a = self.o13.get_driver_driverID_by_email(driver_login)
             c = self.o13.get_driver_driverID_by_password(driver_password)
             if a == c:
+                fn, ln, email, pn = DriverScreen().getDriver(c)
+                DriverScreen().phillOut(fn, ln, email, pn)
                 self.openDriverLogin()
         if driver_login in list_of_phone_numbers:
             b = self.o13.get_driver_driverID_by_phone_number(driver_login)
             c = self.o13.get_driver_driverID_by_password(driver_password)
             if b == c:
+                fn, ln, email, pn = DriverScreen().getDriver(c)
+                DriverScreen().phillOut(fn, ln, email, pn)
                 self.openDriverLogin()
         else:
             self.ui2.driver_login_Fail.setText('Try Again')

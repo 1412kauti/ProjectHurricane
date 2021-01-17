@@ -165,6 +165,51 @@ class dataz():
             raise OSError("User doesn't exist")
 
     @staticmethod
+    def get_driver_lastname_by_id(driver_ID):
+        """
+            ...
+        """
+        if driver_ID != '':
+            c.execute("""SELECT driver_ID, last_name
+                    FROM drivers
+                    WHERE driver_ID = ?""", (driver_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_driver_email_by_id(driver_ID):
+        """
+            ...
+        """
+        if driver_ID != '':
+            c.execute("""SELECT driver_ID, email
+                        FROM drivers
+                        WHERE driver_ID = ?""", (driver_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_driver_pn_by_id(driver_ID):
+        """
+            ...
+        """
+        if driver_ID != '':
+            c.execute("""SELECT driver_ID, phone_number
+                        FROM drivers
+                        WHERE driver_ID = ?""", (driver_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
     def get_customer_userID_by_email(email):
         """
             Takes an email as an input. And returns a userID connected do it in the DB.
