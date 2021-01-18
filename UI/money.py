@@ -137,6 +137,124 @@ class User_Submit_Payment(QtWidgets.QWidget):
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
 
+
+
+
+
+class UserMainScreen(QtWidgets.QWidget):
+    def __init__(self):
+        super(UserMainScreen, self).__init__()
+        self.ui13 = ui13()
+        self.ui13.setupUi(self)
+        self.loaddata()
+        self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
+        self.ui13.Logout_Btn.clicked.connect(self.open_Start_Screen)
+        self.ui13.change_First_Name.clicked.connect(self.open_Change_First_Name)
+        self.ui13.change_Last_Name.clicked.connect(self.open_Change_Last_Name)
+        self.ui13.change_Email.clicked.connect(self.open_Change_Email)
+        self.ui13.change_Phone_Number.clicked.connect(self.open_Change_Phone_Number)
+        self.ui13.change_Password.clicked.connect(self.open_Change_Password)
+        self.ui13.change_Card.clicked.connect(self.open_Card_Change)
+        self.ui13.change_Paypal.clicked.connect(self.open_Paypal_Change)
+        self.ui13.Refresh_Btn.clicked.connect(self.hit_refresh)
+        self.qss()
+
+    def getNewBookingItems(self):
+        start_point = self.ui13.comboBox.currentText()
+        end_point = self.ui13.comboBox_2.currentText()
+        car_type = self.ui13.comboBox_3.currentText()
+        distance, price = BackEnd.priceCalc(BackEnd.locations[start_point], BackEnd.locations[end_point])
+        distance = format(distance, '.2f') + 'km'
+        price = format(price, '.2f') + '£'
+        date, time = BackEnd().getDateAndTime()
+        jID = BackEnd().getJourneyID()
+        driver_name, car_make, car_color = BackEnd().assignTheDriver()
+        eta = BackEnd().getETA()
+        self.ui13.Upcoming_Date_Lbl.setText(date)
+        self.ui13.Upcoming_Time_Lbl.setText(time)
+        self.ui13.Upcomin_Journey_ID_Lbl.setText(jID)
+        self.ui13.Upcoming_Start_Location_Lbl.setText(start_point)
+        self.ui13.Upcoming_Destination_Lbl.setText(end_point)
+        self.ui13.Upcoming_Driver_Name_Lbl.setText(driver_name)
+        self.ui13.Car_Class_Label.setText(car_type)
+        self.ui13.Upcoming_Car_Make_Lbl.setText(car_make)
+        self.ui13.Upcoming_Car_Color_Lbl.setText(car_color)
+        self.ui13.Upcoming_ETA.setText(eta)
+        self.ui13.Price_Label.setText(price)
+        self.ui13.Distance_Label.setText(distance)
+        dataz().Insert_Into_orders(start_point, end_point, jID)
+
+    def loaddata(self):
+        connection = sqlite3.connect('assessment2.db')
+        cur = connection.cursor()
+        sqlstr = 'SELECT * FROM journey'
+        tablerow = 0
+        results = cur.execute(sqlstr)
+        self.ui13.tableWidget.setRowCount(40)
+        for row in results:
+            self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.ui13.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.ui13.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
+            tablerow += 1
+
+    def open_User_Payment_Options(self):
+        self.o13 = User_Submit_Payment()
+        self.o13.show()
+        self.getNewBookingItems()
+
+    def open_Start_Screen(self):
+        self.o14 = StartScreen()
+        self.o14.show()
+        self.close()
+
+    def open_Change_First_Name(self):
+        self.o15 = change_User_FirstName()
+        self.o15.show()
+        self.close()
+
+    def open_Change_Last_Name(self):
+        self.o16 = change_User_LastName()
+        self.o16.show()
+        self.close()
+
+    def open_Change_Email(self):
+        self.o17 = change_User_Email()
+        self.o17.show()
+        self.close()
+
+    def open_Change_Password(self):
+        self.o18 = change_User_Password()
+        self.o18.show()
+        self.close()
+
+    def open_Change_Phone_Number(self):
+        self.o19 = change_User_Phone_Number()
+        self.o19.show()
+        self.close()
+
+    def open_Card_Change(self):
+        self.o20 = User_Card()
+        self.o20.show()
+        self.close()
+
+    def open_Paypal_Change(self):
+        self.o21 = User_Paypal()
+        self.o21.show()
+        self.close()
+
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
+    
+    def hit_refresh(self):
+        self.ox = UserMainScreen()
+        self.ox.show()
+        self.close()
+
+        # print(distance, price)
+
+
 class changePassword(QtWidgets.QWidget):
     def __init__(self):
         super(changePassword, self).__init__()
@@ -782,13 +900,11 @@ class LoginScreen(QtWidgets.QWidget):
             a = self.o13.get_customer_userID_by_email(user_login)
             c = self.o13.get_customer_userID_by_password(user_Password)
             if a == c:
-                self.pushToTxt('pass.txt', c)
                 self.openUserLogin()
         elif user_login in list_of_phone_numbers:
             b = self.o13.get_customer_userID_by_phone_number(user_login)
             c = self.o13.get_customer_userID_by_password(user_Password)
             if b == c:
-                self.pushToTxt('pass.txt', c)
                 self.openUserLogin()
         else:
             self.ui2.user_login_Fail.setText("Try Again")
@@ -953,133 +1069,6 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.sl_value.setText(start_point)
         self.ui20.el_value.setText(end_point)
 
-class UserMainScreen(QtWidgets.QWidget):
-    def __init__(self):
-        super(UserMainScreen, self).__init__()
-        self.ui13 = ui13()
-        self.ui13.setupUi(self)
-        self.loaddata()
-        self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
-        self.ui13.Logout_Btn.clicked.connect(self.open_Start_Screen)
-        self.ui13.change_First_Name.clicked.connect(self.open_Change_First_Name)
-        self.ui13.change_Last_Name.clicked.connect(self.open_Change_Last_Name)
-        self.ui13.change_Email.clicked.connect(self.open_Change_Email)
-        self.ui13.change_Phone_Number.clicked.connect(self.open_Change_Phone_Number)
-        self.ui13.change_Password.clicked.connect(self.open_Change_Password)
-        self.ui13.change_Card.clicked.connect(self.open_Card_Change)
-        self.ui13.change_Paypal.clicked.connect(self.open_Paypal_Change)
-        self.ui13.Refresh_Btn.clicked.connect(self.hit_refresh)
-        self.qss()
-        # pass__ = DriverScreen().takePass('pass.txt')
-        # un, ln, email, pn = self.getUser(pass__)
-        # self.phillOut(un, ln, email, pn)
-
-    def phillOut(self, a, b, c, d):
-        self.ui13.First_Name_Label.setText(a)
-        self.ui13Last_Name_Label.setText(b)
-        self.ui13.Email_Label.setText(c)
-        self.ui13.Phone_Number_Label.setText(c)
-
-    def getUser(self, pass__):
-        un = dataz().get_customer_username_by_id(pass__)
-        ln = dataz().get_customer_lastname_by_id(pass__)
-        email = dataz().get_customer_email_by_id(pass__)
-        pn = dataz().get_customer_phone_number_by_id(pass__)
-        return un, ln, email, pn
-
-    def getNewBookingItems(self):
-        start_point = self.ui13.comboBox.currentText()
-        end_point = self.ui13.comboBox_2.currentText()
-        car_type = self.ui13.comboBox_3.currentText()
-        distance, price = BackEnd.priceCalc(BackEnd.locations[start_point], BackEnd.locations[end_point])
-        distance = format(distance, '.2f') + 'km'
-        price = format(price, '.2f') + '£'
-        date, time = BackEnd().getDateAndTime()
-        jID = BackEnd().getJourneyID()
-        driver_name, car_make, car_color = BackEnd().assignTheDriver()
-        eta = BackEnd().getETA()
-        self.ui13.Upcoming_Date_Lbl.setText(date)
-        self.ui13.Upcoming_Time_Lbl.setText(time)
-        self.ui13.Upcomin_Journey_ID_Lbl.setText(jID)
-        self.ui13.Upcoming_Start_Location_Lbl.setText(start_point)
-        self.ui13.Upcoming_Destination_Lbl.setText(end_point)
-        self.ui13.Upcoming_Driver_Name_Lbl.setText(driver_name)
-        self.ui13.Car_Class_Label.setText(car_type)
-        self.ui13.Upcoming_Car_Make_Lbl.setText(car_make)
-        self.ui13.Upcoming_Car_Color_Lbl.setText(car_color)
-        self.ui13.Upcoming_ETA.setText(eta)
-        self.ui13.Price_Label.setText(price)
-        self.ui13.Distance_Label.setText(distance)
-        dataz().Insert_Into_orders(start_point, end_point, jID)
-
-    def loaddata(self):
-        connection = sqlite3.connect('assessment2.db')
-        cur = connection.cursor()
-        sqlstr = 'SELECT * FROM journey'
-        tablerow = 0
-        results = cur.execute(sqlstr)
-        self.ui13.tableWidget.setRowCount(40)
-        for row in results:
-            self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
-            self.ui13.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
-            self.ui13.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
-            tablerow += 1
-
-    def open_User_Payment_Options(self):
-        self.o13 = User_Submit_Payment()
-        self.o13.show()
-        self.getNewBookingItems()
-
-    def open_Start_Screen(self):
-        self.o14 = StartScreen()
-        self.o14.show()
-        self.close()
-
-    def open_Change_First_Name(self):
-        self.o15 = change_User_FirstName()
-        self.o15.show()
-        self.close()
-
-    def open_Change_Last_Name(self):
-        self.o16 = change_User_LastName()
-        self.o16.show()
-        self.close()
-
-    def open_Change_Email(self):
-        self.o17 = change_User_Email()
-        self.o17.show()
-        self.close()
-
-    def open_Change_Password(self):
-        self.o18 = change_User_Password()
-        self.o18.show()
-        self.close()
-
-    def open_Change_Phone_Number(self):
-        self.o19 = change_User_Phone_Number()
-        self.o19.show()
-        self.close()
-
-    def open_Card_Change(self):
-        self.o20 = User_Card()
-        self.o20.show()
-        self.close()
-
-    def open_Paypal_Change(self):
-        self.o21 = User_Paypal()
-        self.o21.show()
-        self.close()
-
-    def qss(self):
-        qss_file = 'QSS/OrangeDark.qss'
-        with open(qss_file, "r") as fh:
-            self.setStyleSheet(fh.read())
-
-    def hit_refresh(self):
-        self.ox = UserMainScreen()
-        self.ox.show()
-        self.close()
-
 
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
@@ -1089,6 +1078,9 @@ class StartScreen(QtWidgets.QWidget):
         self.ui1.Login_Button.clicked.connect(self.open_Login)
         self.ui1.Register_Button.clicked.connect(self.open_Register)
         self.qss()
+        # qss_file = 'QSS/OrangeDark.qss'
+        # with open(qss_file,"r") as fh:
+        #     self.setStyleSheet(fh.read())
 
     def open_Login(self):
         self.o1 = LoginScreen()
