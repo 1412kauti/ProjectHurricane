@@ -848,8 +848,8 @@ class UserMainScreen(QtWidgets.QWidget):
             return id_
 
     def getCustomer(self, id):
-        a = dataz().get_customer_lastname_by_id(id)
-        b = dataz().get_customer_username_by_id(id)
+        a = dataz().get_customer_username_by_id(id)
+        b = dataz().get_customer_lastname_by_id(id)
         c = dataz().get_customer_email_by_id(id)
         d = dataz().get_customer_phone_number_by_id(id)
         return a, b, c, d
