@@ -295,11 +295,35 @@ class dataz():
             raise OSError("User doesn't exist")
 
     @staticmethod
-    def Check_phone_number_drivers(phone_number):
+    def Get_first_name_customers(userID):
+        c.execute("""SELECT first_name
+        FROM customers
+        WHERE user_ID = ?""", (userID,))
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
+    def Get_last_name_customers(userID):
+        c.execute("""SELECT last_name
+        FROM customers
+        WHERE user_ID = ?""", (userID,))
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
+    def Get_email_customers(userID):
+        c.execute("""SELECT email
+        FROM customers
+        WHERE user_ID = ?""", (userID,))
+        print(c.fetchall())
+        conn.commit()
+
+    @staticmethod
+    def Get_phone_number_customers(userID):
         c.execute("""SELECT phone_number
-        FROM drivers
-        WHERE phone_number = ?""", (phone_number,))
-        var = c.fetchone()
+        FROM customers
+        WHERE user_ID = ?""", (userID,))
+        print(c.fetchall())
         conn.commit()
 
     @staticmethod
@@ -625,3 +649,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
+# v.Get_email_customers(6)
