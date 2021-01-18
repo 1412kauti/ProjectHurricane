@@ -623,5 +623,62 @@ class dataz():
         print(c.fetchall())
         conn.commit()
 
-v = dataz()
-# v.Update_payment_method_customers('card',7)
+    @staticmethod
+    def get_customer_username_by_id(user_ID):
+        """
+            ...
+        """
+        if user_ID != '':
+            c.execute("""SELECT user_ID, first_name
+                    FROM customers
+                    WHERE user_ID = ?""", (user_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_customer_lastname_by_id(user_ID):
+        """
+            ...
+        """
+        if user_ID != '':
+            c.execute("""SELECT user_ID, last_name
+                        FROM customers
+                        WHERE user_ID = ?""", (user_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_customer_email_by_id(user_ID):
+        """
+            ...
+        """
+        if user_ID != '':
+            c.execute("""SELECT user_ID, email
+                            FROM customers
+                            WHERE user_ID = ?""", (user_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_customer_phone_number_by_id(user_ID):
+        """
+            ...
+        """
+        if user_ID != '':
+            c.execute("""SELECT user_ID, phone_number
+                            FROM customers
+                            WHERE user_ID = ?""", (user_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
