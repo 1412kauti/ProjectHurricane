@@ -51,7 +51,7 @@ class dataz():
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO journey
-        (Date, Time, Journey_ID, Start_Location, End_Location, driver_name, Car_Class, Car_Make, Car_Colour, Price, Distance, status) VALUES (?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,start_point,end_point,driver_name,car_type,car_make,car_color,price,distance))
+        (Date, Time, Journey_ID, Start_Location, user_ID, customer_name, start_location, End_Location, driver_ID, driver_name, Car_Class, Car_Make, Car_Colour, Price, Distance, status) VALUES (?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,start_point,end_point,driver_name,car_type,car_make,car_color,price,distance))
         conn.commit()
 
     @staticmethod
@@ -124,12 +124,6 @@ class dataz():
         GROUP BY first_name,last_name,email,phone_number,password,car_make,car_colour,car_license_plate_number,driver_license
         HAVING COUNT(*) > 1""")
         print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def update_userID_customers_payments():
-        c.execute("""UPDATE customer_payment
-        SET user_ID = (SELECT user_ID FROM customers WHERE customer_payment.email = customers.email)""")
         conn.commit()
 
     @staticmethod
@@ -295,6 +289,66 @@ class dataz():
             raise OSError("User doesn't exist")
 
     @staticmethod
+    def get_customer_username_by_id(user_ID):
+        """
+            ...
+        """
+        if user_ID != '':
+            c.execute("""SELECT user_ID, first_name
+                    FROM customers
+                    WHERE user_ID = ?""", (user_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_customer_lastname_by_id(user_ID):
+        """
+            ...
+        """
+        if user_ID != '':
+            c.execute("""SELECT user_ID, last_name
+                        FROM customers
+                        WHERE user_ID = ?""", (user_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_customer_email_by_id(user_ID):
+        """
+            ...
+        """
+        if user_ID != '':
+            c.execute("""SELECT user_ID, email
+                            FROM customers
+                            WHERE user_ID = ?""", (user_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_customer_phone_number_by_id(user_ID):
+        """
+            ...
+        """
+        if user_ID != '':
+            c.execute("""SELECT user_ID, phone_number
+                            FROM customers
+                            WHERE user_ID = ?""", (user_ID,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
     def Update_First_Name_customers(first_name,userID):
         c.execute("""UPDATE customers
         SET first_name = ?
@@ -379,7 +433,7 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Update_first_driver_license_drivers():
+    def Update_driver_license_drivers():
         c.execute("""UPDATE drivers
         SET driver_license = 'someone'
         WHERE driver_ID = 1""")
@@ -499,6 +553,12 @@ class dataz():
         conn.commit()
         
     @staticmethod
+    def update_userID_customers_payments():
+        c.execute("""UPDATE customer_payment
+        SET user_ID = (SELECT user_ID FROM customers WHERE customer_payment.email = customers.email)""")
+        conn.commit()
+
+    @staticmethod
     def Update_name_customer_payment():
         c.execute("""UPDATE customer_payment
         SET name = 'someone'
@@ -562,13 +622,6 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Update_name_driver_payments():
-        c.execute("""UPDATE driver_payments
-        SET name = 'someone'
-        WHERE rowid = 1""")
-        conn.commit()
-
-    @staticmethod
     def Delete_Row_customers():
         c.execute("DELETE FROM customers where rowid = 1")
         conn.commit()
@@ -622,63 +675,3 @@ class dataz():
         c.execute("SELECT*FROM journey")
         print(c.fetchall())
         conn.commit()
-
-    @staticmethod
-    def get_customer_username_by_id(user_ID):
-        """
-            ...
-        """
-        if user_ID != '':
-            c.execute("""SELECT user_ID, first_name
-                    FROM customers
-                    WHERE user_ID = ?""", (user_ID,))
-            var = c.fetchone()
-            conn.commit()
-            return var[1]
-        else:
-            raise OSError("User doesn't exist")
-
-    @staticmethod
-    def get_customer_lastname_by_id(user_ID):
-        """
-            ...
-        """
-        if user_ID != '':
-            c.execute("""SELECT user_ID, last_name
-                        FROM customers
-                        WHERE user_ID = ?""", (user_ID,))
-            var = c.fetchone()
-            conn.commit()
-            return var[1]
-        else:
-            raise OSError("User doesn't exist")
-
-    @staticmethod
-    def get_customer_email_by_id(user_ID):
-        """
-            ...
-        """
-        if user_ID != '':
-            c.execute("""SELECT user_ID, email
-                            FROM customers
-                            WHERE user_ID = ?""", (user_ID,))
-            var = c.fetchone()
-            conn.commit()
-            return var[1]
-        else:
-            raise OSError("User doesn't exist")
-
-    @staticmethod
-    def get_customer_phone_number_by_id(user_ID):
-        """
-            ...
-        """
-        if user_ID != '':
-            c.execute("""SELECT user_ID, phone_number
-                            FROM customers
-                            WHERE user_ID = ?""", (user_ID,))
-            var = c.fetchone()
-            conn.commit()
-            return var[1]
-        else:
-            raise OSError("User doesn't exist")
