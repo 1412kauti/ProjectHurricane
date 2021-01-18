@@ -707,4 +707,4 @@ class dataz():
         conn.commit()
 
 v = dataz
-v.update_userID_by_name_journey()
+# v.update_userID_by_name_journey()
