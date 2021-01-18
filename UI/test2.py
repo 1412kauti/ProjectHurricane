@@ -624,4 +624,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-# v.Update_First_Name_customers('lol',13)
+# v.Update_payment_method_customers('card',7)
