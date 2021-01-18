@@ -836,6 +836,7 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.change_Password.clicked.connect(self.open_Change_Password)
         self.ui13.change_Card.clicked.connect(self.open_Card_Change)
         self.ui13.change_Paypal.clicked.connect(self.open_Paypal_Change)
+        self.ui13.Refresh2.clicked.connect(self.hit_refresh)
         self.ui13.Refresh_Btn.clicked.connect(self.hit_refresh)
         self.qss()
         pass__ = self.takePass('pass.txt')
