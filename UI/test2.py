@@ -391,254 +391,284 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Update_first_name_drivers():
+    def Update_first_name_drivers(first_name,driverID):
         c.execute("""UPDATE drivers
-        SET first_name = 'someone'
-        WHERE driver_ID = 1""")
+        SET first_name = ?
+        WHERE driver_ID = ?""", (first_name,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_last_name_drivers():
+    def Update_last_name_drivers(last_name,driverID):
         c.execute("""UPDATE drivers
-        SET last_name = 'someone'
-        WHERE driver_ID = 1""")
+        SET last_name = ?
+        WHERE driver_ID = ?""", (last_name,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_phone_number_drivers():
+    def Update_phone_number_drivers(phone_number,driverID):
         c.execute("""UPDATE drivers
-        SET phone_number = '07412566921'
-        WHERE driver_ID = 1""")
+        SET phone_number = ?
+        WHERE driver_ID = ?""", (phone_number,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_password_drivers():
+    def Update_password_drivers(password,driverID):
         c.execute("""UPDATE drivers
-        SET password = 'someone'
-        WHERE driver_ID = 1""")
+        SET password = ?
+        WHERE driver_ID = ?""", (password,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_car_make_drivers():
+    def Update_car_make_drivers(car_make,driverID):
         c.execute("""UPDATE drivers
         SET car_make = 'someone'
-        WHERE driver_ID = 1""")
+        WHERE driver_ID = 1""", (car_make,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_car_colour_drivers():
+    def Update_car_colour_drivers(car_colour,driverID):
         c.execute("""UPDATE drivers
-        SET car_colour = 'someone'
-        WHERE driver_ID = 1""")
+        SET car_colour = ?
+        WHERE driver_ID = ?""", (car_colour,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_driver_license_drivers():
+    def Update_driver_license_drivers(driver_license,driverID):
         c.execute("""UPDATE drivers
-        SET driver_license = 'someone'
-        WHERE driver_ID = 1""")
+        SET driver_license = ?
+        WHERE driver_ID = ?""", (driver_license,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_license_expiry_drivers():
+    def Update_license_expiry_drivers(license_expiry,driverID):
         c.execute("""UPDATE drivers
-        SET license_expiry = 'someone'
-        WHERE driver_ID = 1""")
+        SET license_expiry = ?
+        WHERE driver_ID = ?""", (license_expiry,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_bank_account_drivers():
+    def Update_bank_account_drivers(bank_account,driverID):
         c.execute("""UPDATE drivers
-        SET bank_account = 'someone'
-        WHERE driver_ID = 1""")
+        SET bank_account = ?
+        WHERE driver_ID = ?""", (bank_account,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_first_name_admins():
+    def Update_first_name_admins(first_name,employeeID):
         c.execute("""UPDATE admins
-        SET first_name = 'someone'
-        WHERE employee_ID = 1""")
+        SET first_name = ?
+        WHERE employee_ID = ?""", (first_name,employeeID,))
         conn.commit()
 
     @staticmethod
-    def Update_last_name_admins():
+    def Update_last_name_admins(last_name,employeeID):
         c.execute("""UPDATE admins
-        SET last_name = 'someone'
-        WHERE employee_ID = 1""")
+        SET last_name = ?
+        WHERE employee_ID = ?""", (last_name,employeeID,))
         conn.commit()
 
     @staticmethod
-    def Update_email_admins():
+    def Update_email_admins(email,employeeID):
         c.execute("""UPDATE admins
-        SET email = 'someone'
-        WHERE employee_ID = 1""")
+        SET email = ?
+        WHERE employee_ID = ?""", (email,employeeID,))
         conn.commit()
 
     @staticmethod
-    def Update_phone_number_admins():
+    def Update_phone_number_admins(phone_number,employeeID):
         c.execute("""UPDATE admins
-        SET phone_number = 'someone'
-        WHERE employee_ID = 1""")
+        SET phone_number = ?
+        WHERE employee_ID = ?""", (phone_number,employeeID,))
         conn.commit()
 
     @staticmethod
-    def Update_password_admins():
+    def Update_password_admins(password,employeeID):
         c.execute("""UPDATE admins
-        SET password = 'someone'
-        WHERE employee_ID = 1""")
-        conn.commit()
-
-    @staticmethod
-    def Update_date_created_journey():
-        c.execute("""UPDATE journey
-        SET last_name = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit()
-    
-    @staticmethod
-    def Update_customer_ID_journey():
-        c.execute("""UPDATE journey
-        SET customer_ID = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit()
-
-    @staticmethod
-    def Update_driver_name_journey():
-        c.execute("""UPDATE journey
-        SET driver_name = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit()
-    
-    @staticmethod
-    def Update_status_journey():
-        c.execute("""UPDATE journey
-        SET status = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit()
-
-    @staticmethod
-    def Update_driver_ID_journey():
-        c.execute("""UPDATE journey
-        SET driver_ID = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit()
-
-    @staticmethod
-    def Update_start_piont_journey():
-        c.execute("""UPDATE journey
-        SET start_piont = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit()
-
-    @staticmethod
-    def Update_end_piont_journey():
-        c.execute("""UPDATE journey
-        SET end_piont = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit
-
-    @staticmethod
-    def Update_price_journey():
-        c.execute("""UPDATE journey
-        SET price = 'someone'
-        WHERE order_ID = 1""")
-        conn.commit()
-
-
-    @staticmethod
-    def Update_customer_number_journey():
-        c.execute("""UPDATE journey
-        SET customer_number = 'someone'
-        WHERE order_ID = 1""")
+        SET password = ?
+        WHERE employee_ID = ?""", (password,employeeID,))
         conn.commit()
         
     @staticmethod
-    def update_userID_customers_payments():
+    def update_userID_by_name_journey():
+        c.execute("""UPDATE journey
+        SET user_ID = (SELECT user_ID FROM customers WHERE journey.customer_name = customers.first_name)""")
+        conn.commit()
+
+    @staticmethod
+    def Update_date_journey(date,journeyID):
+        c.execute("""UPDATE journey
+        SET date = ?
+        WHERE journey_ID = ?""", (date,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_time_journey(time,journeyID):
+        c.execute("""UPDATE journey
+        SET time = ?
+        WHERE journey_ID = ?""", (time,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_start_location_journey(start_location,journeyID):
+        c.execute("""UPDATE journey
+        SET start_location = ?
+        WHERE journey_ID = ?""", (start_location,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_end_location_journey(end_location,journeyID):
+        c.execute("""UPDATE journey
+        SET end_location = ?
+        WHERE journey_ID = ?""", (end_location,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_car_class_journey(car_class,journeyID):
+        c.execute("""UPDATE journey
+        SET Car_Class = ?
+        WHERE journey_ID = ?""", (car_class,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_car_make_journey(car_make,journeyID):
+        c.execute("""UPDATE journey
+        SET Car_Make = ?
+        WHERE journey_ID = ?""", (car_make,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_car_colour_journey(car_colour,journeyID):
+        c.execute("""UPDATE journey
+        SET Car_Colour = ?
+        WHERE journey_ID = ?""", (car_colour,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_price_journey(price,journeyID):
+        c.execute("""UPDATE journey
+        SET Price = ?
+        WHERE journey_ID = ?""", (price,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_distance_journey(distance,journeyID):
+        c.execute("""UPDATE journey
+        SET Distance = ?
+        WHERE journey_ID = ?""", (distance,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_status_journey(status,journeyID):
+        c.execute("""UPDATE journey
+        SET status = ?
+        WHERE journey_ID = ?""", (status,journeyID,))
+        conn.commit()
+
+    @staticmethod
+    def update_userID_by_email_customers_payments():
         c.execute("""UPDATE customer_payment
         SET user_ID = (SELECT user_ID FROM customers WHERE customer_payment.email = customers.email)""")
         conn.commit()
 
     @staticmethod
-    def Update_name_customer_payment():
+    def update_userID_by_name_customers_payments():
         c.execute("""UPDATE customer_payment
-        SET name = 'someone'
-        WHERE rowid = 1""")
+        SET user_ID = (SELECT user_ID FROM customers WHERE customer_payment.name = customers.first_name)""")
         conn.commit()
 
     @staticmethod
-    def Update_card_customer_payment():
+    def Update_name_customer_payment(name,userID):
         c.execute("""UPDATE customer_payment
-        SET card_number = 'someone'
-        WHERE rowid = 1""")
+        SET name = ?
+        WHERE user_ID = ?""", (name,userID,))
         conn.commit()
 
     @staticmethod
-    def Update_cvv_customer_payment():
+    def Update_card_number_customer_payment(card_number,userID):
         c.execute("""UPDATE customer_payment
-        SET cvv = 'someone'
-        WHERE rowid = 1""")
+        SET card_number = ?
+        WHERE user_ID = ?""", (card_number,userID,))
         conn.commit()
 
     @staticmethod
-    def Update_email_customer_payment():
+    def Update_cvv_customer_payment(cvv,userID):
         c.execute("""UPDATE customer_payment
-        SET email = 'someone'
-        WHERE rowid = 1""")
+        SET cvv = ?
+        WHERE user_ID = ?""", (cvv,userID,))
         conn.commit()
 
     @staticmethod
-    def Update_password_customer_payment():
+    def Update_email_customer_payment(email,userID):
         c.execute("""UPDATE customer_payment
-        SET password = 'someone'
-        WHERE rowid = 1""")
+        SET email = ?
+        WHERE user_ID = ?""", (email,userID,))
         conn.commit()
 
     @staticmethod
-    def Update_name_driver_payments():
+    def Update_password_customer_payment(password,userID):
+        c.execute("""UPDATE customer_payment
+        SET password = ?
+        WHERE user_ID = ?""", (password,userID,))
+        conn.commit()
+
+    @staticmethod
+    def update_driverID_by_email_driver_payment():
+        c.execute("""UPDATE driver_payment
+        SET driver_ID = (SELECT driver_ID FROM drivers WHERE driver_payment.email = drivers.email)""")
+        conn.commit()
+
+    @staticmethod
+    def update_driverID_by_email_driver_payment():
+        c.execute("""UPDATE driver_payment
+        SET driver_ID = (SELECT driver_ID FROM drivers WHERE driver_payment.name = drivers.first_name)""")
+        conn.commit()
+
+    @staticmethod
+    def Update_name_driver_payments(name,driverID):
         c.execute("""UPDATE driver_payments
-        SET name = 'someone'
-        WHERE rowid = 1""")
+        SET name = ?
+        WHERE driver_ID = ?""", (name,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_account_number_driver_payments():
+    def Update_account_number_driver_payments(account_number,driverID):
         c.execute("""UPDATE driver_payments
-        SET account_number = 'someone'
-        WHERE rowid = 1""")
+        SET account_number = ?
+        WHERE driver_ID = ?""", (account_number,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_sort_code_driver_payments():
+    def Update_sort_code_driver_payments(sort_code,driverID):
         c.execute("""UPDATE driver_payments
-        SET sort_code = 'someone'
-        WHERE rowid = 1""")
+        SET sort_code = ?
+        WHERE driver_ID = ?""", (sort_code,driverID,))
         conn.commit()
 
     @staticmethod
-    def Update_payme_link_driver_payments():
+    def Update_payme_link_driver_payments(payme_link,driverID):
         c.execute("""UPDATE driver_payments
-        SET payme_link = 'someone'
-        WHERE rowid = 1""")
+        SET payme_link = ?
+        WHERE driver_ID = ?""", (payme_link,driverID,))
         conn.commit()
 
     @staticmethod
-    def Delete_Row_customers():
-        c.execute("DELETE FROM customers where rowid = 1")
+    def Delete_Row_customers(rowid):
+        c.execute("DELETE FROM customers where rowid = ?", (rowid,))
         conn.commit()
 
     @staticmethod
-    def Delete_Row_drivers():
-        c.execute("DELETE FROM drivers where rowid = 1")
+    def Delete_Row_drivers(rowid):
+        c.execute("DELETE FROM drivers where rowid = ?", (rowid,))
         conn.commit()
 
     @staticmethod
-    def Delete_Row_admins():
-        c.execute("DELETE FROM admins where rowid = 1")
+    def Delete_Row_admins(rowid):
+        c.execute("DELETE FROM admins where rowid = ?", (rowid,))
         conn.commit()
 
     @staticmethod
-    def Delete_Row_journey():
-        c.execute("DELETE FROM journey where rowid = 1")
+    def Delete_Row_journey(rowid):
+        c.execute("DELETE FROM journey where rowid = ?", (rowid,))
         conn.commit()
 
     @staticmethod
@@ -675,3 +705,6 @@ class dataz():
         c.execute("SELECT*FROM journey")
         print(c.fetchall())
         conn.commit()
+
+v = dataz
+v.update_userID_by_name_journey()

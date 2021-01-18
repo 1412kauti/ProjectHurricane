@@ -888,9 +888,10 @@ class UserMainScreen(QtWidgets.QWidget):
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
-        sqlstr = 'SELECT * FROM journey'
+        userID = 1
+        sqlstr = 'SELECT * FROM journey WHERE user_ID = ?'
         tablerow = 0
-        results = cur.execute(sqlstr)
+        results = cur.execute(sqlstr, (userID,))
         self.ui13.tableWidget.setRowCount(40)
         for row in results:
             self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
