@@ -1001,9 +1001,10 @@ class DriverScreen(QtWidgets.QWidget):
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
-        sqlstr = 'SELECT * FROM journey'
+        driverID = 1
+        sqlstr = 'SELECT * FROM journey WHERE driver_ID = ?'
         tablerow = 0
-        results = cur.execute(sqlstr)
+        results = cur.execute(sqlstr, (driverID,))
         self.ui20.tableWidget.setRowCount(40)
         for row in results:
             self.ui20.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
