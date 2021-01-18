@@ -218,7 +218,6 @@ class Ui_Form(object):
         self.admin_Submit.setText(_translate("Form", "Login"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Form", "Admin"))
 
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
