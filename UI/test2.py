@@ -295,70 +295,45 @@ class dataz():
             raise OSError("User doesn't exist")
 
     @staticmethod
-    def Get_first_name_customers(userID):
-        c.execute("""SELECT first_name
-        FROM customers
-        WHERE user_ID = ?""", (userID,))
-        print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def Get_last_name_customers(userID):
-        c.execute("""SELECT last_name
-        FROM customers
-        WHERE user_ID = ?""", (userID,))
-        print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def Get_email_customers(userID):
-        c.execute("""SELECT email
-        FROM customers
-        WHERE user_ID = ?""", (userID,))
-        print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def Get_phone_number_customers(userID):
-        c.execute("""SELECT phone_number
-        FROM customers
-        WHERE user_ID = ?""", (userID,))
-        print(c.fetchall())
-        conn.commit()
-
-    @staticmethod
-    def Update_Last_Name_customers():
+    def Update_First_Name_customers(first_name,userID):
         c.execute("""UPDATE customers
-        SET last_name = 'someone'
-        WHERE user_ID = 1""")
+        SET first_name = ?
+        WHERE user_ID = ?""", (first_name,userID,))
         conn.commit()
 
     @staticmethod
-    def Update_Email_customers():
+    def Update_Last_Name_customers(last_name,userID):
         c.execute("""UPDATE customers
-        SET email = 'someone_email'
-        WHERE user_ID = 1""")
+        SET last_name = ?
+        WHERE user_ID = ?""", (last_name,userID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_Email_customers(email,userID):
+        c.execute("""UPDATE customers
+        SET email = ?
+        WHERE user_ID = ?""", (email,userID,))
         conn.commit()
         
     @staticmethod
-    def Update_phone_number_customers():
+    def Update_phone_number_customers(phone_number,userID):
         c.execute("""UPDATE customers
-        SET phone_number = '07412566921'
-        WHERE user_ID = 1""")
+        SET phone_number = ?
+        WHERE user_ID = ?""", (phone_number,userID,))
         conn.commit()
 
     @staticmethod
-    def Update_password_customers():
+    def Update_password_customers(password,userID):
         c.execute("""UPDATE customers
-        SET password = '07412566921'
-        WHERE user_ID = 1""")
+        SET password = ?
+        WHERE user_ID = ?""", (password,userID,))
         conn.commit()
 
     @staticmethod
-    def Update_payment_method_customers():
+    def Update_payment_method_customers(payment_method,userID):
         c.execute("""UPDATE customers
-        SET payment_method = '07412566921'
-        WHERE user_ID = 1""")
+        SET payment_method = ?
+        WHERE user_ID = ?""", (payment_method,userID,))
         conn.commit()
 
     @staticmethod
@@ -649,4 +624,4 @@ class dataz():
         conn.commit()
 
 v = dataz()
-# v.Get_email_customers(6)
+# v.Update_First_Name_customers('lol',13)
