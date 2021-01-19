@@ -933,7 +933,7 @@ class UserMainScreen(QtWidgets.QWidget):
         price = format(price, '.2f') + '£'
         date, time = BackEnd().getDateAndTime()
         jID = BackEnd().getJourneyID()
-        driver_name, car_make, car_color = BackEnd().assignTheDriver()
+        driver_name, car_number, car_make, car_color = BackEnd().assignTheDriver()
         eta = BackEnd().getETA()
         self.ui13.Upcoming_Date_Lbl.setText(date)
         self.ui13.Upcoming_Time_Lbl.setText(time)
@@ -942,6 +942,7 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.Upcoming_Destination_Lbl.setText(end_point)
         self.ui13.Upcoming_Driver_Name_Lbl.setText(driver_name)
         self.ui13.Car_Class_Label.setText(car_type)
+        self.ui13.Car_Number_Lbl.setText(car_number)
         self.ui13.Upcoming_Car_Make_Lbl.setText(car_make)
         self.ui13.Upcoming_Car_Color_Lbl.setText(car_color)
         self.ui13.Upcoming_ETA.setText(eta)
