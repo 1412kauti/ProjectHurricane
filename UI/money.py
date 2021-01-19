@@ -954,8 +954,8 @@ class UserMainScreen(QtWidgets.QWidget):
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
-        userID = 1
-        sqlstr = 'SELECT * FROM journey WHERE user_ID = ?'
+        userID = 6
+        sqlstr = """SELECT * FROM journey WHERE user_ID = 6 AND status = 'complete'"""
         tablerow = 0
         results = cur.execute(sqlstr, (userID,))
         self.ui13.tableWidget.setRowCount(40)
@@ -963,6 +963,15 @@ class UserMainScreen(QtWidgets.QWidget):
             self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
             self.ui13.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
             self.ui13.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.ui13.tableWidget.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(row[5]))
+            self.ui13.tableWidget.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(row[6]))
+            self.ui13.tableWidget.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(row[8]))
+            self.ui13.tableWidget.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(row[9]))
+            self.ui13.tableWidget.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(row[10]))
+            self.ui13.tableWidget.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(row[11]))
+            self.ui13.tableWidget.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(row[12]))
+            self.ui13.tableWidget.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(row[13]))
+            self.ui13.tableWidget.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(row[14]))
             tablerow += 1
 
     def open_User_Payment_Options(self):
@@ -1044,23 +1053,20 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.decline_order.clicked.connect(self.deleteDeclined)
         # decline button has to push to journey table with status declined
         self.loaddata()
-        try:
-            pass__ = self.takePass('pass.txt')
-            a, b, c, d = self.getDriver(pass__)
-            self.phillOut(a, b, c, d)
-        except Exception:
-            print('Error with pass__')
+        #pass__ = self.takePass('pass.txt')
+        #a, b, c, d = self.getDriver(pass__)
+        #self.phillOut(a, b, c, d)
 
     def deleteDeclined(self):
         """
-            Function calculates amount of orders in journey table and deletes the last one.
+            Function calculates amount of orders in orders table and deletes the last one.
         :return:
         """
-        last_order_id = BackEnd().getLastRowJourneys()
-        dataz().Delete_Row_journey(last_order_id)
+        last_order_id = BackEnd().getLastRowOrders()
+        dataz().Delete_Row_orders(last_order_id)
 
     def findOrderButton(self):
-        start_location, destination, order_id = BackEnd().findLastJourney()
+        start_location, destination, order_id = BackEnd().findLastOrder()
         self.getNewOrder(start_location, destination)
         self.ui20.from_value.setText(start_location)
         self.ui20.To_value.setText(destination)
@@ -1094,7 +1100,10 @@ class DriverScreen(QtWidgets.QWidget):
         for row in results:
             self.ui20.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
             self.ui20.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
-            self.ui20.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.ui20.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[5]))
+            self.ui20.tableWidget.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(row[6]))
+            self.ui20.tableWidget.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(row[13]))
+            self.ui20.tableWidget.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(row[14]))
             tablerow += 1
 
     def emptyEverything(self):
