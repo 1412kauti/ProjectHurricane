@@ -146,12 +146,11 @@ class BackEnd(object):
         r = randint(0, len(orders) - 1)
         return str(orders[r])
 
-    def getLastRowOrders(self):
+    def getLastRowJourneys(self):
         connection = sqlite3.connect("assessment2.db")
 
-        sql_select_Query = "select * from orders"
+        sql_select_Query = "select * from journey"
         cursor = connection.cursor()
         cursor.execute(sql_select_Query)
         records = cursor.fetchall()
         return records[len(records) - 1][2]
-

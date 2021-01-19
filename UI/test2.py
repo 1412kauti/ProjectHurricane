@@ -45,13 +45,13 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Insert_Into_journey(date,time,jID,start_point,end_point,driver_name,car_type,car_make,car_color,price,distance):
+    def Insert_Into_journey(date,time,jID,user_ID, customer_name, start_point,end_point,driver_name,car_type,car_make,car_color,price,distance):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO journey
-        (Date, Time, Journey_ID, Start_Location, start_location, End_Location, driver_name, Car_Class, Car_Make, Car_Colour, Price, Distance) VALUES (?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,start_point,end_point,driver_name,car_type,car_make,car_color,price,distance,))
+        (Date, Time, Journey_ID, user_ID, customer_name, start_location, End_Location, driver_name, Car_Class, Car_Make, Car_Colour, Price, Distance) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,user_ID, customer_name, start_point,end_point,driver_name,car_type,car_make,car_color,price,distance,))
         conn.commit()
 
     @staticmethod
@@ -73,19 +73,7 @@ class dataz():
         c.execute("""INSERT INTO driver_payments
         (name, account_number, sort_code, payme_link)
         VALUES (?,?,?,?,?,?)""", (z,y,x,w,v,u))
-        conn.commit()    
-
-    @staticmethod
-    def Insert_Into_orders(z,y,x):
-        import sqlite3
-        conn = sqlite3.connect("assessment2.db")
-        c = conn.cursor()
-        c.execute('''PRAGMA journal_mode = WAL''')
-        c.execute("""INSERT INTO orders
-        (start_location, end_location, order_ID)
-        VALUES (?,?,?)""",(z,y,x,))
         conn.commit()
-    
 
     @staticmethod
     def Delete_Duplicates_Customers():
@@ -667,13 +655,8 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Delete_Row_journey(rowid):
-        c.execute("DELETE FROM journey where rowid = ?", (rowid,))
-        conn.commit()
-
-    @staticmethod
-    def Delete_Row_orders(order_ID):
-        c.execute("DELETE FROM orders where order_ID = ?",(order_ID,))
+    def Delete_Row_journey(jID):
+        c.execute("DELETE FROM journey where Journey_ID = ?", (jID,))
         conn.commit()
 
     @staticmethod

@@ -877,8 +877,8 @@ class UserMainScreen(QtWidgets.QWidget):
             Function calculates amount of orders in orders table and deletes the last one.
         :return:
         """
-        last_order_id = BackEnd().getLastRowOrders()
-        dataz().Delete_Row_orders(last_order_id)
+        last_order_id = BackEnd().getLastRowJourneys()
+        dataz().Delete_Row_journey(last_order_id)
 
     def declineButton(self):
         self.ui13.Upcoming_Date_Lbl.setText('')
@@ -935,8 +935,9 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.Upcoming_ETA.setText(eta)
         self.ui13.Price_Label.setText(price)
         self.ui13.Distance_Label.setText(distance)
-        dataz().Insert_Into_orders(start_point, end_point, jID)
-
+        userID = self.takePass('pass.txt')
+        customer_name, b, c, d = self.getCustomer(userID)
+        dataz().Insert_Into_journey(date,time,jID,userID, customer_name, start_point,end_point,driver_name,car_type,car_make,car_color,price,distance)
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
@@ -1030,9 +1031,9 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.decline_order.clicked.connect(self.deleteDeclined)
         # decline button has to push to journey table with status declined
         self.loaddata()
-        pass__ = self.takePass('pass.txt')
-        a, b, c, d = self.getDriver(pass__)
-        self.phillOut(a, b, c, d)
+        #pass__ = self.takePass('pass.txt')
+        #a, b, c, d = self.getDriver(pass__)
+        #self.phillOut(a, b, c, d)
 
     def deleteDeclined(self):
         """
