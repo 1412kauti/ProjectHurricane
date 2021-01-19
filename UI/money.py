@@ -838,10 +838,34 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.change_Paypal.clicked.connect(self.open_Paypal_Change)
         self.ui13.Refresh2.clicked.connect(self.hit_refresh)
         self.ui13.Refresh_Btn.clicked.connect(self.hit_refresh)
+        self.ui13.pushButton.clicked.connect(self.declineButton)
+        self.ui13.pushButton.clicked.connect(self.deleteDeclined)
         self.qss()
         pass__ = self.takePass('pass.txt')
         a, b, c, d = self.getCustomer(pass__)
         self.phillOut(a, b, c, d)
+
+    def deleteDeclined(self):
+        """
+            Function calculates amount of orders in orders table and deletes the last one.
+        :return:
+        """
+        last_order_id = BackEnd().getLastRowOrders()
+        dataz().Delete_Row_orders(last_order_id)
+
+    def declineButton(self):
+        self.ui13.Upcoming_Date_Lbl.setText('')
+        self.ui13.Upcoming_Time_Lbl.setText('')
+        self.ui13.Upcomin_Journey_ID_Lbl.setText('')
+        self.ui13.Upcoming_Start_Location_Lbl.setText('')
+        self.ui13.Upcoming_Destination_Lbl.setText('')
+        self.ui13.Upcoming_Driver_Name_Lbl.setText('')
+        self.ui13.Car_Class_Label.setText('')
+        self.ui13.Upcoming_Car_Make_Lbl.setText('')
+        self.ui13.Upcoming_Car_Color_Lbl.setText('')
+        self.ui13.Upcoming_ETA.setText('')
+        self.ui13.Price_Label.setText('')
+        self.ui13.Distance_Label.setText('')
 
     def takePass(self, file):
         with open(file, 'r') as f:
