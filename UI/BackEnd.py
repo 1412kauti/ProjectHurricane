@@ -117,9 +117,9 @@ class BackEnd(object):
             list_of_phone_numbers.append(record[4])
         return list_of_phone_numbers
 
-    def findOrder(self):
+    def findLastOrder(self):
         """
-            Selects a random order.
+            Selects the last order.
         :return: start_location, destination, order_id
         """
         connection = sqlite3.connect("assessment2.db")
@@ -128,11 +128,9 @@ class BackEnd(object):
         cursor = connection.cursor()
         cursor.execute(sql_select_Query)
         records = cursor.fetchall()
-        r = randint(0, len(records) - 1)
-        order = records[r]
-        start_location = order[0]
-        destination = order[1]
-        order_id = order[2]
+        start_location = records[len(records) - 1][0]
+        destination = records[len(records) - 1][1]
+        order_id = records[len(records) - 1][2]
         return start_location, destination, order_id
 
     def getOrderID(self):

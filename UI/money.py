@@ -997,12 +997,29 @@ class DriverScreen(QtWidgets.QWidget):
         self.qss()
         self.ui20.pushButton.clicked.connect(self.findOrderButton)
         self.ui20.accept_order.clicked.connect(self.emptySomething)
-        self.ui20.accept_order.clicked.connect(self.deleteOrder)
+        self.ui20.accept_order.clicked.connect(self.deleteDeclined)
+        # accept button has to push to journey table with status accepted
         self.ui20.decline_order.clicked.connect(self.emptyEverything)
+        self.ui20.decline_order.clicked.connect(self.deleteDeclined)
+        # decline button has to push to journey table with status declined
         self.loaddata()
         pass__ = self.takePass('pass.txt')
         a, b, c, d = self.getDriver(pass__)
         self.phillOut(a, b, c, d)
+
+    def deleteDeclined(self):
+        """
+            Function calculates amount of orders in orders table and deletes the last one.
+        :return:
+        """
+        last_order_id = BackEnd().getLastRowOrders()
+        dataz().Delete_Row_orders(last_order_id)
+
+    def findOrderButton(self):
+        start_location, destination, order_id = BackEnd().findLastOrder()
+        self.getNewOrder(start_location, destination)
+        self.ui20.from_value.setText(start_location)
+        self.ui20.To_value.setText(destination)
 
     def takePass(self, file):
         with open(file, 'r') as f:
@@ -1035,16 +1052,6 @@ class DriverScreen(QtWidgets.QWidget):
             self.ui20.tableWidget.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
             self.ui20.tableWidget.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
             tablerow += 1
-
-    def deleteOrder(self):
-        id = BackEnd().getOrderID()
-        dataz().Delete_Row_orders(id)
-
-    def findOrderButton(self):
-        start_location, destination, order_id = BackEnd().findOrder()
-        self.getNewOrder(start_location, destination)
-        self.ui20.from_value.setText(start_location)
-        self.ui20.To_value.setText(destination)
 
     def emptyEverything(self):
         self.ui20.sl_value.setText('')
