@@ -51,7 +51,7 @@ class dataz():
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO journey
-        (Date, Time, Journey_ID, Start_Location, user_ID, customer_name, start_location, End_Location, driver_ID, driver_name, Car_Class, Car_Make, Car_Colour, Price, Distance, status) VALUES (?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,start_point,end_point,driver_name,car_type,car_make,car_color,price,distance))
+        (Date, Time, Journey_ID, Start_Location, start_location, End_Location, driver_name, Car_Class, Car_Make, Car_Colour, Price, Distance) VALUES (?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,start_point,end_point,driver_name,car_type,car_make,car_color,price,distance,))
         conn.commit()
 
     @staticmethod
