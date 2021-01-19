@@ -27,9 +27,9 @@ class Ui_Form(object):
         self.change_User_FirstName_Label = QtWidgets.QLineEdit(self.formLayoutWidget)
         self.change_User_FirstName_Label.setObjectName("change_User_FirstName_Label")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.change_User_FirstName_Label)
-        self.pushButton = QtWidgets.QPushButton(Form)
-        self.pushButton.setGeometry(QtCore.QRect(130, 190, 141, 23))
-        self.pushButton.setObjectName("pushButton")
+        self.ChangeFirstNameBtn = QtWidgets.QPushButton(Form)
+        self.ChangeFirstNameBtn.setGeometry(QtCore.QRect(130, 190, 141, 23))
+        self.ChangeFirstNameBtn.setObjectName("ChangeFirstNameBtn")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -38,7 +38,7 @@ class Ui_Form(object):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
         self.label.setText(_translate("Form", "New First Name :"))
-        self.pushButton.setText(_translate("Form", "Change First Name"))
+        self.ChangeFirstNameBtn.setText(_translate("Form", "Change First Name"))
 
 
 if __name__ == "__main__":

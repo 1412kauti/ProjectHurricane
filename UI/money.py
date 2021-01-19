@@ -1,3 +1,4 @@
+from os import sendfile
 import sys
 from datetime import datetime
 from PyQt5 import QtWidgets, QtCore, QtGui
@@ -55,12 +56,7 @@ class change_User_Password(QtWidgets.QWidget):
         self.ui18 = ui18()
         self.ui18.setupUi(self)
         self.qss()
-
-    def hit_Submit(self):
-        self.o21 = UserMainScreen()
-        self.o21.show()
-        self.close()
-
+        
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
@@ -72,12 +68,23 @@ class change_User_Email(QtWidgets.QWidget):
         self.ui17 = ui17()
         self.ui17.setupUi(self)
         self.qss()
+        self.ui17.changeEmailBtn.clicked.connect(self.hit_Submit)
 
     def hit_Submit(self):
+        self.database_connectinator()
         self.o21 = UserMainScreen()
-        self.o21.Email_Label.setText(self)
         self.o21.show()
         self.close()
+        
+    def database_connectinator(self):
+        pass__ = self.takePass('pass.txt')
+        emailn = self.ui17.change_User_Email_Label.text()
+        dataz().Update_Email_customers(emailn,pass__)
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
 
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -89,11 +96,22 @@ class change_User_LastName(QtWidgets.QWidget):
         super(change_User_LastName, self).__init__()
         self.ui16 = ui16()
         self.ui16.setupUi(self)
+        self.ui16.ChangeLastNameBtn.clicked.connect(self.hit_Submit)
         self.qss()
 
+    def database_connectinator(self):
+        pass__ = self.takePass('pass.txt')
+        lastn = self.ui16.change_User_LastName_Label.text()
+        dataz().Update_Last_Name_customers(lastn,pass__)
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
+
     def hit_Submit(self):
+        self.database_connectinator()
         self.o21 = UserMainScreen()
-        self.o21.Last_Name_Label.setText(self)
         self.o21.show()
         self.close()
 
@@ -108,14 +126,23 @@ class change_User_FirstName(QtWidgets.QWidget):
         super(change_User_FirstName, self).__init__()
         self.ui15 = ui15()
         self.ui15.setupUi(self)
+        self.ui15.ChangeFirstNameBtn.clicked.connect(self.hit_Submit)
         self.qss()
-
     def hit_Submit(self):
+        self.database_connectinator()
         self.o21 = UserMainScreen()
-        self.o21.First_Name_Label.setText(self)
         self.o21.show()
         self.close()
 
+    def database_connectinator(self):
+        pass__ = self.takePass('pass.txt')
+        firstn = self.ui15.change_User_FirstName_Label.text()
+        dataz().Update_First_Name_customers(firstn,pass__)
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
@@ -938,7 +965,7 @@ class UserMainScreen(QtWidgets.QWidget):
         self.o15 = change_User_FirstName()
         self.o15.show()
         self.close()
-
+        
     def open_Change_Last_Name(self):
         self.o16 = change_User_LastName()
         self.o16.show()

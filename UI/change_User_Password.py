@@ -39,6 +39,11 @@ class Ui_Form(object):
         self.change_User_Confirm_Password_Label.setEchoMode(QtWidgets.QLineEdit.Password)
         self.change_User_Confirm_Password_Label.setObjectName("change_User_Confirm_Password_Label")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.change_User_Confirm_Password_Label)
+        self.Passwords_Mismatch = QtWidgets.QLabel(Form)
+        self.Passwords_Mismatch.setGeometry(QtCore.QRect(30, 30, 341, 41))
+        self.Passwords_Mismatch.setText("")
+        self.Passwords_Mismatch.setAlignment(QtCore.Qt.AlignCenter)
+        self.Passwords_Mismatch.setObjectName("Passwords_Mismatch")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

@@ -15,9 +15,9 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(400, 300)
-        self.pushButton = QtWidgets.QPushButton(Form)
-        self.pushButton.setGeometry(QtCore.QRect(140, 200, 141, 23))
-        self.pushButton.setObjectName("pushButton")
+        self.ChangeLastNameBtn = QtWidgets.QPushButton(Form)
+        self.ChangeLastNameBtn.setGeometry(QtCore.QRect(140, 200, 141, 23))
+        self.ChangeLastNameBtn.setObjectName("ChangeLastNameBtn")
         self.formLayoutWidget = QtWidgets.QWidget(Form)
         self.formLayoutWidget.setGeometry(QtCore.QRect(40, 130, 341, 31))
         self.formLayoutWidget.setObjectName("formLayoutWidget")
@@ -27,9 +27,9 @@ class Ui_Form(object):
         self.label = QtWidgets.QLabel(self.formLayoutWidget)
         self.label.setObjectName("label")
         self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label)
-        self.change_User_FirstName_Label = QtWidgets.QLineEdit(self.formLayoutWidget)
-        self.change_User_FirstName_Label.setObjectName("change_User_FirstName_Label")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.change_User_FirstName_Label)
+        self.change_User_LastName_Label = QtWidgets.QLineEdit(self.formLayoutWidget)
+        self.change_User_LastName_Label.setObjectName("change_User_LastName_Label")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.change_User_LastName_Label)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -37,7 +37,7 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Form"))
-        self.pushButton.setText(_translate("Form", "Change Last Name"))
+        self.ChangeLastNameBtn.setText(_translate("Form", "Change Last Name"))
         self.label.setText(_translate("Form", "New Last Name :"))
 
 
