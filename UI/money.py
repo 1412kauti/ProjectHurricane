@@ -38,12 +38,24 @@ class change_User_Phone_Number(QtWidgets.QWidget):
         self.ui19 = ui19()
         self.ui19.setupUi(self)
         self.qss()
+        self.ui19.changePhoneNumberBtn.clicked.connect(self.hit_Submit)
+
+    def database_connectinator(self):
+        pass__ = self.takePass('pass.txt')
+        phnn = self.ui19.change_User_PhoneNumber_Label.text()
+        dataz().Update_Last_Name_customers(phnn,pass__)
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
 
     def hit_Submit(self):
+        self.database_connectinator()
         self.o21 = UserMainScreen()
-        self.o21.Phone_Number_Label.setText(self)
         self.o21.show()
         self.close()
+
 
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'

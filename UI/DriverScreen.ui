@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -224,12 +224,27 @@
      </column>
      <column>
       <property name="text">
-       <string>New Column</string>
+       <string>Date</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Start Location</string>
       </property>
      </column>
      <column>
       <property name="text">
        <string>End Location</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Price</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Distance</string>
       </property>
      </column>
     </widget>
