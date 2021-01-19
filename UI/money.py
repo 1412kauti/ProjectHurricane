@@ -1044,20 +1044,23 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.decline_order.clicked.connect(self.deleteDeclined)
         # decline button has to push to journey table with status declined
         self.loaddata()
-        #pass__ = self.takePass('pass.txt')
-        #a, b, c, d = self.getDriver(pass__)
-        #self.phillOut(a, b, c, d)
+        try:
+            pass__ = self.takePass('pass.txt')
+            a, b, c, d = self.getDriver(pass__)
+            self.phillOut(a, b, c, d)
+        except Exception:
+            print('Error with pass__')
 
     def deleteDeclined(self):
         """
-            Function calculates amount of orders in orders table and deletes the last one.
+            Function calculates amount of orders in journey table and deletes the last one.
         :return:
         """
-        last_order_id = BackEnd().getLastRowOrders()
-        dataz().Delete_Row_orders(last_order_id)
+        last_order_id = BackEnd().getLastRowJourneys()
+        dataz().Delete_Row_journey(last_order_id)
 
     def findOrderButton(self):
-        start_location, destination, order_id = BackEnd().findLastOrder()
+        start_location, destination, order_id = BackEnd().findLastJourney()
         self.getNewOrder(start_location, destination)
         self.ui20.from_value.setText(start_location)
         self.ui20.To_value.setText(destination)

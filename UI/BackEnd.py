@@ -118,19 +118,19 @@ class BackEnd(object):
             list_of_phone_numbers.append(record[4])
         return list_of_phone_numbers
 
-    def findLastOrder(self):
+    def findLastJourney(self):
         """
             Selects the last order.
         :return: start_location, destination, order_id
         """
         connection = sqlite3.connect("assessment2.db")
 
-        sql_select_Query = "select * from orders"
+        sql_select_Query = "select * from journey"
         cursor = connection.cursor()
         cursor.execute(sql_select_Query)
         records = cursor.fetchall()
-        start_location = records[len(records) - 1][0]
-        destination = records[len(records) - 1][1]
+        start_location = records[len(records) - 1][5]
+        destination = records[len(records) - 1][6]
         order_id = records[len(records) - 1][2]
         return start_location, destination, order_id
 
