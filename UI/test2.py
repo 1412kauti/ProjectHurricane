@@ -22,28 +22,22 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Insert_Into_customers(z,y,x,w,v,u):
+    def Insert_Into_customers(z,y,x,w,v,u,t,s,r,q,p):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
-        c.execute("INSERT INTO customers (first_name,last_name,email,phone_number,password,payment_method) VALUES(?,?,?,?,?,?)",(z,y,x,w,v,u))
+        c.execute("INSERT INTO customers (first_name,last_name,email,phone_number,password,payment_method,card_name,card_number,CVV,paypal_email,paypal_password) VALUES(?,?,?,?,?,?,?,?,?,?,?)",(z,y,x,w,v,u,t,s,r,q,p,))
         conn.commit()
     
     @staticmethod    
-    def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q,p):
+    def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q,p,o,n,m,l):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO drivers
-        (first_name, last_name, email, password, phone_number, driver_license, license_expiry, car_class, car_license_plate_number, car_make, car_colour) VALUES (?,?,?,?,?,?,?,?,?,?,?)""", (z,y,x,w,v,u,t,s,r,q,p))
-        conn.commit()
-
-    @staticmethod
-    def Insert_Into_admins():
-        c.execute("""INSERT INTO admins
-        (first_name, last_name, email, phone_number, password) VALUES ('haos', 'zhong', 'hao123', 07412566921, 'password')""")
+        (first_name, last_name, email, password, phone_number, driver_license, license_expiry, car_class, car_license_plate_number, car_make, car_colour,account_name,account_number,sort_code,payme_link) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,))
         conn.commit()
 
     @staticmethod
@@ -54,27 +48,6 @@ class dataz():
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO journey
         (Date, Time, Journey_ID, user_ID, customer_name, start_location, End_Location, driver_name, car_number, Car_Class, Car_Make, Car_Colour, Price, Distance) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,user_ID, customer_name, start_point,end_point,driver_name,car_number,car_type,car_make,car_color,price,distance,))
-        conn.commit()
-
-    @staticmethod
-    def Insert_into_customer_payments(z,y,x,w,v):
-        import sqlite3
-        conn = sqlite3.connect("assessment2.db")
-        c = conn.cursor()
-        c.execute('''PRAGMA journal_mode = WAL''')
-        c.execute("""INSERT INTO customer_payment
-        (name, card_number, cvv, email, password)
-        VALUES (?,?,?,?,?)""", (z,y,x,w,v))
-        conn.commit()
-
-    @staticmethod
-    def Insert_into_driver_payments(z,y,x,w,v,u):
-        import sqlite3
-        conn = sqlite3.connect("assessment2.db")
-        c = conn.cursor()
-        c.execute("""INSERT INTO driver_payments
-        (name, account_number, sort_code, payme_link)
-        VALUES (?,?,?,?,?,?)""", (z,y,x,w,v,u))
         conn.commit()
 
     @staticmethod
@@ -557,93 +530,6 @@ class dataz():
         c.execute("""UPDATE journey
         SET status = ?
         WHERE journey_ID = ?""", (status,journeyID,))
-        conn.commit()
-
-    @staticmethod
-    def update_userID_by_email_customers_payments():
-        c.execute("""UPDATE customer_payment
-        SET user_ID = (SELECT user_ID FROM customers WHERE customer_payment.email = customers.email)""")
-        conn.commit()
-
-    @staticmethod
-    def update_userID_by_name_customers_payments():
-        c.execute("""UPDATE customer_payment
-        SET user_ID = (SELECT user_ID FROM customers WHERE customer_payment.name = customers.first_name)""")
-        conn.commit()
-
-    @staticmethod
-    def Update_name_customer_payment(name,userID):
-        c.execute("""UPDATE customer_payment
-        SET name = ?
-        WHERE user_ID = ?""", (name,userID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_card_number_customer_payment(card_number,userID):
-        c.execute("""UPDATE customer_payment
-        SET card_number = ?
-        WHERE user_ID = ?""", (card_number,userID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_cvv_customer_payment(cvv,userID):
-        c.execute("""UPDATE customer_payment
-        SET cvv = ?
-        WHERE user_ID = ?""", (cvv,userID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_email_customer_payment(email,userID):
-        c.execute("""UPDATE customer_payment
-        SET email = ?
-        WHERE user_ID = ?""", (email,userID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_password_customer_payment(password,userID):
-        c.execute("""UPDATE customer_payment
-        SET password = ?
-        WHERE user_ID = ?""", (password,userID,))
-        conn.commit()
-
-    @staticmethod
-    def update_driverID_by_email_driver_payment():
-        c.execute("""UPDATE driver_payment
-        SET driver_ID = (SELECT driver_ID FROM drivers WHERE driver_payment.email = drivers.email)""")
-        conn.commit()
-
-    @staticmethod
-    def update_driverID_by_email_driver_payment():
-        c.execute("""UPDATE driver_payment
-        SET driver_ID = (SELECT driver_ID FROM drivers WHERE driver_payment.name = drivers.first_name)""")
-        conn.commit()
-
-    @staticmethod
-    def Update_name_driver_payments(name,driverID):
-        c.execute("""UPDATE driver_payments
-        SET name = ?
-        WHERE driver_ID = ?""", (name,driverID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_account_number_driver_payments(account_number,driverID):
-        c.execute("""UPDATE driver_payments
-        SET account_number = ?
-        WHERE driver_ID = ?""", (account_number,driverID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_sort_code_driver_payments(sort_code,driverID):
-        c.execute("""UPDATE driver_payments
-        SET sort_code = ?
-        WHERE driver_ID = ?""", (sort_code,driverID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_payme_link_driver_payments(payme_link,driverID):
-        c.execute("""UPDATE driver_payments
-        SET payme_link = ?
-        WHERE driver_ID = ?""", (payme_link,driverID,))
         conn.commit()
 
     @staticmethod
