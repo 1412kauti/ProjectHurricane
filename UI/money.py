@@ -830,6 +830,7 @@ class LoginScreen(QtWidgets.QWidget):
         self.ui2.driver_ForgotPass.clicked.connect(self.forgetPass)
         self.ui2.user_Submit.clicked.connect(self.userChecker)
         self.ui2.driver_Submit.clicked.connect(self.driverChecker)
+        self.ui2.admin_Submit.clicked.connect(self.adminChecker)
 
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -849,6 +850,42 @@ class LoginScreen(QtWidgets.QWidget):
         self.o21 = DriverScreen()
         self.o21.show()
         id_ = DriverScreen().takePass('pass.txt')
+        self.close()
+
+    def adminChecker(self):
+        admin1 = {
+            'nick': 'hulksmash',
+            'empID': '777',
+            'psw': 'qwerty'
+        }
+        admin2 = {
+            'nick': 'kauti',
+            'empID': '666',
+            'psw': 'qwerty'
+        }
+        admin3 = {
+            'nick': 'evalien',
+            'empID': '007',
+            'psw': 'qwerty'
+        }
+        if self.ui2.adminLoginEC.text() == admin1['nick']  and \
+                self.ui2.adminPass.text() == admin1['psw'] and \
+                self.ui2.empID.text() == admin1['empID']:
+            self.openAdminLogin()
+        elif self.ui2.adminLoginEC.text() == admin2['nick']  and \
+                self.ui2.adminPass.text() == admin2['psw'] and \
+                self.ui2.empID.text() == admin2['empID']:
+            self.openAdminLogin()
+        elif self.ui2.adminLoginEC.text() == admin3['nick'] and \
+                self.ui2.adminPass.text() == admin3['psw'] and \
+                self.ui2.empID.text() == admin3['empID']:
+            self.openAdminLogin()
+        else:
+            self.ui2.user_login_Fail.setText("Try Again")
+
+    def openAdminLogin(self):
+        self.o22 = AdminScreen()
+        self.o22.show()
         self.close()
 
     def pushToTxt(self, file, id):
