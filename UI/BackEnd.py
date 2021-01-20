@@ -155,30 +155,3 @@ class BackEnd(object):
         cursor.execute(sql_select_Query)
         records = cursor.fetchall()
         return records[len(records) - 1][2]
-
-    def getLenOrders(self):
-        connection = sqlite3.connect("assessment2.db")
-
-        sql_select_Query = "select * from journey"
-        cursor = connection.cursor()
-        cursor.execute(sql_select_Query)
-        records = cursor.fetchall()
-        return len(records)
-
-    def getLenCustomers(self):
-        connection = sqlite3.connect("assessment2.db")
-
-        sql_select_Query = "select * from customers"
-        cursor = connection.cursor()
-        cursor.execute(sql_select_Query)
-        records = cursor.fetchall()
-        return len(records)
-
-    def getLenDrivers(self):
-        connection = sqlite3.connect("assessment2.db")
-
-        sql_select_Query = "select * from drivers"
-        cursor = connection.cursor()
-        cursor.execute(sql_select_Query)
-        records = cursor.fetchall()
-        return len(records)

@@ -699,20 +699,15 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def create_an_empty_row_by_admin(table):
-        row = None
-        len_orders = int(BackEnd().getLenOrders())
-        len_customers = int(BackEnd().getLenCustomers())
-        len_drivers = int(BackEnd().getLenDrivers())
+    def create_row_by_admin(table):
+        dv = 'new'
         if table == 'Journey':
-            row = len_orders + 1
+            dataz().Insert_Into_journey(dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv)
         elif table == 'Customers':
-            row = len_customers + 1
+            dataz().Insert_Into_customers(dv,dv,dv,dv,dv,dv)
         elif table == 'Drivers':
-            row = len_drivers + 1
-        table = table.lower()
-        c.execute()
-        conn.commit()
+            dataz().Insert_Into_drivers(dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv)
+
 
     @staticmethod
     def Delete_Row_by_admin(table, row):
@@ -720,4 +715,6 @@ class dataz():
         conn.commit()
 
 v = dataz
-v.create_an_empty_row_by_admin('customers')
+v.create_row_by_admin('Journey')
+v.create_row_by_admin('Customers')
+v.create_row_by_admin('Drivers')

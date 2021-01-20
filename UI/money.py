@@ -49,7 +49,7 @@ class AdminScreen(QtWidgets.QWidget):
 
     def Insert_value(self):
         t = self.ui21.comboBox.currentText()
-        dataz().create_an_empty_row_by_admin(t)
+        dataz().create_row_by_admin(t)
 
 
     def Update_Values(self):
