@@ -552,8 +552,8 @@ class Driver_Paypal(QtWidgets.QWidget):
         driver_card_account_number = 0
         driver_sort_code = 0
         self.d5 = dataz()
-        self.d5.Insert_into_driver_payments(driver_card_name, driver_card_account_number, driver_sort_code,
-                                            driver_paypal_payme)
+        self.d5.payment_method_driver(driver_card_name, driver_card_account_number, driver_sort_code,
+                                            driver_paypal_payme,driver_first_name)
 
 
 class Driver_Card(QtWidgets.QWidget):
@@ -584,8 +584,8 @@ class Driver_Card(QtWidgets.QWidget):
         driver_sort_code = str(driver_sort_code1) + "-" + str(driver_sort_code2) + "-" + str(driver_sort_code3)
         driver_paypal_payme = 0
         self.d4 = dataz()
-        self.d4.Insert_into_driver_payments(driver_card_name, driver_card_account_number, driver_sort_code,
-                                            driver_paypal_payme)
+        self.d4.payment_method_driver(driver_card_name, driver_card_account_number, driver_sort_code,
+                                            driver_paypal_payme,driver_first_name)
 
 
 class User_Paypal(QtWidgets.QWidget):
@@ -614,8 +614,8 @@ class User_Paypal(QtWidgets.QWidget):
         user_card_number = 0
         user_card_cvv = 0
         self.d3 = dataz()
-        self.d3.Insert_into_customer_payments(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
-                                              user_paypal_password)
+        self.d3.payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
+                                              user_paypal_password,user_first_name)
 
 
 class User_Card(QtWidgets.QWidget):
@@ -644,8 +644,8 @@ class User_Card(QtWidgets.QWidget):
         user_paypal_email = 0
         user_paypal_password = 0
         self.d2 = dataz()
-        self.d2.Insert_into_customer_payments(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
-                                              user_paypal_password)
+        self.d2.payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
+                                              user_paypal_password,user_first_name)
 
 
 class RegisterScreen(QtWidgets.QWidget):
@@ -932,6 +932,7 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.User_Confirm_Password_Text.textEdited.emit(self.ui3.User_Confirm_Password_Text.text())
 
     def take_user_inputs(self):
+        global user_first_name
         user_first_name = self.ui3.User_First_Name_Text.text()
         user_last_name = self.ui3.User_Last_Name_Text.text()
         user_email = self.ui3.User_Email_Text.text()
@@ -939,10 +940,10 @@ class RegisterScreen(QtWidgets.QWidget):
         user_password = self.ui3.User_Password_Text.text()
         user_payment = self.ui3.comboBox.currentText()
         self.d1 = dataz()
-        self.d1.Insert_Into_customers(user_first_name, user_last_name, user_email, user_contact_number, user_password,
-                                      user_payment)
+        self.d1.Insert_Into_customers(user_first_name, user_last_name, user_email, user_contact_number, user_password, user_payment)
 
     def take_driver_inputs(self):
+        global driver_first_name
         driver_first_name = self.ui3.Driver_First_Name_Text.text()
         driver_last_name = self.ui3.Driver_Last_Name_Text.text()
         driver_email = self.ui3.Driver_Email_Text.text()
@@ -954,9 +955,7 @@ class RegisterScreen(QtWidgets.QWidget):
         driver_car_color = self.ui3.Driver_Car_Color.text()
         driver_payment = self.ui3.comboBox_2.currentText()
         self.d2 = dataz()
-        self.d2.Insert_Into_drivers(driver_first_name, driver_last_name, driver_email, driver_password,
-                                    driver_contact_number, driver_license, driver_car_license, driver_car_make,
-                                    driver_car_color, driver_payment)
+        self.d2.Insert_Into_drivers(driver_first_name, driver_last_name, driver_email, driver_password, driver_contact_number, driver_license, driver_car_license, driver_car_make, driver_car_color, driver_payment)
 
     def open_User_Card(self):
         self.o2 = User_Card()
