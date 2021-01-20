@@ -312,14 +312,14 @@ class dataz():
             raise OSError("User doesn't exist")
 
     @staticmethod
-    def payment_method_customers(card_name,card_number,CVV,paypal_email,paypal_password,userID):
+    def payment_method_customers(card_name,card_number,CVV,paypal_email,paypal_password,first_name):
         c.execute("""UPDATE customers
         SET card_name = ?
             ,card_number = ?
             ,CVV = ?
             ,paypal_email = ?
             ,paypal_password = ?
-        WHERE user_ID = ?""", (card_name,card_number,CVV,paypal_email,paypal_password,userID,))
+        WHERE first_name = ?""", (card_name,card_number,CVV,paypal_email,paypal_password,first_name,))
         conn.commit()
 
     @staticmethod
@@ -370,13 +370,13 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def payment_method_driver(account_name,account_number,sort_code,payme_link,userID):
+    def payment_method_driver(account_name,account_number,sort_code,payme_link,first_name):
         c.execute("""UPDATE customers
         SET account_name = ?
             ,account_number = ?
             ,sort_code = ?
             ,payme_link = ?
-        WHERE user_ID = ?""", (account_name,account_number,sort_code,payme_link,userID,))
+        WHERE first_name = ?""", (account_name,account_number,sort_code,payme_link,first_name,))
         conn.commit()
 
     @staticmethod
