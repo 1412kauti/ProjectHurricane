@@ -582,7 +582,17 @@
          </column>
          <column>
           <property name="text">
+           <string>End Location</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
            <string>Driver Name</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Car Number</string>
           </property>
          </column>
          <column>
@@ -592,7 +602,7 @@
          </column>
          <column>
           <property name="text">
-           <string>Car Make</string>
+           <string/>
           </property>
          </column>
          <column>

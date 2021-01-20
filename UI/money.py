@@ -52,7 +52,6 @@ class AdminScreen(QtWidgets.QWidget):
         print(t)
         dataz().create_row_by_admin(t)
 
-
     def Update_Values(self):
         table = self.ui21.comboBox.currentText()
         column = self.ui21.select_Column_Label.text()
@@ -68,6 +67,7 @@ class AdminScreen(QtWidgets.QWidget):
     def hit_refresh(self):
         self.ui21 = AdminScreen()
         self.ui21.show()
+        self.close()
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:

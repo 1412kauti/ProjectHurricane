@@ -701,7 +701,7 @@ class dataz():
     @staticmethod
     def create_row_by_admin(table):
         dv = 'new'
-        if table == 'Journey':
+        if table == 'Journeys':
             dataz().Insert_Into_journey(dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv)
         elif table == 'Customers':
             dataz().Insert_Into_customers(dv,dv,dv,dv,dv,dv)
