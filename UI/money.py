@@ -23,6 +23,7 @@ from change_User_Email import Ui_Form as ui17
 from change_User_Password import Ui_Form as ui18
 from change_User_Phone_Number import Ui_Form as ui19
 from DriverScreen import Ui_Form as ui20
+from AdminScreen import Ui_Form as ui21
 from BackEnd import BackEnd
 from random import randint
 import numpy as np
@@ -31,6 +32,24 @@ import re
 
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
+class AdminScreen(QtWidgets.QWidget):
+    def __init__(self):
+        super(AdminScreen,self).__init__()
+        self.ui21 = ui21()
+        self.ui21.setupUi(self)
+        self.qss()
+        self.ui21.Refresh_Btn.clicked.connect(self.hit_refresh)
+    def hit_Logout(self):
+        self.oz = LoginScreen()
+        self.oz.show()
+        self.close()
+    def hit_refresh(self):
+        self.ui21 = AdminScreen()
+        self.ui21.show()
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
 
 class change_User_Phone_Number(QtWidgets.QWidget):
     def __init__(self):
@@ -165,6 +184,7 @@ class change_User_FirstName(QtWidgets.QWidget):
         self.ui15.setupUi(self)
         self.ui15.ChangeFirstNameBtn.clicked.connect(self.hit_Submit)
         self.qss()
+
     def hit_Submit(self):
         self.database_connectinator()
         self.o21 = UserMainScreen()
@@ -180,7 +200,7 @@ class change_User_FirstName(QtWidgets.QWidget):
         with open(file, 'r') as f:
             id_ = f.read()
             return id_
-            
+
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
