@@ -117,20 +117,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Submit</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="user_ForgotPass">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Forgot Username/Password?</string>
+         <string>Login</string>
         </property>
        </widget>
       </item>
@@ -182,20 +169,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Submit</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="driver_ForgotPass">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>Forgot Username/Password?</string>
+         <string>Login</string>
         </property>
        </widget>
       </item>

@@ -358,7 +358,12 @@ class dataz():
         SET email = ?
         WHERE user_ID = ?""", (email,userID,))
         conn.commit()
-        
+    @staticmethod
+    def Update_Email_drivers(email,userID):
+        c.execute("""UPDATE drivers
+        SET email = ?
+        WHERE user_ID = ?""", (email,userID,))
+        conn.commit()
     @staticmethod
     def Update_phone_number_customers(phone_number,userID):
         c.execute("""UPDATE customers
