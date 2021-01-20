@@ -42,6 +42,7 @@ class AdminScreen(QtWidgets.QWidget):
         self.loadcustomers()
         self.loaddrivers()
         self.ui21.Refresh_Btn.clicked.connect(self.hit_refresh)
+        self.ui21.Logout_Btn.clicked.connect(self.hit_Logout)
     def hit_Logout(self):
         self.oz = LoginScreen()
         self.oz.show()
