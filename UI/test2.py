@@ -22,22 +22,22 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Insert_Into_customers(z,y,x,w,v,u,t,s,r,q,p):
+    def Insert_Into_customers(z,y,x,w,v,u):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
-        c.execute("INSERT INTO customers (first_name,last_name,email,phone_number,password,payment_method,card_name,card_number,CVV,paypal_email,paypal_password) VALUES(?,?,?,?,?,?,?,?,?,?,?)",(z,y,x,w,v,u,t,s,r,q,p,))
+        c.execute("INSERT INTO customers (first_name,last_name,email,phone_number,password,payment_method) VALUES(?,?,?,?,?,?)",(z,y,x,w,v,u))
         conn.commit()
     
     @staticmethod    
-    def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q,p,o,n,m,l):
+    def Insert_Into_drivers(z,y,x,w,v,u,t,s,r,q,p):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO drivers
-        (first_name, last_name, email, password, phone_number, driver_license, license_expiry, car_class, car_license_plate_number, car_make, car_colour,account_name,account_number,sort_code,payme_link) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,))
+        (first_name, last_name, email, password, phone_number, driver_license, license_expiry, car_class, car_license_plate_number, car_make, car_colour) VALUES (?,?,?,?,?,?,?,?,?,?,?)""", (z,y,x,w,v,u,t,s,r,q,p))
         conn.commit()
 
     @staticmethod
