@@ -45,6 +45,12 @@ class AdminScreen(QtWidgets.QWidget):
         self.ui21.Logout_Btn.clicked.connect(self.hit_Logout)
         self.ui21.UpdateValueBtn.clicked.connect(self.Update_Values)
         self.ui21.DeleteValueBtn.clicked.connect(self.Delete_Row)
+        self.ui21.InsertValueBtn.clicked.connect(self.Insert_value)
+
+    def Insert_value(self):
+        t = self.ui21.comboBox.currentText()
+        dataz().create_an_empty_row_by_admin(t)
+
 
     def Update_Values(self):
         table = self.ui21.comboBox.currentText()

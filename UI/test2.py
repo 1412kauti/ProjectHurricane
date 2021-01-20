@@ -1,6 +1,8 @@
 import sqlite3
+from BackEnd import BackEnd
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
+
 class dataz():
     @staticmethod
     def Create_Table():
@@ -697,10 +699,25 @@ class dataz():
         conn.commit()
 
     @staticmethod
+    def create_an_empty_row_by_admin(table):
+        row = None
+        len_orders = int(BackEnd().getLenOrders())
+        len_customers = int(BackEnd().getLenCustomers())
+        len_drivers = int(BackEnd().getLenDrivers())
+        if table == 'Journey':
+            row = len_orders + 1
+        elif table == 'Customers':
+            row = len_customers + 1
+        elif table == 'Drivers':
+            row = len_drivers + 1
+        table = table.lower()
+        c.execute()
+        conn.commit()
+
+    @staticmethod
     def Delete_Row_by_admin(table, row):
         c.execute(f"DELETE FROM {table} where rowid = ?", (row,))
         conn.commit()
 
 v = dataz
-# v.update_userID_by_name_journey()
-v.Update_something_by_admin('drivers', 'first_name', '4', 'Dmitry')
+v.create_an_empty_row_by_admin('customers')
