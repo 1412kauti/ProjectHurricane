@@ -43,7 +43,7 @@ class change_User_Phone_Number(QtWidgets.QWidget):
     def database_connectinator(self):
         pass__ = self.takePass('pass.txt')
         phnn = self.ui19.change_User_PhoneNumber_Label.text()
-        dataz().Update_Last_Name_customers(phnn,pass__)
+        dataz().Update_phone_number_customers(phnn,pass__)
 
     def takePass(self, file):
         with open(file, 'r') as f:
@@ -68,6 +68,31 @@ class change_User_Password(QtWidgets.QWidget):
         self.ui18 = ui18()
         self.ui18.setupUi(self)
         self.qss()
+        self.ui18.changePasswordBtn.clicked.connect(self.pass_validator)
+
+    def hit_Submit(self):
+        self.database_connectinator()
+        self.o21 = UserMainScreen()
+        self.o21.show()
+        self.close()
+
+    def pass_validator(self):
+        new_password = self.ui18.change_User_Password_Label.text()
+        conf_new_password = self.ui18.change_User_Confirm_Password_Label.text()
+        if new_password == conf_new_password:
+            self.hit_Submit()
+        else:
+            self.ui18.Passwords_Mismatch.setText('Passwords Mismatch')
+        
+    def database_connectinator(self):
+        pass__ = self.takePass('pass.txt')
+        emailn = self.ui18.change_User_Password_Label.text()
+        dataz().Update_password_customers(emailn,pass__)
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
         
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -155,6 +180,7 @@ class change_User_FirstName(QtWidgets.QWidget):
         with open(file, 'r') as f:
             id_ = f.read()
             return id_
+            
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
@@ -170,6 +196,11 @@ class User_Submit_Payment(QtWidgets.QWidget):
 
     def clos(self):
         self.close()
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
 
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -954,10 +985,9 @@ class UserMainScreen(QtWidgets.QWidget):
     def loaddata(self):
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
-        userID = 6
         sqlstr = """SELECT * FROM journey WHERE user_ID = 6 AND status = 'complete'"""
         tablerow = 0
-        results = cur.execute(sqlstr, (userID,))
+        results = cur.execute(sqlstr)
         self.ui13.tableWidget.setRowCount(40)
         for row in results:
             self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
