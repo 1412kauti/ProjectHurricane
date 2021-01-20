@@ -38,6 +38,9 @@ class AdminScreen(QtWidgets.QWidget):
         self.ui21 = ui21()
         self.ui21.setupUi(self)
         self.qss()
+        self.loadjourneys()
+        self.loadcustomers()
+        self.loaddrivers()
         self.ui21.Refresh_Btn.clicked.connect(self.hit_refresh)
     def hit_Logout(self):
         self.oz = LoginScreen()
@@ -50,6 +53,63 @@ class AdminScreen(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
+
+    def loadjourneys(self):
+        connection = sqlite3.connect('assessment2.db')
+        cur = connection.cursor()
+        sqlstr = """SELECT * FROM journey"""
+        tablerow = 0
+        results = cur.execute(sqlstr)
+        self.ui21.Journeys_Table.setRowCount(40)
+        for row in results:
+            self.ui21.Journeys_Table.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.ui21.Journeys_Table.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.ui21.Journeys_Table.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.ui21.Journeys_Table.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(row[5]))
+            self.ui21.Journeys_Table.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(row[6]))
+            self.ui21.Journeys_Table.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(row[8]))
+            self.ui21.Journeys_Table.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(row[9]))
+            self.ui21.Journeys_Table.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(row[10]))
+            self.ui21.Journeys_Table.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(row[11]))
+            self.ui21.Journeys_Table.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(row[12]))
+            self.ui21.Journeys_Table.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(row[13]))
+            self.ui21.Journeys_Table.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(row[14]))
+            self.ui21.Journeys_Table.setItem(tablerow, 12, QtWidgets.QTableWidgetItem(row[15]))
+            tablerow += 1
+
+    def loadcustomers(self):
+        connection = sqlite3.connect('assessment2.db')
+        cur = connection.cursor()
+        sqlstr = """SELECT * FROM customers"""
+        tablerow = 0
+        results = cur.execute(sqlstr)
+        self.ui21.Customers_Table.setRowCount(40)
+        for row in results:
+            self.ui21.Customers_Table.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.ui21.Customers_Table.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.ui21.Customers_Table.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.ui21.Customers_Table.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(row[5]))
+            self.ui21.Customers_Table.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(row[6]))
+            tablerow += 1
+
+    def loaddrivers(self):
+        connection = sqlite3.connect('assessment2.db')
+        cur = connection.cursor()
+        sqlstr = """SELECT * FROM drivers"""
+        tablerow = 0
+        results = cur.execute(sqlstr)
+        self.ui21.Drivers_Table.setRowCount(40)
+        for row in results:
+            self.ui21.Drivers_Table.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
+            self.ui21.Drivers_Table.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(row[1]))
+            self.ui21.Drivers_Table.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(row[2]))
+            self.ui21.Drivers_Table.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(row[5]))
+            self.ui21.Drivers_Table.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(row[6]))
+            self.ui21.Drivers_Table.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(row[8]))
+            self.ui21.Drivers_Table.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(row[9]))
+            self.ui21.Drivers_Table.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(row[10]))
+            self.ui21.Drivers_Table.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(row[11]))
+            tablerow += 1
 
 class change_User_Phone_Number(QtWidgets.QWidget):
     def __init__(self):
