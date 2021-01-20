@@ -48,7 +48,8 @@ class AdminScreen(QtWidgets.QWidget):
         self.ui21.InsertValueBtn.clicked.connect(self.Insert_value)
 
     def Insert_value(self):
-        t = self.ui21.comboBox.currentText()
+        t = str(self.ui21.comboBox.currentText())
+        print(t)
         dataz().create_row_by_admin(t)
 
 
