@@ -43,6 +43,8 @@ class AdminScreen(QtWidgets.QWidget):
         self.loaddrivers()
         self.ui21.Refresh_Btn.clicked.connect(self.hit_refresh)
         self.ui21.Logout_Btn.clicked.connect(self.hit_Logout)
+        self.ui21.UpdateValueBtn.clicked.connect(self.Update_Values)
+        self.ui21.DeleteValueBtn.clicked.connect(self.Delete_Row)
     def hit_Logout(self):
         self.oz = LoginScreen()
         self.oz.show()
@@ -111,6 +113,20 @@ class AdminScreen(QtWidgets.QWidget):
             self.ui21.Drivers_Table.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(row[10]))
             self.ui21.Drivers_Table.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(row[11]))
             tablerow += 1
+
+    def Update_Values(self):
+        select_Table = self.ui21.comboBox.currentText()
+        select_Column = self.ui21.select_Column_Label.text()
+        select_Row = self.ui21.select_Row_Label.text()
+        change_Value = self.ui21.value_Change.text()
+        dataz()
+    
+    def Delete_Row(self):
+        select_Table = self.ui21.comboBox.currentText()
+        select_Column = self.ui21.select_Column_Label.text()
+        select_Row = self.ui21.select_Row_Label.text()
+        change_Value = self.ui21.value_Change.text()
+        dataz()
 
 class change_User_Phone_Number(QtWidgets.QWidget):
     def __init__(self):
