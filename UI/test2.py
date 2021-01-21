@@ -496,7 +496,7 @@ class dataz():
 
     @staticmethod
     #staticmethod is used here to make sure that this function can't interact with parts of the database i don't want it to.
-    def Update_Card_drivers(name,number,code,payme_link,first_name):
+    def Update_payment_method_drivers(name,number,code,payme_link,first_name):
         c.execute("""UPDATE drivers
         SET account_name = ?, acccount_number = ? , sort_code = ? , payme_link = ?
         WHERE first_name = ?""", (name,number,code,payme_link,first_name,))

@@ -1149,7 +1149,7 @@ class User_Paypal(QtWidgets.QWidget):
         user_card_name = 0
         user_card_number = 0
         user_card_cvv = 0
-        dataz().payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
+        dataz().Update_payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
                                               user_paypal_password,user_first_name)
 #Classes provide a means of bundling data and functionality together
 class User_Card(QtWidgets.QWidget):
