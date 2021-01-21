@@ -386,12 +386,23 @@ class dataz():
 
     @staticmethod
     #staticmethod is used here to make sure that this function can't interact with parts of the database i don't want it to.
-    def Update_payemnt_method_customers(name,number,cvv,paypal_email,paypal_password,first_name):
+    def input_card_infoamtion_customers(name,number,cvv,first_name):
         c.execute("""UPDATE customers
-        SET card_name = ?, card_number = ?, CVV = ? , paypal_email = ? ,paypal_password = ?
-        WHERE first_name = ?""", (name,number,cvv,paypal_email,paypal_password,first_name,))
+        SET card_name = ?, card_number = ?, CVV = ? 
+        WHERE first_name = ?""", (name,number,cvv,first_name,))
         """
-        inputs the card and paypal infomation of a specfic customer into the correct row in the database
+        inputs the card infomation of a specfic customer into the correct row in the database
+        """
+        conn.commit()
+
+    @staticmethod
+    #staticmethod is used here to make sure that this function can't interact with parts of the database i don't want it to.
+    def input_paypal_infoamtion_customers(paypal_email,paypal_password,first_name):
+        c.execute("""UPDATE customers
+        SET paypal_email = ?, paypal_password = ?
+        WHERE first_name = ?""", (paypal_email,paypal_password,first_name,))
+        """
+        inputs the paypal infomation of a specfic customer into the correct row in the database
         """
         conn.commit()
 
@@ -496,14 +507,25 @@ class dataz():
 
     @staticmethod
     #staticmethod is used here to make sure that this function can't interact with parts of the database i don't want it to.
-    def Update_payment_method_drivers(name,number,code,payme_link,first_name):
+    def input_card_infomation_drivers(name,number,code,first_name):
         c.execute("""UPDATE drivers
-        SET account_name = ?, acccount_number = ? , sort_code = ? , payme_link = ?
-        WHERE first_name = ?""", (name,number,code,payme_link,first_name,))
+        SET account_name = ?, acccount_number = ? , sort_code = ? 
+        WHERE first_name = ?""", (name,number,code,first_name,))
         """
-        inputs the card and paypal infomation of a specific driver into the correct row in the database
+        inputs the card infomation of a specific driver into the correct row in the database
         """
         conn.commit()
+
+    @staticmethod
+    #staticmethod is used here to make sure that this function can't interact with parts of the database i don't want it to.
+    def input_paypal_infomation_drivers(payme_link,first_name):
+        c.execute("""UPDATE drivers
+        SET payme_link = ?
+        WHERE first_name = ?""", (payme_link,first_name,))
+        """
+        inputs the paypal infomation of a specific driver into the correct row in the database
+        """
+        conn.commit()        
 
     @staticmethod
     #staticmethod is used here to make sure that this function can't interact with parts of the database i don't want it to.
