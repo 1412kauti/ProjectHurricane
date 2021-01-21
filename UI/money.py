@@ -1051,7 +1051,7 @@ class Driver_Paypal(QtWidgets.QWidget):
         driver_card_account_number = 0
         driver_sort_code = 0
         self.d5 = dataz()
-        self.d5.payment_method_driver(driver_card_name, driver_card_account_number, driver_sort_code,
+        self.d5.Update_payment_method_drivers(driver_card_name, driver_card_account_number, driver_sort_code,
                                             driver_paypal_payme,driver_first_name)
 #Classes provide a means of bundling data and functionality together
 class Driver_Card(QtWidgets.QWidget):
@@ -1103,7 +1103,7 @@ class Driver_Card(QtWidgets.QWidget):
         driver_sort_code = str(driver_sort_code1) + "-" + str(driver_sort_code2) + "-" + str(driver_sort_code3)
         driver_paypal_payme = 0
         self.d4 = dataz()
-        self.d4.payment_method_driver(driver_card_name, driver_card_account_number, driver_sort_code,
+        self.d4.Update_payment_method_drivers(driver_card_name, driver_card_account_number, driver_sort_code,
                                             driver_paypal_payme,driver_first_name)
 #Classes provide a means of bundling data and functionality together
 class User_Paypal(QtWidgets.QWidget):
@@ -1197,7 +1197,7 @@ class User_Card(QtWidgets.QWidget):
         user_paypal_email = 0
         user_paypal_password = 0
         self.d2 = dataz()
-        self.d2.payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
+        self.d2.Update_payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
                                               user_paypal_password,user_first_name)
 #Classes provide a means of bundling data and functionality together
 class RegisterScreen(QtWidgets.QWidget):
