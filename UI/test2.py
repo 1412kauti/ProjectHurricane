@@ -486,41 +486,6 @@ class dataz():
         SET bank_account = ?
         WHERE driver_ID = ?""", (bank_account,driverID,))
         conn.commit()
-
-    @staticmethod
-    def Update_first_name_admins(first_name,employeeID):
-        c.execute("""UPDATE admins
-        SET first_name = ?
-        WHERE employee_ID = ?""", (first_name,employeeID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_last_name_admins(last_name,employeeID):
-        c.execute("""UPDATE admins
-        SET last_name = ?
-        WHERE employee_ID = ?""", (last_name,employeeID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_email_admins(email,employeeID):
-        c.execute("""UPDATE admins
-        SET email = ?
-        WHERE employee_ID = ?""", (email,employeeID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_phone_number_admins(phone_number,employeeID):
-        c.execute("""UPDATE admins
-        SET phone_number = ?
-        WHERE employee_ID = ?""", (phone_number,employeeID,))
-        conn.commit()
-
-    @staticmethod
-    def Update_password_admins(password,employeeID):
-        c.execute("""UPDATE admins
-        SET password = ?
-        WHERE employee_ID = ?""", (password,employeeID,))
-        conn.commit()
         
     @staticmethod
     def update_userID_by_name_journey():
