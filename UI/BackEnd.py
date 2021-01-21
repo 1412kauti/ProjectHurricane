@@ -77,11 +77,12 @@ class BackEnd(object):
         records = cursor.fetchall()
         r = randint(0, len(records) - 1)
         driver = records[r]
-        driver_name = str(driver[0]) + ' ' + str(driver[1])
+        driver_first_name = str(driver[0])
+        driver_last_name = str(driver[1])
         car_number = driver[8]
         car_make = driver[9]
         car_color = driver[10]
-        return driver_name, car_number, car_make, car_color
+        return driver_first_name, driver_last_name, car_number, car_make, car_color
 
     def customerEmailList(self):
         """List with the customers' emails"""

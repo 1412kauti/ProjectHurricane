@@ -1340,7 +1340,8 @@ class UserMainScreen(QtWidgets.QWidget):
         price = format(price, '.2f') + '£'
         date, time = BackEnd().getDateAndTime()
         jID = BackEnd().getJourneyID()
-        driver_name, car_number, car_make, car_color = BackEnd().assignTheDriver()
+        driver_first_name, driver_last_name, car_number, car_make, car_color = BackEnd().assignTheDriver()
+        driver_name = driver_first_name + ' ' + driver_last_name
         eta = BackEnd().getETA()
         self.ui13.Upcoming_Date_Lbl.setText(date)
         self.ui13.Upcoming_Time_Lbl.setText(time)
@@ -1357,7 +1358,8 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.Distance_Label.setText(distance)
         userID = self.takePass('pass.txt')
         customer_name, b, c, d = self.getCustomer(userID)
-        dataz().Insert_Into_journey(date,time,jID,userID, customer_name, start_point,end_point,driver_name, car_number, car_type,car_make,car_color,price,distance)
+        driverID = dataz().get_driver_driverID_by_first_name(driver_first_name)
+        dataz().Insert_Into_journey(date,time,jID,userID, customer_name, start_point,end_point, driverID, driver_name, car_number, car_type,car_make,car_color,price,distance)
     def loaddata(self):
         """Previous trips tab"""
         connection = sqlite3.connect('assessment2.db')

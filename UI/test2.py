@@ -41,13 +41,13 @@ class dataz():
         conn.commit()
 
     @staticmethod
-    def Insert_Into_journey(date,time,jID,user_ID, customer_name, start_point,end_point,driver_name,car_number,car_type,car_make,car_color,price,distance):
+    def Insert_Into_journey(date,time,jID,user_ID, customer_name, start_point,end_point,driver_ID, driver_name,car_number,car_type,car_make,car_color,price,distance):
         import sqlite3
         conn = sqlite3.connect("assessment2.db")
         c = conn.cursor()
         c.execute('''PRAGMA journal_mode = WAL''')
         c.execute("""INSERT INTO journey
-        (Date, Time, Journey_ID, user_ID, customer_name, start_location, End_Location, driver_name, car_number, Car_Class, Car_Make, Car_Colour, Price, Distance) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,user_ID, customer_name, start_point,end_point,driver_name,car_number,car_type,car_make,car_color,price,distance,))
+        (Date, Time, Journey_ID, user_ID, customer_name, start_location, End_Location, driver_ID, driver_name, car_number, Car_Class, Car_Make, Car_Colour, Price, Distance) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (date,time,jID,user_ID, customer_name, start_point,end_point, driver_ID, driver_name,car_number,car_type,car_make,car_color,price,distance,))
         conn.commit()
 
     @staticmethod
@@ -245,6 +245,23 @@ class dataz():
             c.execute("""SELECT phone_number, driver_ID
             FROM drivers
             WHERE phone_number = ?""", (phone_number,))
+            var = c.fetchone()
+            conn.commit()
+            return var[1]
+        else:
+            raise OSError("User doesn't exist")
+
+    @staticmethod
+    def get_driver_driverID_by_first_name(first_name):
+        """
+            Takes a phone number as an input. And returns a driverID connected do it in the DB.
+        :param phone_number:
+        :return: driver_ID
+        """
+        if first_name != '':
+            c.execute("""SELECT first_name, driver_ID
+                FROM drivers
+                WHERE first_name = ?""", (first_name,))
             var = c.fetchone()
             conn.commit()
             return var[1]
@@ -642,7 +659,7 @@ class dataz():
     def create_row_by_admin(table):
         dv = 'new'
         if table == 'Journeys':
-            dataz().Insert_Into_journey(dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv)
+            dataz().Insert_Into_journey(dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv,dv, dv)
         elif table == 'Customers':
             dataz().Insert_Into_customers(dv,dv,dv,dv,dv,dv)
         elif table == 'Drivers':
