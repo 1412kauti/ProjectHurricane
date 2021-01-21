@@ -34,12 +34,20 @@ from random import randint
 import numpy as np
 import sqlite3
 import re
-
+#Database Python Connection
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
+#Classes provide a means of bundling data and functionality together
 class change_Driver_Paypal(QtWidgets.QWidget):
     def __init__(self):
-        super(change_Driver_Paypal,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """              
         self.ui33 = ui7()
         self.ui33.setupUi(self)
         self.ui33.Submit_Details4.clicked.connect(self.send2database)
@@ -65,10 +73,17 @@ class change_Driver_Paypal(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
-    
+#Classes provide a means of bundling data and functionality together
 class change_Driver_Card(QtWidgets.QWidget):
     def __init__(self):
-        super(change_Driver_Card,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui32 = ui6()
         self.ui32.setupUi(self)
         self.ui32.Submit_Details3.clicked.connect(self.send2database)
@@ -99,10 +114,17 @@ class change_Driver_Card(QtWidgets.QWidget):
     def open_User_Mainscreen(self):
         self.o40 = DriverScreen()
         self.o40.show()
-
+#Classes provide a means of bundling data and functionality together
 class change_User_Paypal(QtWidgets.QWidget):
     def __init__(self):
-        super(change_User_Paypal,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui31 = ui5()
         self.ui31.setupUi(self)
         self.ui31.Submit_Details2.clicked.connect(self.send2database)
@@ -128,10 +150,17 @@ class change_User_Paypal(QtWidgets.QWidget):
     def open_User_Mainscreen(self):
         self.o40 = UserMainScreen()
         self.o40.show()
-    
+#Classes provide a means of bundling data and functionality together
 class change_User_Card(QtWidgets.QWidget):
     def __init__(self):
-        super(change_User_Card,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui30 = ui4()
         self.ui30.setupUi(self)
         self.ui30.Submit_Details1.clicked.connect(self.send2database)
@@ -159,11 +188,18 @@ class change_User_Card(QtWidgets.QWidget):
     def open_User_Mainscreen(self):
         self.o40 = UserMainScreen()
         self.o40.show()
-
+#Classes provide a means of bundling data and functionality together
 class change_Driver_Password(QtWidgets.QWidget):
     """Drivers' password change"""
     def __init__(self):
-        super(change_Driver_Password,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui26 = ui26()
         self.ui26.setupUi(self)
         self.qss()
@@ -202,10 +238,18 @@ class change_Driver_Password(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
+#Classes provide a means of bundling data and functionality together
 class change_Driver_Phone_Number(QtWidgets.QWidget):
     """Change driver's phone number."""
     def __init__(self):
-        super(change_Driver_Phone_Number,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui25 = ui25()
         self.ui25.setupUi(self)
         self.qss()
@@ -232,10 +276,18 @@ class change_Driver_Phone_Number(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
+#Classes provide a means of bundling data and functionality together
 class change_Driver_Email(QtWidgets.QWidget):
     """Change driver's email"""
     def __init__(self):
-        super(change_Driver_Email,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui24 = ui24()
         self.ui24.setupUi(self)
         self.qss()
@@ -261,10 +313,18 @@ class change_Driver_Email(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())       
+#Classes provide a means of bundling data and functionality together
 class change_Driver_Last_Name(QtWidgets.QWidget):
     """Change driver's last name."""
     def __init__(self):
-        super(change_Driver_Last_Name,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui23 = ui23()
         self.ui23.setupUi(self)
         self.ui23.ChangeLastNameBtn.clicked.connect(self.hit_Submit)
@@ -290,10 +350,18 @@ class change_Driver_Last_Name(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
+#Classes provide a means of bundling data and functionality together
 class change_Driver_First_Name(QtWidgets.QWidget):
     """Change driver's first name."""
     def __init__(self):
-        super(change_Driver_First_Name,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui22 = ui22()
         self.ui22.setupUi(self)
         self.ui22.ChangeFirstNameBtn.clicked.connect(self.hit_Submit)
@@ -319,10 +387,18 @@ class change_Driver_First_Name(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
+#Classes provide a means of bundling data and functionality together
 class AdminScreen(QtWidgets.QWidget):
     """Admin screen window."""
     def __init__(self):
-        super(AdminScreen,self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui21 = ui21()
         self.ui21.setupUi(self)
         self.qss()
@@ -428,10 +504,17 @@ class AdminScreen(QtWidgets.QWidget):
         table = self.ui21.comboBox.currentText()
         row = self.ui21.select_Row_Label.text()
         dataz().Delete_Row_by_admin(table, row)
-
+#Classes provide a means of bundling data and functionality together
 class change_User_Phone_Number(QtWidgets.QWidget):
     def __init__(self):
-        super(change_User_Phone_Number, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui19 = ui19()
         self.ui19.setupUi(self)
         self.qss()
@@ -458,11 +541,18 @@ class change_User_Phone_Number(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
-
+#Classes provide a means of bundling data and functionality together
 class change_User_Password(QtWidgets.QWidget):
     """Change user's password."""
     def __init__(self):
-        super(change_User_Password, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui18 = ui18()
         self.ui18.setupUi(self)
         self.qss()
@@ -496,11 +586,18 @@ class change_User_Password(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
-
+#Classes provide a means of bundling data and functionality together
 class change_User_Email(QtWidgets.QWidget):
     """Change user's email."""
     def __init__(self):
-        super(change_User_Email, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui17 = ui17()
         self.ui17.setupUi(self)
         self.qss()
@@ -526,11 +623,18 @@ class change_User_Email(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
-
+#Classes provide a means of bundling data and functionality together
 class change_User_LastName(QtWidgets.QWidget):
     """Change user's last name."""
     def __init__(self):
-        super(change_User_LastName, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui16 = ui16()
         self.ui16.setupUi(self)
         self.ui16.ChangeLastNameBtn.clicked.connect(self.hit_Submit)
@@ -556,11 +660,18 @@ class change_User_LastName(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
-
+#Classes provide a means of bundling data and functionality together
 class change_User_FirstName(QtWidgets.QWidget):
     """Change user's first name."""
     def __init__(self):
-        super(change_User_FirstName, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui15 = ui15()
         self.ui15.setupUi(self)
         self.ui15.ChangeFirstNameBtn.clicked.connect(self.hit_Submit)
@@ -586,11 +697,18 @@ class change_User_FirstName(QtWidgets.QWidget):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
-
+#Classes provide a means of bundling data and functionality together
 class Congratulations(QtWidgets.QWidget):
     """Post registration window."""
     def __init__(self):
-        super(Congratulations, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui10 = ui10()
         self.ui10.setupUi(self)
         self.qss()
@@ -605,12 +723,18 @@ class Congratulations(QtWidgets.QWidget):
         self.o9 = LoginScreen()
         self.o9.show()
         self.close()
-
-
+#Classes provide a means of bundling data and functionality together
 class Verification_Screen(QtWidgets.QWidget):
     """Verification screen"""
     def __init__(self):
-        super(Verification_Screen, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui9 = ui9()
         self.ui9.setupUi(self)
         self.qss()
@@ -631,12 +755,17 @@ class Verification_Screen(QtWidgets.QWidget):
             self.go_to_Account_Activated()
         else:
             self.ui9.Mismatch_Label.setText('Try Again')
-        
-
-
+#Classes provide a means of bundling data and functionality together   
 class Thank_You(QtWidgets.QWidget):
     def __init__(self):
-        super(Thank_You, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         global VeriCode
         VeriCode = randint(0, 1000)
         self.ui8 = ui8()
@@ -654,11 +783,17 @@ class Thank_You(QtWidgets.QWidget):
         self.o7 = Verification_Screen()
         self.o7.show()
         self.close()
-
-
+#Classes provide a means of bundling data and functionality together
 class Driver_Paypal(QtWidgets.QWidget):
     def __init__(self):
-        super(Driver_Paypal, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui7 = ui7()
         self.ui7.setupUi(self)
         self.qss()
@@ -683,11 +818,17 @@ class Driver_Paypal(QtWidgets.QWidget):
         self.d5 = dataz()
         self.d5.payment_method_driver(driver_card_name, driver_card_account_number, driver_sort_code,
                                             driver_paypal_payme,driver_first_name)
-
-
+#Classes provide a means of bundling data and functionality together
 class Driver_Card(QtWidgets.QWidget):
     def __init__(self):
-        super(Driver_Card, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui6 = ui6()
         self.ui6.setupUi(self)
         self.qss()
@@ -715,11 +856,17 @@ class Driver_Card(QtWidgets.QWidget):
         self.d4 = dataz()
         self.d4.payment_method_driver(driver_card_name, driver_card_account_number, driver_sort_code,
                                             driver_paypal_payme,driver_first_name)
-
-
+#Classes provide a means of bundling data and functionality together
 class User_Paypal(QtWidgets.QWidget):
     def __init__(self):
-        super(User_Paypal, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui5 = ui5()
         self.ui5.setupUi(self)
         self.qss()
@@ -745,11 +892,17 @@ class User_Paypal(QtWidgets.QWidget):
         self.d3 = dataz()
         self.d3.payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
                                               user_paypal_password,user_first_name)
-
-
+#Classes provide a means of bundling data and functionality together
 class User_Card(QtWidgets.QWidget):
     def __init__(self):
-        super(User_Card, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui4 = ui4()
         self.ui4.setupUi(self)
         self.qss()
@@ -775,11 +928,17 @@ class User_Card(QtWidgets.QWidget):
         self.d2 = dataz()
         self.d2.payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
                                               user_paypal_password,user_first_name)
-
-
+#Classes provide a means of bundling data and functionality together
 class RegisterScreen(QtWidgets.QWidget):
     def __init__(self):
-        super(RegisterScreen, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui3 = ui3()
         self.ui3.setupUi(self)
         self.qss()
@@ -1137,10 +1296,17 @@ class RegisterScreen(QtWidgets.QWidget):
                 self.ui3.Driver_Submit_Button.clicked.connect(self.open_Driver_Paypal)
         else:
             self.ui3.Driver_Invalid_Password.setText("Passwords Mismatch, try again")
-
+#Classes provide a means of bundling data and functionality together
 class LoginScreen(QtWidgets.QWidget):
     def __init__(self):
-        super(LoginScreen, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui2 = ui2()
         self.ui2.setupUi(self)
         self.qss()
@@ -1260,11 +1426,17 @@ class LoginScreen(QtWidgets.QWidget):
                 self.openDriverLogin()
         else:
             self.ui2.driver_login_Fail.setText('Try Again')
-
-
+#Classes provide a means of bundling data and functionality together
 class UserMainScreen(QtWidgets.QWidget):
     def __init__(self):
-        super(UserMainScreen, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui13 = ui13()
         self.ui13.setupUi(self)
         self.loaddata()
@@ -1435,11 +1607,17 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ox = UserMainScreen()
         self.ox.show()
         self.close()
-
-
+#Classes provide a means of bundling data and functionality together
 class DriverScreen(QtWidgets.QWidget):
     def __init__(self):
-        super(DriverScreen, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui20 = ui20()
         self.ui20.setupUi(self)
         self.ui20.Logout_Btn.clicked.connect(self.open_Start_Screen)
@@ -1580,11 +1758,17 @@ class DriverScreen(QtWidgets.QWidget):
     def getNewOrder(self, start_point, end_point):
         self.ui20.sl_value.setText(start_point)
         self.ui20.el_value.setText(end_point)
-
-
+#Classes provide a means of bundling data and functionality together
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
-        super(StartScreen, self).__init__()
+        """[summary]
+        The word 'self' is used to represent the instance of a class. By using the "self" keyword we access the attributes and methods of the class in python.
+        "__init__" is a reseved method in python classes. It is called as a constructor in object oriented terminology. This method is called when an object is created from a class and it allows the class to initialize the attributes of the class.
+        """
+        super().__init__()
+        """[summary]
+        Return a proxy object that delegates method calls to a parent or sibling class of type. This is useful for accessing inherited methods that have been overridden in a class. 
+        """       
         self.ui1 = ui1()
         self.ui1.setupUi(self)
         self.ui1.Login_Button.clicked.connect(self.open_Login)
@@ -1606,7 +1790,8 @@ class StartScreen(QtWidgets.QWidget):
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
 
-
+#Intializes the Main method
+#The main methods launches the application when the python file is run
 def main():
     app = QtWidgets.QApplication(sys.argv)
     application = StartScreen()
