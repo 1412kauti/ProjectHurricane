@@ -2183,7 +2183,7 @@ class DriverScreen(QtWidgets.QWidget):
         cur = connection.cursor()
         id = self.takePass('pass.txt')
         tablerow = 0
-        results = cur.execute(f"""SELECT * FROM journey WHERE user_ID = ? AND status = 'Completed'""", (id,))
+        results = cur.execute(f"""SELECT * FROM journey WHERE driver_ID = ? AND status = 'Completed'""", (id,))
         self.ui20.tableWidget.setRowCount(40)
         for row in results:
             self.ui20.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
