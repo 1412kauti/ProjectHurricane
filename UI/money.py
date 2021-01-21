@@ -2120,23 +2120,31 @@ class DriverScreen(QtWidgets.QWidget):
         #Connecting the button to a function within this class
         self.ui20.accept_order.clicked.connect(self.emptySomething)
         #Connecting the button to a function within this class
-        self.ui20.accept_order.clicked.connect(self.deleteDeclined)
-        #Connecting the button to a function within this class
         self.ui20.decline_order.clicked.connect(self.emptyEverything)
-        #Connecting the button to a function within this class
-        self.ui20.decline_order.clicked.connect(self.deleteDeclined)
+        # Updates the status to declined
+        self.ui20.decline_order.clicked.connect(self.statusDeclined)
+        # Updates the status to declined
+        self.ui20.Completed_button.clicked.connect(self.statusAccepted)
         self.loaddata()
         pass__ = self.takePass('pass.txt')
         a, b, c, d = self.getDriver(pass__)
         self.phillOut(a, b, c, d)
 
-    def deleteDeclined(self):
+    def statusDeclined(self):
         """
-            Function calculates amount of orders in orders table and deletes the last one.
+            Function updates the last row's status in journey table to declined.
         :return:
         """
         last_order_id = BackEnd().getLastRowJourneys()
-        dataz().Delete_Row_journey(last_order_id)
+        dataz().Update_status_journey('Declined', last_order_id)
+
+    def statusAccepted(self):
+        """
+            Function updates the last row's status in journey table to accepted.
+        :return:
+        """
+        last_order_id = BackEnd().getLastRowJourneys()
+        dataz().Update_status_journey('Accepted', last_order_id)
 
     def findOrderButton(self):
         """Get last row from journey table and print its details"""
