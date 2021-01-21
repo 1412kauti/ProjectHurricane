@@ -61,7 +61,7 @@ class dataz():
     def Delete_Duplicates_Drivers():
         c.execute("""DELETE FROM drivers
         WHERE rowid NOT IN (SELECT min(rowid) 
-        FROM drivers GROUP BY first_name,last_name,email,phone_number,password,car_make,car_colour,car_license_plate_number,driver_license,license_expiry,bank_account)""")
+        FROM drivers GROUP BY first_name,last_name,email,phone_number,password,car_make,car_colour,car_license_plate_number,driver_license,license_expiry)""")
         conn.commit()
 
     @staticmethod
@@ -330,6 +330,20 @@ class dataz():
         conn.commit()
 
     @staticmethod
+    def Update_Card_customers(name,number,cvv,userID):
+        c.execute("""UPDATE customers
+        SET card_name = ?, card_number = ?, CVV = ?
+        WHERE user_ID = ?""", (name,number,cvv,userID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_Paypal_customers(email,password,userID):
+        c.execute("""UPDATE customers
+        SET paypal_email = ?, paypal_password = ?
+        WHERE user_ID = ?""", (email,password,userID,))
+        conn.commit()
+
+    @staticmethod
     def Update_Last_Name_customers(last_name,userID):
         c.execute("""UPDATE customers
         SET last_name = ?
@@ -346,7 +360,7 @@ class dataz():
     def Update_Email_drivers(email,userID):
         c.execute("""UPDATE drivers
         SET email = ?
-        WHERE user_ID = ?""", (email,userID,))
+        WHERE driver_ID = ?""", (email,userID,))
         conn.commit()
     @staticmethod
     def Update_phone_number_customers(phone_number,userID):
@@ -371,9 +385,9 @@ class dataz():
 
     @staticmethod
     def payment_method_driver(account_name,account_number,sort_code,payme_link,first_name):
-        c.execute("""UPDATE customers
+        c.execute("""UPDATE drivers
         SET account_name = ?
-            ,account_number = ?
+            ,acccount_number = ?
             ,sort_code = ?
             ,payme_link = ?
         WHERE first_name = ?""", (account_name,account_number,sort_code,payme_link,first_name,))
@@ -384,6 +398,20 @@ class dataz():
         c.execute("""UPDATE drivers
         SET first_name = ?
         WHERE driver_ID = ?""", (first_name,driverID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_Card_drivers(name,number,code,driverID):
+        c.execute("""UPDATE drivers
+        SET account_name = ?, acccount_number = ? , sort_code = ?
+        WHERE driver_ID = ?""", (name,number,code,driverID,))
+        conn.commit()
+
+    @staticmethod
+    def Update_Paypal_drivers(payme,driverID):
+        c.execute("""UPDATE drivers
+        SET payme_link = ?
+        WHERE driver_ID = ?""", (payme,driverID,))
         conn.commit()
 
     @staticmethod
@@ -627,6 +655,3 @@ class dataz():
         conn.commit()
 
 v = dataz
-v.create_row_by_admin('Journey')
-v.create_row_by_admin('Customers')
-v.create_row_by_admin('Drivers')

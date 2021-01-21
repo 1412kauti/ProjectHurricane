@@ -47,7 +47,7 @@
        <x>10</x>
        <y>0</y>
        <width>481</width>
-       <height>447</height>
+       <height>421</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout">
@@ -277,13 +277,39 @@
         </property>
        </widget>
       </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_17">
+        <property name="text">
+         <string>Payment :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="comboBox_4">
+        <item>
+         <property name="text">
+          <string>--Select Method--</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Card</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Paypal</string>
+         </property>
+        </item>
+       </widget>
+      </item>
      </layout>
     </widget>
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>400</y>
+       <x>150</x>
+       <y>430</y>
        <width>187</width>
        <height>32</height>
       </rect>
@@ -298,7 +324,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>Select Payment Method</string>
+         <string>Book Now</string>
         </property>
        </widget>
       </item>
