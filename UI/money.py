@@ -28,7 +28,7 @@ from change_Driver_First_Name import Ui_Form as ui22
 from change_Driver_Last_Name import Ui_Form as ui23
 from change_Driver_Email import Ui_Form as ui24
 from change_Driver_Phone_Number import Ui_Form as ui25
-from change_User_Password import Ui_Form as ui26
+from change_Driver_Password import Ui_Form as ui26
 from BackEnd import BackEnd
 from random import randint
 import numpy as np
@@ -37,7 +37,131 @@ import re
 
 conn = sqlite3.connect("assessment2.db")
 c = conn.cursor()
+class change_Driver_Paypal(QtWidgets.QWidget):
+    def __init__(self):
+        super(change_Driver_Paypal,self).__init__()
+        self.ui33 = ui7()
+        self.ui33.setupUi(self)
+        self.ui33.Submit_Details4.clicked.connect(self.send2database)
+        self.qss()
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
+    
+    def send2database(self):
+        pass__ = self.takePass('pass.txt')
+        new_payme = self.ui33.Driver_Paypal_payme.text()
+        dataz().Update_Paypal_drivers(new_payme,pass__)
+        self.open_User_Mainscreen()
+        self.close()
+
+    def open_User_Mainscreen(self):
+        self.o40 = DriverScreen()
+        self.o40.show()
+
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
+    
+class change_Driver_Card(QtWidgets.QWidget):
+    def __init__(self):
+        super(change_Driver_Card,self).__init__()
+        self.ui32 = ui6()
+        self.ui32.setupUi(self)
+        self.ui32.Submit_Details3.clicked.connect(self.send2database)
+        self.qss()
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
+    
+    def send2database(self):
+        pass__ = self.takePass('pass.txt')
+        new_account_name = self.ui32.Drive_Card_Name.text()
+        new_account_number = self.ui32.Driver_card_account_number.text()
+        sort_code1 = self.ui32.Driver_Card_SortCode1.text()
+        sort_code2 = self.ui32.Driver_Card_SortCode2.text()
+        sort_code3 = self.ui32.Driver_Card_SortCode3.text()
+        sort_code = str(sort_code1) + "-" + str(sort_code2) + "-" + str(sort_code3)
+        dataz().Update_Card_drivers(new_account_name,new_account_number,sort_code,pass__)
+        self.open_User_Mainscreen()
+        self.close()
+
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
+    
+    def open_User_Mainscreen(self):
+        self.o40 = DriverScreen()
+        self.o40.show()
+
+class change_User_Paypal(QtWidgets.QWidget):
+    def __init__(self):
+        super(change_User_Paypal,self).__init__()
+        self.ui31 = ui5()
+        self.ui31.setupUi(self)
+        self.ui31.Submit_Details2.clicked.connect(self.send2database)
+        self.qss()
+    def send2database(self):
+        pass__ = self.takePass('pass.txt')
+        new_paypal_email = self.ui31.User_Paypal_Email.text()
+        new_paypal_password = self.ui31.User_Paypal_Password.text()
+        dataz().Update_Paypal_customers(new_paypal_email,new_paypal_password,pass__)
+        self.open_User_Mainscreen()
+        self.close()
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
+
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
+    
+    def open_User_Mainscreen(self):
+        self.o40 = UserMainScreen()
+        self.o40.show()
+    
+class change_User_Card(QtWidgets.QWidget):
+    def __init__(self):
+        super(change_User_Card,self).__init__()
+        self.ui30 = ui4()
+        self.ui30.setupUi(self)
+        self.ui30.Submit_Details1.clicked.connect(self.send2database)
+        self.qss()
+
+    def send2database(self):
+        pass__ = self.takePass('pass.txt')
+        new_User_card_name = self.ui30.User_Card_Name.text()
+        new_User_card_number = self.ui30.User_Card_Number.text()
+        new_User_card_cvv = self.ui30.User_Card_CVV.text()
+        dataz().Update_Card_customers(new_User_card_name,new_User_card_number,new_User_card_cvv,pass__)
+        self.open_User_Mainscreen()
+        self.close()
+
+    def takePass(self, file):
+        with open(file, 'r') as f:
+            id_ = f.read()
+            return id_
+    
+    def qss(self):
+        qss_file = 'QSS/OrangeDark.qss'
+        with open(qss_file, "r") as fh:
+            self.setStyleSheet(fh.read())
+    
+    def open_User_Mainscreen(self):
+        self.o40 = UserMainScreen()
+        self.o40.show()
+
 class change_Driver_Password(QtWidgets.QWidget):
+    """Drivers' password change"""
     def __init__(self):
         super(change_Driver_Password,self).__init__()
         self.ui26 = ui26()
@@ -46,34 +170,40 @@ class change_Driver_Password(QtWidgets.QWidget):
         self.ui26.changePasswordBtn.clicked.connect(self.pass_validator)
 
     def hit_Submit(self):
+        """Submit button algorithm."""
         self.database_connectinator()
-        self.o21 = UserMainScreen()
+        self.o21 = DriverScreen()
         self.o21.show()
         self.close()
 
     def pass_validator(self):
-        new_password = self.ui26.change_User_Password_Label.text()
-        conf_new_password = self.ui26.change_User_Confirm_Password_Label.text()
+        """Password validator"""
+        new_password = self.ui26.change_Driver_Password_Label.text()
+        conf_new_password = self.ui26.change_Driver_Confirm_Password_Label.text()
         if new_password == conf_new_password:
             self.hit_Submit()
         else:
             self.ui26.Passwords_Mismatch.setText('Passwords Mismatch')
         
     def database_connectinator(self):
+        """Update driver's password by id."""
         pass__ = self.takePass('pass.txt')
-        emailn = self.ui26.change_User_Password_Label.text()
+        emailn = self.ui26.change_Driver_Password_Label.text()
         dataz().Update_password_drivers(emailn,pass__)
 
     def takePass(self, file):
+        """Take data from .txt with current user ID"""
         with open(file, 'r') as f:
             id_ = f.read()
             return id_
         
     def qss(self):
+        """CSS"""
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
 class change_Driver_Phone_Number(QtWidgets.QWidget):
+    """Change driver's phone number."""
     def __init__(self):
         super(change_Driver_Phone_Number,self).__init__()
         self.ui25 = ui25()
@@ -83,7 +213,7 @@ class change_Driver_Phone_Number(QtWidgets.QWidget):
 
     def database_connectinator(self):
         pass__ = self.takePass('pass.txt')
-        phnn = self.ui25.change_User_PhoneNumber_Label.text()
+        phnn = self.ui25.change_Driver_PhoneNumber_Label.text()
         dataz().Update_phone_number_drivers(phnn,pass__)
 
     def takePass(self, file):
@@ -93,7 +223,7 @@ class change_Driver_Phone_Number(QtWidgets.QWidget):
 
     def hit_Submit(self):
         self.database_connectinator()
-        self.o21 = UserMainScreen()
+        self.o21 = DriverScreen()
         self.o21.show()
         self.close()
 
@@ -103,6 +233,7 @@ class change_Driver_Phone_Number(QtWidgets.QWidget):
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
 class change_Driver_Email(QtWidgets.QWidget):
+    """Change driver's email"""
     def __init__(self):
         super(change_Driver_Email,self).__init__()
         self.ui24 = ui24()
@@ -112,13 +243,13 @@ class change_Driver_Email(QtWidgets.QWidget):
 
     def hit_Submit(self):
         self.database_connectinator()
-        self.o21 = UserMainScreen()
+        self.o21 = DriverScreen()
         self.o21.show()
         self.close()
         
     def database_connectinator(self):
         pass__ = self.takePass('pass.txt')
-        emailn = self.ui24.change_User_Email_Label.text()
+        emailn = self.ui24.change_Driver_Email_Label.text()
         dataz().Update_Email_drivers(emailn,pass__)
 
     def takePass(self, file):
@@ -131,6 +262,7 @@ class change_Driver_Email(QtWidgets.QWidget):
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())       
 class change_Driver_Last_Name(QtWidgets.QWidget):
+    """Change driver's last name."""
     def __init__(self):
         super(change_Driver_Last_Name,self).__init__()
         self.ui23 = ui23()
@@ -140,7 +272,7 @@ class change_Driver_Last_Name(QtWidgets.QWidget):
 
     def database_connectinator(self):
         pass__ = self.takePass('pass.txt')
-        lastn = self.ui23.change_User_LastName_Label.text()
+        lastn = self.ui23.change_Driver_LastName_Label.text()
         dataz().Update_last_name_drivers(lastn,pass__)
 
     def takePass(self, file):
@@ -159,6 +291,7 @@ class change_Driver_Last_Name(QtWidgets.QWidget):
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
 class change_Driver_First_Name(QtWidgets.QWidget):
+    """Change driver's first name."""
     def __init__(self):
         super(change_Driver_First_Name,self).__init__()
         self.ui22 = ui22()
@@ -174,8 +307,8 @@ class change_Driver_First_Name(QtWidgets.QWidget):
 
     def database_connectinator(self):
         pass__ = self.takePass('pass.txt')
-        firstn = self.ui22.change_User_FirstName_Label.text()
-        dataz().Update_First_Name_customers(firstn,pass__)
+        firstn = self.ui22.change_Driver_FirstName_Label.text()
+        dataz().Update_first_name_drivers(firstn,pass__)
 
     def takePass(self, file):
         with open(file, 'r') as f:
@@ -187,6 +320,7 @@ class change_Driver_First_Name(QtWidgets.QWidget):
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
 class AdminScreen(QtWidgets.QWidget):
+    """Admin screen window."""
     def __init__(self):
         super(AdminScreen,self).__init__()
         self.ui21 = ui21()
@@ -202,11 +336,13 @@ class AdminScreen(QtWidgets.QWidget):
         self.ui21.InsertValueBtn.clicked.connect(self.Insert_value)
 
     def Insert_value(self):
+        """Create row button algorithm"""
         t = str(self.ui21.comboBox.currentText())
         print(t)
         dataz().create_row_by_admin(t)
 
     def Update_Values(self):
+        """Update value button."""
         table = self.ui21.comboBox.currentText()
         column = self.ui21.select_Column_Label.text()
         row = self.ui21.select_Row_Label.text()
@@ -228,6 +364,7 @@ class AdminScreen(QtWidgets.QWidget):
             self.setStyleSheet(fh.read())
 
     def loadjourneys(self):
+        """Journeys table inside GUI."""
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
         sqlstr = """SELECT * FROM journey"""
@@ -251,6 +388,7 @@ class AdminScreen(QtWidgets.QWidget):
             tablerow += 1
 
     def loadcustomers(self):
+        """Customers table inside GUI."""
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
         sqlstr = """SELECT * FROM customers"""
@@ -266,6 +404,7 @@ class AdminScreen(QtWidgets.QWidget):
             tablerow += 1
 
     def loaddrivers(self):
+        """Drivers table inside GUI."""
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
         sqlstr = """SELECT * FROM drivers"""
@@ -285,10 +424,9 @@ class AdminScreen(QtWidgets.QWidget):
             tablerow += 1
     
     def Delete_Row(self):
+        """Delte row button."""
         table = self.ui21.comboBox.currentText()
-        #select_Column = self.ui21.select_Column_Label.text()
         row = self.ui21.select_Row_Label.text()
-        # change_Value = self.ui21.value_Change.text()
         dataz().Delete_Row_by_admin(table, row)
 
 class change_User_Phone_Number(QtWidgets.QWidget):
@@ -322,6 +460,7 @@ class change_User_Phone_Number(QtWidgets.QWidget):
             self.setStyleSheet(fh.read())
 
 class change_User_Password(QtWidgets.QWidget):
+    """Change user's password."""
     def __init__(self):
         super(change_User_Password, self).__init__()
         self.ui18 = ui18()
@@ -359,6 +498,7 @@ class change_User_Password(QtWidgets.QWidget):
             self.setStyleSheet(fh.read())
 
 class change_User_Email(QtWidgets.QWidget):
+    """Change user's email."""
     def __init__(self):
         super(change_User_Email, self).__init__()
         self.ui17 = ui17()
@@ -388,6 +528,7 @@ class change_User_Email(QtWidgets.QWidget):
             self.setStyleSheet(fh.read())
 
 class change_User_LastName(QtWidgets.QWidget):
+    """Change user's last name."""
     def __init__(self):
         super(change_User_LastName, self).__init__()
         self.ui16 = ui16()
@@ -416,8 +557,8 @@ class change_User_LastName(QtWidgets.QWidget):
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
 
-
 class change_User_FirstName(QtWidgets.QWidget):
+    """Change user's first name."""
     def __init__(self):
         super(change_User_FirstName, self).__init__()
         self.ui15 = ui15()
@@ -446,28 +587,8 @@ class change_User_FirstName(QtWidgets.QWidget):
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
 
-class User_Submit_Payment(QtWidgets.QWidget):
-    def __init__(self):
-        super(User_Submit_Payment, self).__init__()
-        self.ui14 = ui14()
-        self.ui14.setupUi(self)
-        self.qss()
-        self.ui14.User_Submit_Payment_Method.clicked.connect(self.clos)
-
-    def clos(self):
-        self.close()
-
-    def takePass(self, file):
-        with open(file, 'r') as f:
-            id_ = f.read()
-            return id_
-
-    def qss(self):
-        qss_file = 'QSS/OrangeDark.qss'
-        with open(qss_file, "r") as fh:
-            self.setStyleSheet(fh.read())
-
 class Congratulations(QtWidgets.QWidget):
+    """Post registration window."""
     def __init__(self):
         super(Congratulations, self).__init__()
         self.ui10 = ui10()
@@ -487,12 +608,13 @@ class Congratulations(QtWidgets.QWidget):
 
 
 class Verification_Screen(QtWidgets.QWidget):
+    """Verification screen"""
     def __init__(self):
         super(Verification_Screen, self).__init__()
         self.ui9 = ui9()
         self.ui9.setupUi(self)
         self.qss()
-        self.ui9.Complete_Verification.clicked.connect(self.go_to_Account_Activated)
+        self.ui9.Complete_Verification.clicked.connect(self.Verify_validator)
 
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
@@ -504,22 +626,29 @@ class Verification_Screen(QtWidgets.QWidget):
         self.o8.show()
         self.close()
 
+    def Verify_validator(self):
+        if str(self.ui9.Security_code_text.text()) == str(VeriCode):
+            self.go_to_Account_Activated()
+        else:
+            self.ui9.Mismatch_Label.setText('Try Again')
+        
+
 
 class Thank_You(QtWidgets.QWidget):
     def __init__(self):
         super(Thank_You, self).__init__()
-        a = randint(0, 1000)
+        global VeriCode
+        VeriCode = randint(0, 1000)
         self.ui8 = ui8()
         self.ui8.setupUi(self)
         self.qss()
         self.ui8.Verify_Now.clicked.connect(self.open_Verification_Screen)
-        self.ui8.Security_Code.setText("%d" % a)
+        self.ui8.Security_Code.setText("%d" % VeriCode)
 
     def qss(self):
         qss_file = 'QSS/OrangeDark.qss'
         with open(qss_file, "r") as fh:
             self.setStyleSheet(fh.read())
-        # self.ui8.Security_Code.setText(self.Security_generator)
 
     def open_Verification_Screen(self):
         self.o7 = Verification_Screen()
@@ -552,8 +681,8 @@ class Driver_Paypal(QtWidgets.QWidget):
         driver_card_account_number = 0
         driver_sort_code = 0
         self.d5 = dataz()
-        self.d5.Insert_into_driver_payments(driver_card_name, driver_card_account_number, driver_sort_code,
-                                            driver_paypal_payme)
+        self.d5.payment_method_driver(driver_card_name, driver_card_account_number, driver_sort_code,
+                                            driver_paypal_payme,driver_first_name)
 
 
 class Driver_Card(QtWidgets.QWidget):
@@ -584,8 +713,8 @@ class Driver_Card(QtWidgets.QWidget):
         driver_sort_code = str(driver_sort_code1) + "-" + str(driver_sort_code2) + "-" + str(driver_sort_code3)
         driver_paypal_payme = 0
         self.d4 = dataz()
-        self.d4.Insert_into_driver_payments(driver_card_name, driver_card_account_number, driver_sort_code,
-                                            driver_paypal_payme)
+        self.d4.payment_method_driver(driver_card_name, driver_card_account_number, driver_sort_code,
+                                            driver_paypal_payme,driver_first_name)
 
 
 class User_Paypal(QtWidgets.QWidget):
@@ -614,8 +743,8 @@ class User_Paypal(QtWidgets.QWidget):
         user_card_number = 0
         user_card_cvv = 0
         self.d3 = dataz()
-        self.d3.Insert_into_customer_payments(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
-                                              user_paypal_password)
+        self.d3.payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
+                                              user_paypal_password,user_first_name)
 
 
 class User_Card(QtWidgets.QWidget):
@@ -644,8 +773,8 @@ class User_Card(QtWidgets.QWidget):
         user_paypal_email = 0
         user_paypal_password = 0
         self.d2 = dataz()
-        self.d2.Insert_into_customer_payments(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
-                                              user_paypal_password)
+        self.d2.payment_method_customers(user_card_name, user_card_number, user_card_cvv, user_paypal_email,
+                                              user_paypal_password,user_first_name)
 
 
 class RegisterScreen(QtWidgets.QWidget):
@@ -932,6 +1061,7 @@ class RegisterScreen(QtWidgets.QWidget):
         self.ui3.User_Confirm_Password_Text.textEdited.emit(self.ui3.User_Confirm_Password_Text.text())
 
     def take_user_inputs(self):
+        global user_first_name
         user_first_name = self.ui3.User_First_Name_Text.text()
         user_last_name = self.ui3.User_Last_Name_Text.text()
         user_email = self.ui3.User_Email_Text.text()
@@ -939,24 +1069,23 @@ class RegisterScreen(QtWidgets.QWidget):
         user_password = self.ui3.User_Password_Text.text()
         user_payment = self.ui3.comboBox.currentText()
         self.d1 = dataz()
-        self.d1.Insert_Into_customers(user_first_name, user_last_name, user_email, user_contact_number, user_password,
-                                      user_payment)
+        self.d1.Insert_Into_customers(user_first_name, user_last_name, user_email, user_contact_number, user_password, user_payment)
 
     def take_driver_inputs(self):
+        global driver_first_name
         driver_first_name = self.ui3.Driver_First_Name_Text.text()
         driver_last_name = self.ui3.Driver_Last_Name_Text.text()
         driver_email = self.ui3.Driver_Email_Text.text()
         driver_password = self.ui3.Driver_Password_Text.text()
         driver_contact_number = self.ui3.Driver_Phone_Number_Text.text()
         driver_license = self.ui3.Driver_License_Number.text()
+        driver_license_expiry = self.ui3.dateEdit.date().toPyDate()
+        driver_car_class = self.ui3.comboBox_3.currentText()
         driver_car_license = self.ui3.Driver_Car_Number.text()
         driver_car_make = self.ui3.Driver_Car_Make_Text.text()
         driver_car_color = self.ui3.Driver_Car_Color.text()
-        driver_payment = self.ui3.comboBox_2.currentText()
         self.d2 = dataz()
-        self.d2.Insert_Into_drivers(driver_first_name, driver_last_name, driver_email, driver_password,
-                                    driver_contact_number, driver_license, driver_car_license, driver_car_make,
-                                    driver_car_color, driver_payment)
+        self.d2.Insert_Into_drivers(driver_first_name, driver_last_name, driver_email, driver_password, driver_contact_number, driver_license, driver_license_expiry,driver_car_class, driver_car_license, driver_car_make, driver_car_color)
 
     def open_User_Card(self):
         self.o2 = User_Card()
@@ -1004,25 +1133,10 @@ class RegisterScreen(QtWidgets.QWidget):
         if self.ui3.Driver_Password_Text.text() == self.ui3.Driver_Confirm_Password_Text.text():
             if self.ui3.comboBox_2.currentText() == "Card":
                 self.ui3.Driver_Submit_Button.clicked.connect(self.open_Driver_Card)
-            elif self.ui3.comboBox_2.currentText() == "PayPal":
+            elif self.ui3.comboBox_2.currentText() == "Paypal":
                 self.ui3.Driver_Submit_Button.clicked.connect(self.open_Driver_Paypal)
         else:
             self.ui3.Driver_Invalid_Password.setText("Passwords Mismatch, try again")
-
-    def containsDigits(self, s):
-        for char in s:
-            if char.isdigit():
-                contains_digit = True
-            else:
-                contains_digit = False
-        # return contains_digit
-
-    def emailCheck(self, m):
-        if re.match(r"[^@]+@[^@]+\.[^@]+", m):
-            return True
-        else:
-            return False
-
 
 class LoginScreen(QtWidgets.QWidget):
     def __init__(self):
@@ -1051,6 +1165,7 @@ class LoginScreen(QtWidgets.QWidget):
         self.close()
 
     def adminChecker(self):
+        """Admin login verification with accounts provided. """
         admin1 = {
             'nick': 'hulksmash',
             'empID': '777',
@@ -1087,6 +1202,7 @@ class LoginScreen(QtWidgets.QWidget):
         self.close()
 
     def pushToTxt(self, file, id):
+        """Get current user's ID and write it to .txt"""
         with open(file, 'w') as f:
             id = str(id)
             f.write(id)
@@ -1152,7 +1268,7 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13 = ui13()
         self.ui13.setupUi(self)
         self.loaddata()
-        self.ui13.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
+        self.ui13.Select_Payment_Method_Btn.clicked.connect(self.Book_now)
         self.ui13.Logout_Btn.clicked.connect(self.open_Start_Screen)
         self.ui13.change_First_Name.clicked.connect(self.open_Change_First_Name)
         self.ui13.change_Last_Name.clicked.connect(self.open_Change_Last_Name)
@@ -1179,6 +1295,7 @@ class UserMainScreen(QtWidgets.QWidget):
         dataz().Delete_Row_journey(last_order_id)
 
     def declineButton(self):
+        """Empty all the fields in the upcoming journey tab."""
         self.ui13.Upcoming_Date_Lbl.setText('')
         self.ui13.Upcoming_Time_Lbl.setText('')
         self.ui13.Upcomin_Journey_ID_Lbl.setText('')
@@ -1199,6 +1316,7 @@ class UserMainScreen(QtWidgets.QWidget):
             return id_
 
     def getCustomer(self, id):
+        """Get user details by id provided in pass.txt"""
         a = dataz().get_customer_username_by_id(id)
         b = dataz().get_customer_lastname_by_id(id)
         c = dataz().get_customer_email_by_id(id)
@@ -1206,12 +1324,14 @@ class UserMainScreen(QtWidgets.QWidget):
         return a, b, c, d
 
     def phillOut(self, fn, ln, email, pn):
+        """Fill out user's details."""
         self.ui13.First_Name_Label.setText(fn)
         self.ui13.Last_Name_Label.setText(ln)
         self.ui13.Email_Label.setText(email)
         self.ui13.Phone_Number_Label.setText(pn)
 
     def getNewBookingItems(self):
+        """Set upcoming journey tab."""
         start_point = self.ui13.comboBox.currentText()
         end_point = self.ui13.comboBox_2.currentText()
         car_type = self.ui13.comboBox_3.currentText()
@@ -1237,8 +1357,9 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.Distance_Label.setText(distance)
         userID = self.takePass('pass.txt')
         customer_name, b, c, d = self.getCustomer(userID)
-        dataz().Insert_Into_journey(date,time,jID,userID, customer_name, start_point,end_point,driver_name,car_type,car_make,car_color,price,distance)
+        dataz().Insert_Into_journey(date,time,jID,userID, customer_name, start_point,end_point,driver_name, car_number, car_type,car_make,car_color,price,distance)
     def loaddata(self):
+        """Previous trips tab"""
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
         sqlstr = """SELECT * FROM journey WHERE user_ID = 6 AND status = 'complete'"""
@@ -1260,9 +1381,7 @@ class UserMainScreen(QtWidgets.QWidget):
             self.ui13.tableWidget.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(row[14]))
             tablerow += 1
 
-    def open_User_Payment_Options(self):
-        self.o13 = User_Submit_Payment()
-        self.o13.show()
+    def Book_now(self):
         self.getNewBookingItems()
 
     def open_Start_Screen(self):
@@ -1296,12 +1415,12 @@ class UserMainScreen(QtWidgets.QWidget):
         self.close()
 
     def open_Card_Change(self):
-        self.o20 = User_Card()
+        self.o20 = change_User_Card()
         self.o20.show()
         self.close()
 
     def open_Paypal_Change(self):
-        self.o21 = User_Paypal()
+        self.o21 = change_User_Paypal()
         self.o21.show()
         self.close()
 
@@ -1321,7 +1440,6 @@ class DriverScreen(QtWidgets.QWidget):
         super(DriverScreen, self).__init__()
         self.ui20 = ui20()
         self.ui20.setupUi(self)
-        # self.ui20.Select_Payment_Method_Btn.clicked.connect(self.open_User_Payment_Options)
         self.ui20.Logout_Btn.clicked.connect(self.open_Start_Screen)
         self.ui20.change_First_Name.clicked.connect(self.open_Change_First_Name)
         self.ui20.change_Last_Name.clicked.connect(self.open_Change_Last_Name)
@@ -1334,25 +1452,24 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.pushButton.clicked.connect(self.findOrderButton)
         self.ui20.accept_order.clicked.connect(self.emptySomething)
         self.ui20.accept_order.clicked.connect(self.deleteDeclined)
-        # accept button has to push to journey table with status accepted
         self.ui20.decline_order.clicked.connect(self.emptyEverything)
         self.ui20.decline_order.clicked.connect(self.deleteDeclined)
-        # decline button has to push to journey table with status declined
         self.loaddata()
-        #pass__ = self.takePass('pass.txt')
-        #a, b, c, d = self.getDriver(pass__)
-        #self.phillOut(a, b, c, d)
+        pass__ = self.takePass('pass.txt')
+        a, b, c, d = self.getDriver(pass__)
+        self.phillOut(a, b, c, d)
 
     def deleteDeclined(self):
         """
             Function calculates amount of orders in orders table and deletes the last one.
         :return:
         """
-        last_order_id = BackEnd().getLastRowOrders()
-        dataz().Delete_Row_orders(last_order_id)
+        last_order_id = BackEnd().getLastRowJourneys()
+        dataz().Delete_Row_journey(last_order_id)
 
     def findOrderButton(self):
-        start_location, destination, order_id = BackEnd().findLastOrder()
+        """Get last row from journey table and print its details"""
+        start_location, destination, order_id = BackEnd().findLastJourney()
         self.getNewOrder(start_location, destination)
         self.ui20.from_value.setText(start_location)
         self.ui20.To_value.setText(destination)
@@ -1363,6 +1480,7 @@ class DriverScreen(QtWidgets.QWidget):
             return id_
 
     def getDriver(self, v):
+        """Get account details by id provided in pass.txt"""
         fn = dataz().get_driver_username_by_id(v)
         ln = dataz().get_driver_lastname_by_id(v)
         email = dataz().get_driver_email_by_id(v)
@@ -1370,12 +1488,14 @@ class DriverScreen(QtWidgets.QWidget):
         return fn, ln, email, pn
 
     def phillOut(self, fn, ln, email, pn):
+        """Fill out account details."""
         self.ui20.First_Name_Label.setText(fn)
         self.ui20.Last_Name_Label.setText(ln)
         self.ui20.Email_Label.setText(email)
         self.ui20.Phone_Number_Label.setText(pn)
 
     def loaddata(self):
+        """Previous trips table for current user."""
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
         driverID = 1
@@ -1393,23 +1513,22 @@ class DriverScreen(QtWidgets.QWidget):
             tablerow += 1
 
     def emptyEverything(self):
+        """Empty all the fields."""
         self.ui20.sl_value.setText('')
         self.ui20.el_value.setText('')
         self.ui20.from_value.setText('')
         self.ui20.To_value.setText('')
 
     def emptySomething(self):
+        """Empty find order tab"""
         self.ui20.sl_value.setText('')
         self.ui20.el_value.setText('')
 
     def placeOrderToUpcomingJourney(self, start, end):
+        """Setup upcoming journey tab"""
         self.ui20.from_value.setText(start)
         self.ui20.To_value.setText(end)
 
-    def open_User_Payment_Options(self):
-        self.o13 = User_Submit_Payment()
-        self.o13.show()
-        self.getNewBookingItems()
 
     def open_Start_Screen(self):
         self.o14 = StartScreen()
@@ -1442,12 +1561,12 @@ class DriverScreen(QtWidgets.QWidget):
         self.close()
 
     def open_Card_Change(self):
-        self.o20 = Driver_Card()
+        self.o20 = change_Driver_Card()
         self.o20.show()
         self.close()
 
     def open_Paypal_Change(self):
-        self.o21 = Driver_Paypal()
+        self.o21 = change_Driver_Paypal()
         self.o21.show()
         self.close()
 
@@ -1469,9 +1588,6 @@ class StartScreen(QtWidgets.QWidget):
         self.ui1.Login_Button.clicked.connect(self.open_Login)
         self.ui1.Register_Button.clicked.connect(self.open_Register)
         self.qss()
-        # qss_file = 'QSS/OrangeDark.qss'
-        # with open(qss_file,"r") as fh:
-        #     self.setStyleSheet(fh.read())
 
     def open_Login(self):
         self.o1 = LoginScreen()

@@ -16,6 +16,7 @@ class BackEnd(object):
     cursor.execute(sql_select_Query)
     records = cursor.fetchall()
 
+    # dictionary with the locations' coordinates
     locations = {
         'Luton Mall' : (records[0][2], records[0][3]),
         'Luton Train Station' : (records[1][2], records[1][3]),
@@ -32,28 +33,44 @@ class BackEnd(object):
     }
 
     def priceCalc(loc1, loc2):
-            distance_km = dc.distanceCheck(loc1, loc2)
-            trip_price = distance_km * 5
-            #print(distance_km, trip_price)
-            return distance_km, trip_price
+        """
+            Calculates the distance form point A to point B.
+        :param loc2:
+        :return: Distance in km, price for the distance.
+        """
+        distance_km = dc.distanceCheck(loc1, loc2)
+        trip_price = distance_km * 5
+        return distance_km, trip_price
 
     def getDateAndTime(self):
+        """
+            Get current time.
+        :return: date, time
+        """
         today = (datetime.date.today())
         now = (datetime.datetime.now())
         current_time = (now.strftime("%H:%M"))
         return str(today), str(current_time)
 
     def getJourneyID(self):
+        """
+            Creates journey ID.
+        :return: random integer 1 - 10**6
+        """
         id = randint(1, 1000000)
         return '#' + str(id)
 
     def getETA(self):
+        """
+            Creates ETA.
+        :return: random integer 3 - 15
+        """
         eta = randint(3, 15)
         return str(eta) + ' minutes'
 
     def assignTheDriver(self):
+        """Returns a rondom driver's name, car number, car make and car color."""
         connection = sqlite3.connect("assessment2.db")
-
         sql_select_Query = "select * from drivers"
         cursor = connection.cursor()
         cursor.execute(sql_select_Query)
@@ -134,20 +151,11 @@ class BackEnd(object):
         order_id = records[len(records) - 1][2]
         return start_location, destination, order_id
 
-    def getOrderID(self):
-        connection = sqlite3.connect("assessment2.db")
-
-        sql_select_Query = "select * from orders"
-        cursor = connection.cursor()
-        cursor.execute(sql_select_Query)
-        records = cursor.fetchall()
-        orders = []
-        for item in records:
-            orders.append(item[2])
-        r = randint(0, len(orders) - 1)
-        return str(orders[r])
-
     def getLastRowJourneys(self):
+        """
+            Get last journey.
+        :return: Last row from journey table.
+        """
         connection = sqlite3.connect("assessment2.db")
 
         sql_select_Query = "select * from journey"
