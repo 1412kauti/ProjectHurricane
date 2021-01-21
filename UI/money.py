@@ -1148,8 +1148,7 @@ class User_Paypal(QtWidgets.QWidget):
         user_paypal_password = self.ui5.User_Paypal_Password.text()
         user_card_name = 0
         user_card_number = 0
-        user_card_cvv = 0 r_card_cvv, user_paypal_email,
-                                              user_paypal_password,user_first_name)
+        user_card_cvv = 0
 #Classes provide a means of bundling data and functionality together
 class User_Card(QtWidgets.QWidget):
     def __init__(self):
@@ -1989,10 +1988,9 @@ class UserMainScreen(QtWidgets.QWidget):
         """Previous trips tab"""
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
-        userID = 0
-        sqlstr = """SELECT * FROM journey WHERE user_ID = ? AND status = 'complete'"""
+        id = self.takePass('pass.txt')
         tablerow = 0
-        results = cur.execute(sqlstr, (userID))
+        results = cur.execute(f"""SELECT * FROM journey WHERE user_ID = ? AND status = 'Completed'""", (id,))
         self.ui13.tableWidget.setRowCount(40)
         for row in results:
             self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
@@ -2124,6 +2122,7 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.decline_order.clicked.connect(self.statusDeclined)
         # Updates the status to declined
         self.ui20.Completed_button.clicked.connect(self.statusAccepted)
+        self.ui20.Completed_button.clicked.connect(self.emptyEverything)
         self.loaddata()
         pass__ = self.takePass('pass.txt')
         a, b, c, d = self.getDriver(pass__)
@@ -2143,7 +2142,7 @@ class DriverScreen(QtWidgets.QWidget):
         :return:
         """
         last_order_id = BackEnd().getLastRowJourneys()
-        dataz().Update_status_journey('Accepted', last_order_id)
+        dataz().Update_status_journey('Completed', last_order_id)
 
     def findOrderButton(self):
         """Get last row from journey table and print its details"""
@@ -2182,10 +2181,9 @@ class DriverScreen(QtWidgets.QWidget):
         """Previous trips table for current user."""
         connection = sqlite3.connect('assessment2.db')
         cur = connection.cursor()
-        driverID = 0
-        sqlstr = """SELECT * FROM journey WHERE driver_ID = ? AND AND status = 'complete'"""
+        id = self.takePass('pass.txt')
         tablerow = 0
-        results = cur.execute(sqlstr, (driverID,))
+        results = cur.execute(f"""SELECT * FROM journey WHERE user_ID = ? AND status = 'Completed'""", (id,))
         self.ui20.tableWidget.setRowCount(40)
         for row in results:
             self.ui20.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
