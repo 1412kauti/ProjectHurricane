@@ -2125,6 +2125,7 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.decline_order.clicked.connect(self.statusDeclined)
         # Updates the status to declined
         self.ui20.Completed_button.clicked.connect(self.statusAccepted)
+        self.ui20.Refresh_Btn.clicked.connect(self.hit_refresh)
         self.loaddata()
         pass__ = self.takePass('pass.txt')
         a, b, c, d = self.getDriver(pass__)
@@ -2291,6 +2292,14 @@ class DriverScreen(QtWidgets.QWidget):
     def getNewOrder(self, start_point, end_point):
         self.ui20.sl_value.setText(start_point)
         self.ui20.el_value.setText(end_point)
+
+    def hit_refresh(self):
+        self.ui21 = DriverScreen()
+        #Show New Window
+        self.ui21.show()
+        #Closes existing Window
+        self.close()
+
 #Classes provide a means of bundling data and functionality together
 class StartScreen(QtWidgets.QWidget):
     def __init__(self):
