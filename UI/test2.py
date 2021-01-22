@@ -846,5 +846,24 @@ class dataz():
         the admin can delete specific row in any table in the database through the graphical user interface
         """
         conn.commit()
-
+    
+    @staticmethod
+    #staticmethod is used here to make sure that this function can't interact with parts of the database i don't want it to.
+    def Update_journey_status(status,id):
+        c.execute("""UPDATE journey
+        SET status = ?
+        WHERE user_ID = ?""", (status,id,))
+        """
+        update journey status on the journey table on a specific row in the database with customer name as reference
+        """
+        conn.commit()
+    
+    @staticmethod
+    #staticmethod is used here to make sure that this function can't interact with parts of the database i don't want it to.
+    def customer_name_journey(user_id):
+        c.execute("""SELECT customer_name FROM journey WHERE user_ID = ?""", (user_id,))
+        """
+        update journey status on the journey table on a specific row in the database with customer name as reference
+        """
+        conn.commit()
 v = dataz

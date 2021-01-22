@@ -1860,8 +1860,6 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.Refresh_Btn.clicked.connect(self.hit_refresh)
         #Connecting the button to a function within this class
         self.ui13.pushButton.clicked.connect(self.declineButton)
-        #Connecting the button to a function within this class
-        self.ui13.pushButton.clicked.connect(self.deleteDeclined)
         #initialize the qss function
         self.qss()
         pass__ = self.takePass('pass.txt')
@@ -1904,6 +1902,9 @@ class UserMainScreen(QtWidgets.QWidget):
         self.ui13.Distance_Label.setText('')
         #Setting text on the Label
         self.ui13.Car_Number_Lbl.setText('')
+        status = 'Cancelled'
+        pass__ = self.takePass('pass.txt')
+        dataz().Update_journey_status(status,pass__)
 
     def takePass(self, file):
         with open(file, 'r') as f:
@@ -1983,7 +1984,7 @@ class UserMainScreen(QtWidgets.QWidget):
         cur = connection.cursor()
         id = self.takePass('pass.txt')
         tablerow = 0
-        results = cur.execute(f"""SELECT * FROM journey WHERE user_ID = ? AND status = 'Completed'""", (id,))
+        results = cur.execute(f"""SELECT * FROM journey WHERE (user_ID = ? AND status = 'Completed') OR (user_ID = ? AND status = 'Cancelled')""", (id,id,))
         self.ui13.tableWidget.setRowCount(40)
         for row in results:
             self.ui13.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
@@ -1998,6 +1999,7 @@ class UserMainScreen(QtWidgets.QWidget):
             self.ui13.tableWidget.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(row[12]))
             self.ui13.tableWidget.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(row[13]))
             self.ui13.tableWidget.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(row[14]))
+            self.ui13.tableWidget.setItem(tablerow, 12, QtWidgets.QTableWidgetItem(row[15]))
             tablerow += 1
 
     def Book_now(self):
@@ -2115,11 +2117,19 @@ class DriverScreen(QtWidgets.QWidget):
         self.ui20.decline_order.clicked.connect(self.statusDeclined)
         # Updates the status to declined
         self.ui20.Completed_button.clicked.connect(self.statusAccepted)
+        self.ui20.Refresh_Btn.clicked.connect(self.hit_refresh)
         self.ui20.Completed_button.clicked.connect(self.emptyEverything)
         self.loaddata()
         pass__ = self.takePass('pass.txt')
         a, b, c, d = self.getDriver(pass__)
         self.phillOut(a, b, c, d)
+
+    def hit_refresh(self):
+        self.ox = DriverScreen()
+        #Show New Window
+        self.ox.show()
+        #Closes existing Window
+        self.close()
 
     def statusDeclined(self):
         """
@@ -2176,7 +2186,7 @@ class DriverScreen(QtWidgets.QWidget):
         cur = connection.cursor()
         id = self.takePass('pass.txt')
         tablerow = 0
-        results = cur.execute(f"""SELECT * FROM journey WHERE driver_ID = ? AND status = 'Completed'""", (id,))
+        results = cur.execute(f"""SELECT * FROM journey WHERE (driver_ID = ? AND status = 'Completed') OR (driver_ID = ? AND status = 'Cancelled')""", (id,id,))
         self.ui20.tableWidget.setRowCount(40)
         for row in results:
             self.ui20.tableWidget.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(row[0]))
